@@ -146,7 +146,7 @@ def generar_imagen_gemini(prompt):
     
     url = (
         "https://generativelanguage.googleapis.com/v1beta/models/"
-        f"gemini-2.5-flash-image:generateContent?key={GEMINI_API_KEY}"
+        f"gemini-2.0-flash-exp:generateContent?key={GEMINI_API_KEY}"
     )
     
     payload = {
