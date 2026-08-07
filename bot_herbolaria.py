@@ -3,14 +3,13 @@ import random
 import os
 import json
 from datetime import datetime
-import replicate
 
 # ================================================================
 # CONFIGURACIÓN (variables desde GitHub Secrets)
 # ================================================================
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 MAKE_WEBHOOK_URL = os.getenv("MAKE_WEBHOOK_URL")
-REPLICATE_API_TOKEN = os.getenv("REPLICATE_API_TOKEN")
+AGNES_API_KEY = os.getenv("AGNES_API_KEY")  # <--- NUEVA VARIABLE
 
 # ================================================================
 # BASE DE DATOS DE HIERBAS (prompts en inglés curados)
@@ -118,36 +117,42 @@ Descubre los beneficios de esta maravillosa planta medicinal.
 #Herbolaria #PlantasMedicinales #BienestarNatural"""
 
 # ================================================================
-# GENERADOR DE IMAGEN CON REPLICATE (FLUX)
+# GENERADOR DE IMAGEN CON AGNES AI
 # ================================================================
-def generar_imagen_replicate(prompt):
-    """Genera imagen usando Replicate (Flux Schnell)"""
+def generar_imagen_agnes(prompt):
+    """
+    Genera una imagen usando la API de Agnes AI (modelo Agnes-Image-2.1-Flash).
+    Retorna la URL de la imagen o None si hay error.
+    """
+    url = "https://apihub.agnes-ai.com/v1/images/generations"
+    
+    headers = {
+        "Authorization": f"Bearer {AGNES_API_KEY}",
+        "Content-Type": "application/json"
+    }
+    
+    payload = {
+        "model": "agnes-image-2.1-flash",
+        "prompt": prompt,
+        "width": 1024,
+        "height": 1024,
+        "num_images": 1
+    }
+
     try:
-        # Configurar el token de Replicate
-        replicate.Client(api_token=REPLICATE_API_TOKEN)
+        print("🎨 Generando imagen con Agnes AI...")
+        response = requests.post(url, headers=headers, json=payload, timeout=90)
         
-        # Ejecutar el modelo Flux Schnell
-        output = replicate.run(
-            "black-forest-labs/flux-schnell",
-            input={
-                "prompt": prompt,
-                "width": 1024,
-                "height": 1024,
-                "num_outputs": 1,
-                "num_inference_steps": 4
-            }
-        )
-        
-        # output es una lista con la URL de la imagen
-        if output and len(output) > 0:
-            print("✅ Imagen generada con Replicate")
-            return output[0]  # URL de la imagen
+        if response.status_code == 200:
+            data = response.json()
+            image_url = data['data'][0]['url']
+            print("✅ Imagen generada con Agnes AI")
+            return image_url
         else:
-            print("❌ Replicate no devolvió imagen")
+            print(f"❌ Error en Agnes AI: {response.status_code} - {response.text}")
             return None
-            
     except Exception as e:
-        print(f"❌ Error en Replicate: {e}")
+        print(f"❌ Error de conexión con Agnes AI: {e}")
         return None
 
 # ================================================================
@@ -174,10 +179,10 @@ def main():
     print("🌿 Iniciando Bot de Herbolaria")
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
-    # Validar que todas las variables existan
-    if not all([DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, REPLICATE_API_TOKEN]):
+    # Validar variables
+    if not all([DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, AGNES_API_KEY]):
         print("❌ Faltan variables de entorno. Revisa los Secrets de GitHub.")
-        print("   Necesitas: DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, REPLICATE_API_TOKEN")
+        print("   Necesitas: DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, AGNES_API_KEY")
         return
     
     # Elegir hierba del día
@@ -189,9 +194,8 @@ def main():
     texto = generar_texto_deepseek(hierba)
     print("✅ Texto generado")
     
-    # Paso 2: Generar imagen con Replicate
-    print("🎨 Generando imagen con Replicate (Flux)...")
-    image_url = generar_imagen_replicate(hierba["prompt_img"])
+    # Paso 2: Generar imagen con Agnes AI
+    image_url = generar_imagen_agnes(hierba["prompt_img"])
     
     if image_url is None:
         print("⚠️ No se pudo generar imagen. Enviando solo texto.")
