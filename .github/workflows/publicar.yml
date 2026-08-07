@@ -11,21 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repositorio
-        uses: actions/checkout@v5    # ← Cambiado de v4 a v5
+        uses: actions/checkout@v5
 
       - name: Configurar Python
-        uses: actions/setup-python@v6    # ← Cambiado de v5 a v6
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
       - name: Instalar dependencias
         run: |
-          pip install requests
+          pip install requests replicate
 
       - name: Ejecutar bot
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          IMGBB_API_KEY: ${{ secrets.IMGBB_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
         run: python bot_herbolaria.py
