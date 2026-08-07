@@ -2,8 +2,8 @@ name: Bot Herbolaria - Publicación
 
 on:
   schedule:
-    - cron: '0 14 * * *'
-    - cron: '0 21 * * *'
+    - cron: '0 13 * * *'   # 7:00 AM CDMX (invierno)
+    - cron: '0 21 * * *'   # 3:00 PM CDMX (todo el año)
   workflow_dispatch:
 
 jobs:
