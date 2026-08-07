@@ -9,7 +9,10 @@ from datetime import datetime
 # ================================================================
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 MAKE_WEBHOOK_URL = os.getenv("MAKE_WEBHOOK_URL")
-AGNES_API_KEY = os.getenv("AGNES_API_KEY")  # <--- NUEVA VARIABLE
+AGNES_API_KEY = os.getenv("AGNES_API_KEY")
+
+# Enlace del bot de Telegram (puedes cambiarlo aquí o usar un Secret)
+TELEGRAM_BOT_LINK = os.getenv("TELEGRAM_BOT_LINK", "https://t.me/alex_xanax_bot")
 
 # ================================================================
 # BASE DE DATOS DE HIERBAS (prompts en inglés curados)
@@ -82,7 +85,7 @@ HIERBAS = [
 ]
 
 # ================================================================
-# GENERADOR DE TEXTO CON DEEPSEEK
+# GENERADOR DE TEXTO CON DEEPSEEK (con llamado a Telegram)
 # ================================================================
 def generar_texto_deepseek(hierba):
     prompt = f"""Eres un experto en herbolaria tradicional mexicana.
@@ -90,15 +93,38 @@ Escribe un post breve y atractivo para Facebook sobre la {hierba['nombre']}
 (nombre científico: {hierba['nombre_cientifico']}).
 
 Requisitos:
-- Máximo 200 palabras
-- Usa emojis relacionados con plantas y bienestar 🌿
-- Menciona 3 beneficios principales de forma natural
-- Da un tip práctico de cómo usarla en casa
-- Incluye 3 hashtags relevantes al final
+- Máximo 150 palabras
+- Usa emojis 🌿
+- Menciona 3 beneficios principales en viñetas con emojis
+- Da un tip práctico de uso con emoji 🍵
 - Tono cercano, educativo y cálido
 - Escribe en español
 
-Formato: texto directo, sin título ni encabezados."""
+Al final del post, DEBES incluir EXACTAMENTE este texto (copia y pega):
+
+"¿Quieres saber qué producto de herbolaria es ideal para ti?  
+✨¡Pregúntale gratis a nuestra asesora virtual 24/7!  
+👉 https://t.me/alex_xanax_bot"
+
+No cambies nada de ese texto, debe aparecer tal cual al final del post.
+
+Incluye 3 hashtags relevantes al final.
+
+Formato final:
+🫚 [Título corto con emoji]
+
+[Breve introducción]
+
+✅ Beneficio 1
+✅ Beneficio 2
+✅ Beneficio 3
+
+🍵 Tip práctico: [consejo]
+
+[LLAMADO A LA ACCIÓN exacto]
+
+#Hashtag1 #Hashtag2 #Hashtag3
+"""
 
     url = "https://api.deepseek.com/v1/chat/completions"
     headers = {"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"}
@@ -110,9 +136,20 @@ Formato: texto directo, sin título ni encabezados."""
         return r.json()["choices"][0]["message"]["content"].strip()
     except Exception as e:
         print(f"❌ Error en DeepSeek: {e}")
+        # Texto de respaldo con el llamado incluido
         return f"""🌿 {hierba['nombre'].upper()} ({hierba['nombre_cientifico']})
 
 Descubre los beneficios de esta maravillosa planta medicinal.
+
+✅ Ayuda a mejorar tu bienestar natural.
+✅ Propiedades tradicionales respaldadas por la herbolaria.
+✅ Ideal para tu rutina diaria.
+
+🍵 Tip: Consulta cómo integrarla en tu vida.
+
+¿Quieres saber qué producto de herbolaria es ideal para ti?  
+✨¡Pregúntale gratis a nuestra asesora virtual 24/7!  
+👉 https://t.me/alex_xanax_bot
 
 #Herbolaria #PlantasMedicinales #BienestarNatural"""
 
@@ -120,29 +157,12 @@ Descubre los beneficios de esta maravillosa planta medicinal.
 # GENERADOR DE IMAGEN CON AGNES AI
 # ================================================================
 def generar_imagen_agnes(prompt):
-    """
-    Genera una imagen usando la API de Agnes AI (modelo Agnes-Image-2.1-Flash).
-    Retorna la URL de la imagen o None si hay error.
-    """
     url = "https://apihub.agnes-ai.com/v1/images/generations"
-    
-    headers = {
-        "Authorization": f"Bearer {AGNES_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    
-    payload = {
-        "model": "agnes-image-2.1-flash",
-        "prompt": prompt,
-        "width": 1024,
-        "height": 1024,
-        "num_images": 1
-    }
-
+    headers = {"Authorization": f"Bearer {AGNES_API_KEY}", "Content-Type": "application/json"}
+    payload = {"model": "agnes-image-2.1-flash", "prompt": prompt, "width": 1024, "height": 1024, "num_images": 1}
     try:
         print("🎨 Generando imagen con Agnes AI...")
         response = requests.post(url, headers=headers, json=payload, timeout=90)
-        
         if response.status_code == 200:
             data = response.json()
             image_url = data['data'][0]['url']
@@ -179,32 +199,25 @@ def main():
     print("🌿 Iniciando Bot de Herbolaria")
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
-    # Validar variables
     if not all([DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, AGNES_API_KEY]):
         print("❌ Faltan variables de entorno. Revisa los Secrets de GitHub.")
         print("   Necesitas: DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, AGNES_API_KEY")
         return
     
-    # Elegir hierba del día
     hierba = random.choice(HIERBAS)
     print(f"🌱 Hierba del día: {hierba['nombre']}")
     
-    # Paso 1: Generar texto con DeepSeek
     print("📝 Generando texto con DeepSeek...")
     texto = generar_texto_deepseek(hierba)
     print("✅ Texto generado")
     
-    # Paso 2: Generar imagen con Agnes AI
     image_url = generar_imagen_agnes(hierba["prompt_img"])
-    
     if image_url is None:
         print("⚠️ No se pudo generar imagen. Enviando solo texto.")
         enviar_a_make(texto, None)
         return
     
     print(f"✅ Imagen generada: {image_url}")
-    
-    # Paso 3: Enviar a Make.com
     print("📤 Enviando a Make.com...")
     exito = enviar_a_make(texto, image_url)
     
