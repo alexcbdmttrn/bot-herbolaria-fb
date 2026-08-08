@@ -2,7 +2,7 @@ import requests
 import random
 import os
 import json
-from datetime import datetime, timedelta
+from datetime import datetime
 
 # ================================================================
 # CONFIGURACIÓN (variables desde GitHub Secrets)
@@ -12,11 +12,12 @@ MAKE_WEBHOOK_URL = os.getenv("MAKE_WEBHOOK_URL")
 AGNES_API_KEY = os.getenv("AGNES_API_KEY")
 
 # ================================================================
-# ARCHIVO DE ESTADO (para evitar repeticiones)
+# ARCHIVO DE ESTADO (guarda historial completo)
 # ================================================================
 ESTADO_FILE = "estado_herbolaria.json"
 
 def cargar_estado():
+    """Carga el historial de publicaciones."""
     try:
         with open(ESTADO_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
@@ -24,28 +25,24 @@ def cargar_estado():
         return {"publicadas": []}
 
 def guardar_estado(estado):
+    """Guarda el historial de publicaciones."""
     with open(ESTADO_FILE, "w", encoding="utf-8") as f:
         json.dump(estado, f, indent=2, ensure_ascii=False)
 
-def limpiar_historial(estado):
-    """Elimina publicaciones de hace más de 24 horas."""
-    ahora = datetime.now()
-    estado["publicadas"] = [
-        p for p in estado["publicadas"]
-        if datetime.fromisoformat(p["fecha"]) > ahora - timedelta(hours=24)
-    ]
-    return estado
-
 def obtener_hierba_no_repetida(hierbas, estado):
-    """Elige una hierba que no haya sido publicada en las últimas 24 horas."""
-    publicadas = [p["nombre"] for p in estado["publicadas"]]
+    """
+    Elige una hierba que NO haya sido publicada nunca.
+    Si todas ya fueron publicadas, reinicia el historial y vuelve a empezar.
+    """
+    publicadas = set(p["nombre"] for p in estado["publicadas"])
     disponibles = [h for h in hierbas if h["nombre"] not in publicadas]
     
     if not disponibles:
-        # Si todas las hierbas ya fueron publicadas, reiniciar el historial
+        # Todas las hierbas ya fueron publicadas → reiniciar historial
+        print("🔄 Todas las hierbas ya han sido publicadas. Reiniciando historial.")
         estado["publicadas"] = []
         guardar_estado(estado)
-        disponibles = hierbas
+        disponibles = hierbas  # Ahora todas están disponibles
     
     return random.choice(disponibles)
 
@@ -203,13 +200,11 @@ def main():
         print("❌ Faltan variables de entorno. Revisa los Secrets de GitHub.")
         return
     
-    # Cargar estado y limpiar historial
+    # Cargar estado y elegir hierba no repetida
     estado = cargar_estado()
-    estado = limpiar_historial(estado)
-    
-    # Elegir hierba no repetida
     hierba = obtener_hierba_no_repetida(HIERBAS, estado)
     print(f"🌱 Hierba del día: {hierba['nombre']}")
+    print(f"📊 Publicadas hasta ahora: {len(estado['publicadas'])} / {len(HIERBAS)}")
     
     # Generar texto con DeepSeek
     print("📝 Generando texto con DeepSeek...")
