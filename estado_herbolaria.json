@@ -1,0 +1,20 @@
+{
+  "publicadas": [
+    {
+      "nombre": "Menta",
+      "fecha": "2026-08-08T08:00:00"
+    },
+    {
+      "nombre": "Jengibre",
+      "fecha": "2026-08-08T15:00:00"
+    },
+    {
+      "nombre": "Lavanda",
+      "fecha": "2026-08-09T08:00:00"
+    },
+    {
+      "nombre": "Eucalipto",
+      "fecha": "2026-08-09T15:00:00"
+    }
+  ]
+}
