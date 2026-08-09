@@ -24,8 +24,12 @@ def cargar_estado():
         return {"publicadas": []}
 
 def guardar_estado(estado):
-    with open(ESTADO_FILE, "w", encoding="utf-8") as f:
-        json.dump(estado, f, indent=2, ensure_ascii=False)
+    try:
+        with open(ESTADO_FILE, "w", encoding="utf-8") as f:
+            json.dump(estado, f, indent=2, ensure_ascii=False)
+        print(f"✅ Estado guardado correctamente en {ESTADO_FILE}")
+    except Exception as e:
+        print(f"❌ Error guardando estado: {e}")
 
 def obtener_hierba_no_repetida(hierbas, estado):
     publicadas = set(p["nombre"] for p in estado["publicadas"])
@@ -108,7 +112,7 @@ HIERBAS = [
 ]
 
 # ================================================================
-# GENERADOR DE TEXTO CON DEEPSEEK (FORMATO CORRECTO)
+# GENERADOR DE TEXTO CON DEEPSEEK
 # ================================================================
 def generar_texto_deepseek(hierba):
     prompt = f"""Eres un experto en herbolaria y redacción para redes sociales.
