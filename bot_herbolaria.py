@@ -12,10 +12,25 @@ MAKE_WEBHOOK_URL = os.getenv("MAKE_WEBHOOK_URL")
 AGNES_API_KEY = os.getenv("AGNES_API_KEY")
 
 # ================================================================
-# ARCHIVO DE ESTADO (guarda historial completo)
+# ARCHIVOS
 # ================================================================
 ESTADO_FILE = "estado_herbolaria.json"
+CATALOGO_FILE = "catalogo_ingredientes.json"
 
+# ================================================================
+# CARGAR CATÁLOGO DESDE JSON
+# ================================================================
+def cargar_catalogo():
+    try:
+        with open(CATALOGO_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except:
+        print("⚠️ No se pudo cargar el catálogo. Usando lista de respaldo.")
+        return ["Manzanilla", "Lavanda", "Menta", "Jengibre", "Cúrcuma", "Eucalipto", "Valeriana"]
+
+# ================================================================
+# ESTADO
+# ================================================================
 def cargar_estado():
     try:
         with open(ESTADO_FILE, "r", encoding="utf-8") as f:
@@ -31,96 +46,25 @@ def guardar_estado(estado):
     except Exception as e:
         print(f"❌ Error guardando estado: {e}")
 
-def obtener_hierba_no_repetida(hierbas, estado):
+def obtener_ingrediente_no_repetido(catalogo, estado):
     publicadas = set(p["nombre"] for p in estado["publicadas"])
-    disponibles = [h for h in hierbas if h["nombre"] not in publicadas]
+    disponibles = [item for item in catalogo if item not in publicadas]
     if not disponibles:
-        print("🔄 Todas las hierbas ya han sido publicadas. Reiniciando historial.")
+        print("🔄 Todos los ingredientes ya han sido publicados. Reiniciando historial.")
         estado["publicadas"] = []
         guardar_estado(estado)
-        disponibles = hierbas
+        disponibles = catalogo
     return random.choice(disponibles)
 
 # ================================================================
-# BASE DE DATOS DE HIERBAS
+# GENERAR TEXTO CON DEEPSEEK (adaptado a cualquier ingrediente)
 # ================================================================
-HIERBAS = [
-    {
-        "nombre": "Manzanilla",
-        "nombre_cientifico": "Matricaria chamomilla",
-        "prompt_img": (
-            "Fresh chamomile flower with white petals and golden yellow center, "
-            "close-up botanical photography on wooden table, next to a cup of "
-            "chamomile tea with steam rising, soft natural window light, "
-            "photorealistic, professional herbal brand photo, 8k, ultra detailed"
-        ),
-    },
-    {
-        "nombre": "Lavanda",
-        "nombre_cientifico": "Lavandula angustifolia",
-        "prompt_img": (
-            "Fresh lavender plant with vibrant purple flower spikes and green stems, "
-            "close-up botanical photography in morning light, bundle of lavender, "
-            "soft natural light, photorealistic, professional herbal brand photo, 8k"
-        ),
-    },
-    {
-        "nombre": "Menta",
-        "nombre_cientifico": "Mentha piperita",
-        "prompt_img": (
-            "Fresh mint leaves with vibrant green serrated edges, dew drops on leaves, "
-            "close-up botanical photography, bright natural light, glass of mint tea "
-            "in blurred background, photorealistic, professional herbal brand photo, 8k"
-        ),
-    },
-    {
-        "nombre": "Jengibre",
-        "nombre_cientifico": "Zingiber officinale",
-        "prompt_img": (
-            "Fresh ginger root knobby beige rhizome, sliced pieces showing interior, "
-            "small green shoots, close-up botanical photography on wooden cutting board, "
-            "warm natural light, photorealistic, professional herbal brand photo, 8k"
-        ),
-    },
-    {
-        "nombre": "Cúrcuma",
-        "nombre_cientifico": "Curcuma longa",
-        "prompt_img": (
-            "Fresh turmeric root cut open showing bright orange flesh, small bowl of "
-            "golden turmeric powder, close-up botanical photography, warm natural light, "
-            "photorealistic, professional herbal brand photo, 8k"
-        ),
-    },
-    {
-        "nombre": "Eucalipto",
-        "nombre_cientifico": "Eucalyptus globulus",
-        "prompt_img": (
-            "Fresh eucalyptus branch with round silver-green aromatic leaves, "
-            "close-up botanical photography, soft natural light, photorealistic, "
-            "professional herbal brand photo, 8k"
-        ),
-    },
-    {
-        "nombre": "Valeriana",
-        "nombre_cientifico": "Valeriana officinalis",
-        "prompt_img": (
-            "Fresh valerian plant with small white-pink flower clusters and green "
-            "feathery foliage, close-up botanical photography, soft evening light, "
-            "photorealistic, professional herbal brand photo, 8k"
-        ),
-    },
-]
-
-# ================================================================
-# GENERADOR DE TEXTO CON DEEPSEEK
-# ================================================================
-def generar_texto_deepseek(hierba):
-    prompt = f"""Eres un experto en herbolaria y redacción para redes sociales.
-Escribe un post CORTO y ORDENADO para Facebook sobre la {hierba['nombre']}.
+def generar_texto_deepseek(ingrediente):
+    prompt = f"""Eres un experto en herbolaria y nutrición natural. Escribe un post CORTO y ORDENADO para Facebook sobre {ingrediente}.
 
 REGLAS ESTRICTAS:
 - Usa EXACTAMENTE este formato con saltos de línea después de cada icono (NO uses doble espacio):
-  Línea 1: 🌿 [Nombre]: [frase gancho de una línea]
+  Línea 1: 🌿 {ingrediente}: [frase gancho de una línea]
   Línea 2: ✅ [beneficio 1 corto]
   Línea 3: ✅ [beneficio 2 corto]
   Línea 4: ✅ [beneficio 3 corto]
@@ -129,11 +73,11 @@ REGLAS ESTRICTAS:
   Línea 7: ✨¡Pregunta gratis 24/7! 👉 https://t.me/alex_xanax_bot
   Línea 8: [3 hashtags relevantes separados por espacio]
 
-- Cada línea DEBE ser corta (máx 60 caracteres, ideal para móvil).
+- Cada línea DEBE ser corta (máx 60 caracteres).
 - SIN líneas en blanco entre cada línea.
 - El texto debe ser directo y atractivo.
 
-Formato EXACTO (copiar):
+Formato EXACTO:
 🌿 Jengibre: la raíz que enciende tu vitalidad.
 ✅ Alivia la inflamación y el dolor muscular.
 ✅ Fortalece tu sistema inmune contra resfriados.
@@ -145,7 +89,6 @@ Formato EXACTO (copiar):
 
 No uses puntos y aparte, solo los saltos de línea indicados.
 """
-
     url = "https://api.deepseek.com/v1/chat/completions"
     headers = {"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"}
     payload = {"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt}], "temperature": 0.7, "max_tokens": 250}
@@ -156,7 +99,7 @@ No uses puntos y aparte, solo los saltos de línea indicados.
         return r.json()["choices"][0]["message"]["content"].strip()
     except Exception as e:
         print(f"❌ Error en DeepSeek: {e}")
-        return f"""🌿 {hierba['nombre']}: Tu aliado natural.
+        return f"""🌿 {ingrediente}: Tu aliado natural.
 ✅ Alivia síntomas de resfriado.
 ✅ Descongestiona vías respiratorias.
 ✅ Calma la tos y la irritación.
@@ -166,7 +109,13 @@ No uses puntos y aparte, solo los saltos de línea indicados.
 #SaludNatural #Herbolaria #Bienestar"""
 
 # ================================================================
-# GENERADOR DE IMAGEN CON AGNES AI
+# GENERAR PROMPT DE IMAGEN (genérico para cualquier ingrediente)
+# ================================================================
+def obtener_prompt_imagen(ingrediente):
+    return f"Fresh {ingrediente} close-up botanical photography, natural light, photorealistic, professional herbal brand photo, 8k, ultra detailed"
+
+# ================================================================
+# GENERAR IMAGEN CON AGNES AI
 # ================================================================
 def generar_imagen_agnes(prompt):
     url = "https://apihub.agnes-ai.com/v1/images/generations"
@@ -209,23 +158,26 @@ def enviar_a_make(message, image_url):
 # MAIN
 # ================================================================
 def main():
-    print("🌿 Iniciando Bot de Herbolaria")
+    print("🌿 Iniciando Bot de Herbolaria (Catálogo ampliado)")
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     if not all([DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, AGNES_API_KEY]):
         print("❌ Faltan variables de entorno. Revisa los Secrets de GitHub.")
         return
     
+    catalogo = cargar_catalogo()
     estado = cargar_estado()
-    hierba = obtener_hierba_no_repetida(HIERBAS, estado)
-    print(f"🌱 Hierba del día: {hierba['nombre']}")
-    print(f"📊 Publicadas hasta ahora: {len(estado['publicadas'])} / {len(HIERBAS)}")
+    
+    ingrediente = obtener_ingrediente_no_repetido(catalogo, estado)
+    print(f"🌱 Ingrediente del día: {ingrediente}")
+    print(f"📊 Publicados hasta ahora: {len(estado['publicadas'])} / {len(catalogo)}")
     
     print("📝 Generando texto con DeepSeek...")
-    texto = generar_texto_deepseek(hierba)
+    texto = generar_texto_deepseek(ingrediente)
     print("✅ Texto generado")
     
-    image_url = generar_imagen_agnes(hierba["prompt_img"])
+    prompt_img = obtener_prompt_imagen(ingrediente)
+    image_url = generar_imagen_agnes(prompt_img)
     
     if image_url is None:
         print("⚠️ No se pudo generar imagen. Enviando solo texto.")
@@ -235,12 +187,12 @@ def main():
         enviar_a_make(texto, image_url)
     
     estado["publicadas"].append({
-        "nombre": hierba["nombre"],
+        "nombre": ingrediente,
         "fecha": datetime.now().isoformat()
     })
     guardar_estado(estado)
     
-    print(f"🎉 ¡Publicación enviada para {hierba['nombre']}!")
+    print(f"🎉 ¡Publicación enviada para {ingrediente}!")
 
 if __name__ == "__main__":
     try:
