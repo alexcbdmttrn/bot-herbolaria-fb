@@ -57,7 +57,7 @@ def obtener_ingrediente_no_repetido(catalogo, estado):
     return random.choice(disponibles)
 
 # ================================================================
-# GENERAR TEXTO CON DEEPSEEK (adaptado a cualquier ingrediente)
+# GENERAR TEXTO CON DEEPSEEK
 # ================================================================
 def generar_texto_deepseek(ingrediente):
     prompt = f"""Eres un experto en herbolaria y nutrición natural. Escribe un post CORTO y ORDENADO para Facebook sobre {ingrediente}.
