@@ -1,208 +1,1238 @@
 [
-  "Zábila",
-  "Hojas de Sen",
-  "Zapote Blanco",
-  "Manzanilla",
-  "Zacate Limón",
-  "Cabellos de Elote",
-  "Cocolmeca",
-  "Cola de Caballo",
-  "Guarumbo",
-  "Pingüica",
-  "Pasiflora",
-  "Perejil",
-  "Salvia",
-  "Cayenne",
-  "Valeriana",
-  "Diente de León",
-  "Hojas de Naranjo",
-  "Jengibre",
-  "Laurel",
-  "Salvadora",
-  "Sauce",
-  "Tepozán",
-  "Mangosteen",
-  "Açaí",
-  "Noni",
-  "Goji",
-  "Cancerina",
-  "Rosa Silvestre",
-  "Suelda",
-  "Alfalfa",
-  "Apio",
-  "Axocopaque",
-  "Palo Mulato",
-  "Yerbanís",
-  "Gordolobo",
-  "Anacahuita",
-  "Eucalipto",
-  "Marrubio",
-  "Hierbabuena",
-  "Tila",
-  "Capulín",
-  "Orégano",
-  "Tomillo",
-  "Nopal",
-  "Tejocote",
-  "Zarzaparrilla",
-  "Flor de Manita",
-  "Palo Santo",
-  "Tronadora",
-  "Cempasúchil",
-  "Damiana",
-  "Hámula",
-  "Boldo",
-  "Menta",
-  "Hinojo",
-  "Espinosilla",
-  "Cuachalalate",
-  "Cilantro",
-  "Raíz de Maguey",
-  "Rusco",
-  "Cenizo",
-  "Muicle",
-  "Toronjil",
-  "Flor de Azahar",
-  "Malva",
-  "Black Cohosh",
-  "Guanábana",
-  "Romero",
-  "Estafiate",
-  "Hojas de Aguacate",
-  "Tepezcohuite",
-  "Hierba de la Golondrina",
-  "Fresno",
-  "Capitaneja",
-  "Hojas de Nogal",
-  "Castaño de Indias",
-  "Gotu-Kola",
-  "Bilberry",
-  "Rosa Canina",
-  "Ajo Negro",
-  "Alcachofa",
-  "Ashwagandha",
-  "Pimienta Negra",
-  "Té Verde",
-  "Semilla de Uva",
-  "Corteza de Pino",
-  "Moringa",
-  "Shilajit",
-  "Ginseng",
-  "Cúrcuma",
-  "Cardo Mariano",
-  "Centella Asiática",
-  "Granada",
-  "Arándano",
-  "Linaza",
-  "Avena",
-  "Hongo Shitake",
-  "Hongo Maitake",
-  "Hongo Reishi",
-  "Hongo Cordyceps",
-  "Hongo Chaga",
-  "Tamarindo",
-  "Melena de León",
-  "Turkey Tail",
-  "Equinácea",
-  "Árnica",
-  "Limón",
-  "Naranja",
-  "Mango",
-  "Piña",
-  "Uva",
-  "Cranberry",
-  "Manzana",
-  "Jamaica",
-  "Toronja",
-  "Guayaba",
-  "Papaya",
-  "Maracuyá",
-  "Zarzamora",
-  "Zanahoria",
-  "Brócoli",
-  "Espinaca",
-  "Pepino",
-  "Calabaza",
-  "Jícama",
-  "Haba",
-  "Lenteja",
-  "Garbanzo",
-  "Frijol",
-  "Maíz",
-  "Trigo",
-  "Arroz",
-  "Quinoa",
-  "Amaranto",
-  "Cebada",
-  "Chía",
-  "Sésamo",
-  "Almendra",
-  "Nuez",
-  "Cacahuate",
-  "Pepita de Calabaza",
-  "Girasol",
-  "Espirulina",
-  "Chlorella",
-  "Alga Kelp",
-  "Alga Wakame",
-  "Aceite de Aguacate",
-  "Aceite de Oliva",
-  "Aceite de Argán",
-  "Aceite de Coco",
-  "Aceite de Jojoba",
-  "Canela",
-  "Clavo",
-  "Cebolla",
-  "Ajo",
-  "Betabel",
-  "Chícharo",
-  "Elote",
-  "Calabacita",
-  "Chayote",
-  "Nabo",
-  "Rábano",
-  "Col",
-  "Lechuga",
-  "Espárrago",
-  "Fresa",
-  "Durazno",
-  "Ciruela",
-  "Higo",
-  "Dátil",
-  "Kiwi",
-  "Melón",
-  "Sandía",
-  "Pera",
-  "Membrillo",
-  "Tuna",
-  "Pitaya",
-  "Mijo",
-  "Teff",
-  "Sorgo",
-  "Kamut",
-  "Espelta",
-  "Nuez de la India",
-  "Pistache",
-  "Avellana",
-  "Piñón",
-  "Semilla de Girasol",
-  "Semilla de Calabaza",
-  "Semilla de Amapola",
-  "Champiñón",
-  "Portobello",
-  "Setas",
-  "Hongo Blanco",
-  "Mostaza",
-  "Comino",
-  "Anís",
-  "Hinojo (semillas)",
-  "Cardamomo",
-  "Nuez Moscada",
-  "Lenteja Roja",
-  "Frijol Negro",
-  "Alga Nori",
-  "Alga Kombu",
-  "Alga Dulse",
-  "Aceite de Sésamo",
-  "Aceite de Linaza"
+  {
+    "nombre": "Zábila",
+    "categoria": "planta",
+    "descripcion": "Planta suculenta con hojas gruesas y carnosas, bordes con espinas pequeñas. Gel transparente en su interior.",
+    "caracteristicas_visuales": "Hojas verdes gruesas y carnosas, bordes con pequeñas espinas, gel transparente"
+  },
+  {
+    "nombre": "Hojas de Sen",
+    "categoria": "planta",
+    "descripcion": "Hojas alargadas de color verde, usadas como laxante natural.",
+    "caracteristicas_visuales": "Hojas alargadas de color verde"
+  },
+  {
+    "nombre": "Zapote Blanco",
+    "categoria": "fruta",
+    "descripcion": "Fruta tropical de forma redonda, piel verde y pulpa blanca y cremosa. Sabor dulce.",
+    "caracteristicas_visuales": "Fruta redonda de piel verde, pulpa blanca y cremosa"
+  },
+  {
+    "nombre": "Manzanilla",
+    "categoria": "hierba",
+    "descripcion": "Flor pequeña con pétalos blancos y centro amarillo, similar a una margarita. Usada en infusiones.",
+    "caracteristicas_visuales": "Flores blancas con centro amarillo, hojas verdes pequeñas y delgadas"
+  },
+  {
+    "nombre": "Zacate Limón",
+    "categoria": "hierba",
+    "descripcion": "Planta aromática con hojas largas y delgadas, olor a limón. Usada en infusiones y cocina.",
+    "caracteristicas_visuales": "Hojas largas y delgadas de color verde, aroma a limón"
+  },
+  {
+    "nombre": "Cabellos de Elote",
+    "categoria": "planta",
+    "descripcion": "Hebras finas y sedosas de color amarillo o marrón que cubren la mazorca de maíz. Usadas en infusiones.",
+    "caracteristicas_visuales": "Hebras finas y sedosas de color amarillo o marrón"
+  },
+  {
+    "nombre": "Cocolmeca",
+    "categoria": "planta",
+    "descripcion": "Planta trepadora con hojas verdes y raíz tuberosa. Usada en medicina tradicional.",
+    "caracteristicas_visuales": "Planta trepadora con hojas verdes y raíz tuberosa"
+  },
+  {
+    "nombre": "Cola de Caballo",
+    "categoria": "planta",
+    "descripcion": "Planta con tallos verdes y articulados, aspecto similar a la cola de un caballo. Contiene sílice.",
+    "caracteristicas_visuales": "Tallos verdes y articulados"
+  },
+  {
+    "nombre": "Guarumbo",
+    "categoria": "planta",
+    "descripcion": "Árbol con hojas grandes y flores blancas. Usado en medicina tradicional mexicana.",
+    "caracteristicas_visuales": "Árbol con hojas grandes y flores blancas"
+  },
+  {
+    "nombre": "Pingüica",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas pequeñas y bayas rojas. Usada para afecciones renales.",
+    "caracteristicas_visuales": "Hojas pequeñas y bayas rojas"
+  },
+  {
+    "nombre": "Pasiflora",
+    "categoria": "planta",
+    "descripcion": "Planta trepadora con flores vistosas de colores morados y blancos. Usada como sedante natural.",
+    "caracteristicas_visuales": "Flores moradas y blancas, planta trepadora"
+  },
+  {
+    "nombre": "Perejil",
+    "categoria": "hierba",
+    "descripcion": "Hierba verde con hojas rizadas o planas, tallos delgados y aroma fresco. Usada como condimento.",
+    "caracteristicas_visuales": "Hojas verdes rizadas o planas, tallos delgados"
+  },
+  {
+    "nombre": "Salvia",
+    "categoria": "hierba",
+    "descripcion": "Hierba aromática con hojas verde grisáceas y textura aterciopelada. Usada en cocina y medicina.",
+    "caracteristicas_visuales": "Hojas verde grisáceas, textura aterciopelada"
+  },
+  {
+    "nombre": "Cayenne",
+    "categoria": "especia",
+    "descripcion": "Pimiento rojo picante en polvo. Color rojo intenso, textura fina.",
+    "caracteristicas_visuales": "Polvo de color rojo intenso"
+  },
+  {
+    "nombre": "Valeriana",
+    "categoria": "planta",
+    "descripcion": "Planta con flores blancas o rosadas, raíz con olor característico. Usada como sedante.",
+    "caracteristicas_visuales": "Flores blancas o rosadas, raíz con olor característico"
+  },
+  {
+    "nombre": "Diente de León",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas dentadas y flores amarillas. Conocida por sus propiedades diuréticas.",
+    "caracteristicas_visuales": "Hojas dentadas y flores amarillas"
+  },
+  {
+    "nombre": "Hojas de Naranjo",
+    "categoria": "planta",
+    "descripcion": "Hojas verdes y brillantes del naranjo. Usadas en infusiones relajantes.",
+    "caracteristicas_visuales": "Hojas verdes y brillantes"
+  },
+  {
+    "nombre": "Jengibre",
+    "categoria": "raíz",
+    "descripcion": "Raíz nudosa de color beige claro, pulpa amarillenta y fibrosa. Aroma picante.",
+    "caracteristicas_visuales": "Raíz nudosa de color beige, pulpa amarilla"
+  },
+  {
+    "nombre": "Laurel",
+    "categoria": "hierba",
+    "descripcion": "Hojas verdes y brillantes, de forma alargada. Usadas como condimento en la cocina.",
+    "caracteristicas_visuales": "Hojas verdes brillantes y alargadas"
+  },
+  {
+    "nombre": "Salvadora",
+    "categoria": "planta",
+    "descripcion": "Planta de hojas verdes y pequeñas, usada en la medicina tradicional.",
+    "caracteristicas_visuales": "Hojas verdes y pequeñas"
+  },
+  {
+    "nombre": "Sauce",
+    "categoria": "planta",
+    "descripcion": "Árbol de hojas alargadas y corteza con propiedades medicinales.",
+    "caracteristicas_visuales": "Árbol con hojas alargadas"
+  },
+  {
+    "nombre": "Tepozán",
+    "categoria": "planta",
+    "descripcion": "Planta de hojas verdes y flores pequeñas. Usada en remedios populares.",
+    "caracteristicas_visuales": "Hojas verdes y flores pequeñas"
+  },
+  {
+    "nombre": "Mangosteen",
+    "categoria": "fruta",
+    "descripcion": "Fruta tropical con cáscara morada gruesa, pulpa blanca y dulce, dividida en gajos.",
+    "caracteristicas_visuales": "Fruta de cáscara morada, pulpa blanca en gajos"
+  },
+  {
+    "nombre": "Açaí",
+    "categoria": "fruta",
+    "descripcion": "Baya pequeña de color morado oscuro, originaria de la Amazonía. Rica en antioxidantes.",
+    "caracteristicas_visuales": "Bayas pequeñas y redondas de color morado oscuro"
+  },
+  {
+    "nombre": "Noni",
+    "categoria": "fruta",
+    "descripcion": "Fruta ovalada de color verde o amarillo, con un olor fuerte y sabor amargo.",
+    "caracteristicas_visuales": "Fruta ovalada de color verde o amarillo"
+  },
+  {
+    "nombre": "Goji",
+    "categoria": "fruta",
+    "descripcion": "Bayas pequeñas de color rojo, de forma alargada. Conocidas por sus propiedades antioxidantes.",
+    "caracteristicas_visuales": "Bayas pequeñas y rojas, forma alargada"
+  },
+  {
+    "nombre": "Cancerina",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas verdes y flores amarillas, usada en la medicina tradicional.",
+    "caracteristicas_visuales": "Hojas verdes y flores amarillas"
+  },
+  {
+    "nombre": "Rosa Silvestre",
+    "categoria": "planta",
+    "descripcion": "Arbusto con espinas y flores rosadas o blancas. Fruto rojo (escaramujo) rico en vitamina C.",
+    "caracteristicas_visuales": "Arbusto con espinas, flores rosadas o blancas"
+  },
+  {
+    "nombre": "Suelda",
+    "categoria": "planta",
+    "descripcion": "Planta de hojas carnosas, usada para tratar heridas y golpes.",
+    "caracteristicas_visuales": "Hojas carnosas"
+  },
+  {
+    "nombre": "Alfalfa",
+    "categoria": "planta",
+    "descripcion": "Planta de hojas verdes y flores moradas. Usada como forraje y en medicina natural.",
+    "caracteristicas_visuales": "Hojas verdes y flores moradas"
+  },
+  {
+    "nombre": "Apio",
+    "categoria": "verdura",
+    "descripcion": "Tallo verde y alargado, con hojas en la parte superior. Textura crujiente y sabor fresco.",
+    "caracteristicas_visuales": "Tallos verdes alargados, hojas superiores"
+  },
+  {
+    "nombre": "Axocopaque",
+    "categoria": "planta",
+    "descripcion": "Planta de hojas verdes y flores pequeñas, usada en la medicina tradicional.",
+    "caracteristicas_visuales": "Hojas verdes y flores pequeñas"
+  },
+  {
+    "nombre": "Palo Mulato",
+    "categoria": "planta",
+    "descripcion": "Árbol de madera oscura, usado en medicina tradicional.",
+    "caracteristicas_visuales": "Madera oscura"
+  },
+  {
+    "nombre": "Yerbanís",
+    "categoria": "hierba",
+    "descripcion": "Planta aromática con hojas verdes y flores blancas. Usada en infusiones.",
+    "caracteristicas_visuales": "Hojas verdes y flores blancas"
+  },
+  {
+    "nombre": "Gordolobo",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas grandes y lanosas, flores amarillas. Usada para afecciones respiratorias.",
+    "caracteristicas_visuales": "Hojas grandes y lanosas, flores amarillas"
+  },
+  {
+    "nombre": "Anacahuita",
+    "categoria": "planta",
+    "descripcion": "Árbol de hojas verdes y flores blancas o rosadas. Usado en la medicina popular.",
+    "caracteristicas_visuales": "Hojas verdes, flores blancas o rosadas"
+  },
+  {
+    "nombre": "Eucalipto",
+    "categoria": "planta",
+    "descripcion": "Árbol con hojas alargadas y aromáticas, de color verde grisáceo. Usado en infusiones y remedios respiratorios.",
+    "caracteristicas_visuales": "Hojas alargadas de color verde grisáceo"
+  },
+  {
+    "nombre": "Marrubio",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas arrugadas y flores blancas. Usada para afecciones respiratorias.",
+    "caracteristicas_visuales": "Hojas arrugadas y flores blancas"
+  },
+  {
+    "nombre": "Hierbabuena",
+    "categoria": "hierba",
+    "descripcion": "Planta aromática con hojas verdes y dentadas, olor fresco y mentolado. Usada en infusiones y cocina.",
+    "caracteristicas_visuales": "Hojas verdes dentadas, olor mentolado"
+  },
+  {
+    "nombre": "Tila",
+    "categoria": "planta",
+    "descripcion": "Árbol con hojas en forma de corazón y flores fragantes. Usado como calmante.",
+    "caracteristicas_visuales": "Hojas en forma de corazón, flores fragantes"
+  },
+  {
+    "nombre": "Capulín",
+    "categoria": "fruta",
+    "descripcion": "Fruta pequeña de color rojo oscuro o morado, similar a una cereza. De sabor dulce.",
+    "caracteristicas_visuales": "Fruta pequeña y redonda de color rojo oscuro o morado"
+  },
+  {
+    "nombre": "Orégano",
+    "categoria": "hierba",
+    "descripcion": "Planta aromática con hojas pequeñas y ovaladas, de color verde. Usada como condimento.",
+    "caracteristicas_visuales": "Hojas pequeñas y ovaladas de color verde"
+  },
+  {
+    "nombre": "Tomillo",
+    "categoria": "hierba",
+    "descripcion": "Planta aromática con hojas pequeñas y ramas leñosas. Usada en cocina y remedios.",
+    "caracteristicas_visuales": "Hojas pequeñas y ramas leñosas"
+  },
+  {
+    "nombre": "Nopal",
+    "categoria": "verdura",
+    "descripcion": "Cactus con pencas verdes y ovaladas, cubiertas de pequeñas espinas. Textura suave y ligeramente viscosa.",
+    "caracteristicas_visuales": "Pencas verdes ovaladas con pequeñas espinas"
+  },
+  {
+    "nombre": "Tejocote",
+    "categoria": "fruta",
+    "descripcion": "Fruta pequeña de color amarillo o naranja, con forma redonda. Usada en dulces y ponche.",
+    "caracteristicas_visuales": "Fruta pequeña y redonda de color amarillo o naranja"
+  },
+  {
+    "nombre": "Zarzaparrilla",
+    "categoria": "planta",
+    "descripcion": "Planta trepadora con raíces largas y espinas. Usada en medicina tradicional.",
+    "caracteristicas_visuales": "Planta trepadora con raíces largas y espinas"
+  },
+  {
+    "nombre": "Flor de Manita",
+    "categoria": "planta",
+    "descripcion": "Flor de color rojo o anaranjado, con forma de mano. Usada en infusiones.",
+    "caracteristicas_visuales": "Flor roja o anaranjada con forma de mano"
+  },
+  {
+    "nombre": "Palo Santo",
+    "categoria": "planta",
+    "descripcion": "Madera aromática de color claro, usada en rituales y por sus propiedades calmantes.",
+    "caracteristicas_visuales": "Madera de color claro y aroma dulce"
+  },
+  {
+    "nombre": "Tronadora",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas verdes y flores amarillas, usada en medicina tradicional.",
+    "caracteristicas_visuales": "Hojas verdes y flores amarillas"
+  },
+  {
+    "nombre": "Cempasúchil",
+    "categoria": "planta",
+    "descripcion": "Flor de color amarillo o naranja intenso, de varios pétalos. Usada en celebraciones mexicanas.",
+    "caracteristicas_visuales": "Flor amarilla o naranja de varios pétalos"
+  },
+  {
+    "nombre": "Damiana",
+    "categoria": "planta",
+    "descripcion": "Planta aromática con hojas pequeñas y flores amarillas. Usada como tónico.",
+    "caracteristicas_visuales": "Hojas pequeñas y flores amarillas"
+  },
+  {
+    "nombre": "Hámula",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas verdes y flores pequeñas, usada en la medicina tradicional.",
+    "caracteristicas_visuales": "Hojas verdes y flores pequeñas"
+  },
+  {
+    "nombre": "Boldo",
+    "categoria": "planta",
+    "descripcion": "Árbol con hojas aromáticas y flores blancas. Usado para problemas digestivos.",
+    "caracteristicas_visuales": "Hojas aromáticas y flores blancas"
+  },
+  {
+    "nombre": "Menta",
+    "categoria": "hierba",
+    "descripcion": "Planta aromática con hojas verdes y dentadas, olor refrescante. Usada en infusiones y cocina.",
+    "caracteristicas_visuales": "Hojas verdes dentadas, olor refrescante"
+  },
+  {
+    "nombre": "Hinojo",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas finas y bulboso, flores amarillas. Usado en cocina y medicina.",
+    "caracteristicas_visuales": "Hojas finas y flores amarillas"
+  },
+  {
+    "nombre": "Espinosilla",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas verdes y tallos espinosos, usada en medicina tradicional.",
+    "caracteristicas_visuales": "Hojas verdes y tallos espinosos"
+  },
+  {
+    "nombre": "Cuachalalate",
+    "categoria": "planta",
+    "descripcion": "Corteza de árbol de color rojo, usada en medicina tradicional.",
+    "caracteristicas_visuales": "Corteza de color rojo"
+  },
+  {
+    "nombre": "Cilantro",
+    "categoria": "hierba",
+    "descripcion": "Hierba verde de hojas planas y tallos delgados, aroma cítrico. Usada como condimento.",
+    "caracteristicas_visuales": "Hojas verdes planas, tallos delgados, aroma cítrico"
+  },
+  {
+    "nombre": "Raíz de Maguey",
+    "categoria": "planta",
+    "descripcion": "Raíz del maguey, de color marrón y textura fibrosa. Usada en medicina tradicional.",
+    "caracteristicas_visuales": "Raíz marrón y textura fibrosa"
+  },
+  {
+    "nombre": "Rusco",
+    "categoria": "planta",
+    "descripcion": "Planta con tallos verdes y hojas puntiagudas, usada para problemas circulatorios.",
+    "caracteristicas_visuales": "Tallos verdes y hojas puntiagudas"
+  },
+  {
+    "nombre": "Cenizo",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas grises y polvorientas, flores pequeñas. Usada en medicina popular.",
+    "caracteristicas_visuales": "Hojas grises y polvorientas"
+  },
+  {
+    "nombre": "Muicle",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas verdes y flores rojas, usada en la medicina tradicional.",
+    "caracteristicas_visuales": "Hojas verdes y flores rojas"
+  },
+  {
+    "nombre": "Toronjil",
+    "categoria": "hierba",
+    "descripcion": "Planta aromática con hojas redondeadas y flores blancas, usada como calmante.",
+    "caracteristicas_visuales": "Hojas redondeadas y flores blancas"
+  },
+  {
+    "nombre": "Flor de Azahar",
+    "categoria": "planta",
+    "descripcion": "Flores blancas y fragantes del naranjo, usadas en infusiones relajantes.",
+    "caracteristicas_visuales": "Flores blancas y fragantes"
+  },
+  {
+    "nombre": "Malva",
+    "categoria": "planta",
+    "descripcion": "Planta con flores moradas o rosadas, usada para afecciones respiratorias.",
+    "caracteristicas_visuales": "Flores moradas o rosadas"
+  },
+  {
+    "nombre": "Black Cohosh",
+    "categoria": "planta",
+    "descripcion": "Planta con flores blancas, usada para síntomas de la menopausia.",
+    "caracteristicas_visuales": "Flores blancas"
+  },
+  {
+    "nombre": "Guanábana",
+    "categoria": "fruta",
+    "descripcion": "Fruta tropical grande, con cáscara verde y pulpa blanca y fibrosa, semillas negras.",
+    "caracteristicas_visuales": "Fruta grande con cáscara verde, pulpa blanca y fibrosa"
+  },
+  {
+    "nombre": "Romero",
+    "categoria": "hierba",
+    "descripcion": "Planta aromática con hojas lineales y aroma intenso. Usada en cocina y medicina.",
+    "caracteristicas_visuales": "Hojas lineales, aroma intenso"
+  },
+  {
+    "nombre": "Estafiate",
+    "categoria": "planta",
+    "descripcion": "Planta de hojas plateadas y flores amarillas, usada para problemas digestivos.",
+    "caracteristicas_visuales": "Hojas plateadas y flores amarillas"
+  },
+  {
+    "nombre": "Hojas de Aguacate",
+    "categoria": "planta",
+    "descripcion": "Hojas verdes y brillantes del aguacate, usadas en infusiones y cocina.",
+    "caracteristicas_visuales": "Hojas verdes y brillantes"
+  },
+  {
+    "nombre": "Tepezcohuite",
+    "categoria": "planta",
+    "descripcion": "Corteza de árbol de color marrón, usada por sus propiedades cicatrizantes.",
+    "caracteristicas_visuales": "Corteza marrón"
+  },
+  {
+    "nombre": "Hierba de la Golondrina",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas verdes y flores pequeñas, usada en medicina tradicional.",
+    "caracteristicas_visuales": "Hojas verdes y flores pequeñas"
+  },
+  {
+    "nombre": "Fresno",
+    "categoria": "planta",
+    "descripcion": "Árbol con hojas compuestas y flores pequeñas. Usado en medicina tradicional.",
+    "caracteristicas_visuales": "Hojas compuestas y flores pequeñas"
+  },
+  {
+    "nombre": "Capitaneja",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas verdes y flores pequeñas, usada en medicina popular.",
+    "caracteristicas_visuales": "Hojas verdes y flores pequeñas"
+  },
+  {
+    "nombre": "Hojas de Nogal",
+    "categoria": "planta",
+    "descripcion": "Hojas grandes y compuestas del nogal, usadas en infusiones.",
+    "caracteristicas_visuales": "Hojas grandes y compuestas"
+  },
+  {
+    "nombre": "Castaño de Indias",
+    "categoria": "planta",
+    "descripcion": "Fruto en cáscara espinosa, usado para problemas de circulación.",
+    "caracteristicas_visuales": "Fruto con cáscara espinosa"
+  },
+  {
+    "nombre": "Gotu-Kola",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas redondas y pequeñas, usada para mejorar la memoria y la circulación.",
+    "caracteristicas_visuales": "Hojas redondas y pequeñas"
+  },
+  {
+    "nombre": "Bilberry",
+    "categoria": "fruta",
+    "descripcion": "Baya pequeña de color azul oscuro, similar al arándano. Rica en antioxidantes.",
+    "caracteristicas_visuales": "Bayas pequeñas de color azul oscuro"
+  },
+  {
+    "nombre": "Rosa Canina",
+    "categoria": "planta",
+    "descripcion": "Arbusto con espinas y flores rosadas, fruto rojo (escaramujo) rico en vitamina C.",
+    "caracteristicas_visuales": "Arbusto con espinas y frutos rojos"
+  },
+  {
+    "nombre": "Ajo Negro",
+    "categoria": "verdura",
+    "descripcion": "Ajo fermentado de color negro, sabor dulce y textura suave. Antioxidante natural.",
+    "caracteristicas_visuales": "Búlbo de color negro, textura suave"
+  },
+  {
+    "nombre": "Alcachofa",
+    "categoria": "verdura",
+    "descripcion": "Flor de color verde con hojas superpuestas, base carnosa. Usada en cocina.",
+    "caracteristicas_visuales": "Flor verde con hojas superpuestas"
+  },
+  {
+    "nombre": "Ashwagandha",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas verdes y bayas rojas, usada como adaptógeno.",
+    "caracteristicas_visuales": "Hojas verdes y bayas rojas"
+  },
+  {
+    "nombre": "Pimienta Negra",
+    "categoria": "especia",
+    "descripcion": "Granos pequeños y redondos de color negro, de sabor picante. Usada como condimento.",
+    "caracteristicas_visuales": "Granos pequeños y redondos de color negro"
+  },
+  {
+    "nombre": "Té Verde",
+    "categoria": "planta",
+    "descripcion": "Hojas de té secas y enrolladas, de color verde. Rico en antioxidantes.",
+    "caracteristicas_visuales": "Hojas secas y enrolladas de color verde"
+  },
+  {
+    "nombre": "Semilla de Uva",
+    "categoria": "semilla",
+    "descripcion": "Semillas pequeñas y alargadas de color marrón, extraídas de la uva. Usadas por sus antioxidantes.",
+    "caracteristicas_visuales": "Semillas pequeñas y alargadas de color marrón"
+  },
+  {
+    "nombre": "Corteza de Pino",
+    "categoria": "planta",
+    "descripcion": "Corteza marrón y rugosa del pino, usada por sus propiedades antiinflamatorias.",
+    "caracteristicas_visuales": "Corteza marrón y rugosa"
+  },
+  {
+    "nombre": "Moringa",
+    "categoria": "planta",
+    "descripcion": "Árbol con hojas verdes y pequeñas, altamente nutritivo. Usado en polvo o infusión.",
+    "caracteristicas_visuales": "Hojas verdes y pequeñas"
+  },
+  {
+    "nombre": "Shilajit",
+    "categoria": "mineral",
+    "descripcion": "Sustancia resinoso de color negro o marrón, rica en minerales. Usada como tónico.",
+    "caracteristicas_visuales": "Sustancia resinoso de color negro o marrón"
+  },
+  {
+    "nombre": "Ginseng",
+    "categoria": "planta",
+    "descripcion": "Raíz de color beige con forma de figura humana, usada como estimulante y adaptógeno.",
+    "caracteristicas_visuales": "Raíz de color beige con forma humana"
+  },
+  {
+    "nombre": "Cúrcuma",
+    "categoria": "especia",
+    "descripcion": "Raíz de color naranja intenso, similar al jengibre. Usada como especia y colorante natural.",
+    "caracteristicas_visuales": "Raíz de color naranja intenso"
+  },
+  {
+    "nombre": "Cardo Mariano",
+    "categoria": "planta",
+    "descripcion": "Planta con hojas espinosas y flores moradas, usada para la salud del hígado.",
+    "caracteristicas_visuales": "Hojas espinosas y flores moradas"
+  },
+  {
+    "nombre": "Centella Asiática",
+    "categoria": "planta",
+    "descripcion": "Planta de hojas redondas y pequeñas, usada para mejorar la memoria.",
+    "caracteristicas_visuales": "Hojas redondas y pequeñas"
+  },
+  {
+    "nombre": "Granada",
+    "categoria": "fruta",
+    "descripcion": "Fruta redonda con cáscara roja y pulpa con semillas rojas y jugosas.",
+    "caracteristicas_visuales": "Fruta redonda con cáscara roja y semillas rojas"
+  },
+  {
+    "nombre": "Arándano",
+    "categoria": "fruta",
+    "descripcion": "Baya pequeña y redonda de color azul, con una capa cerosa. Rica en antioxidantes.",
+    "caracteristicas_visuales": "Bayas pequeñas y redondas de color azul"
+  },
+  {
+    "nombre": "Linaza",
+    "categoria": "semilla",
+    "descripcion": "Semillas pequeñas y ovaladas de color marrón o dorado, ricas en omega-3.",
+    "caracteristicas_visuales": "Semillas pequeñas y ovaladas de color marrón o dorado"
+  },
+  {
+    "nombre": "Avena",
+    "categoria": "cereal",
+    "descripcion": "Grano pequeño y ovalado de color beige, usado en la alimentación.",
+    "caracteristicas_visuales": "Granos pequeños y ovalados de color beige"
+  },
+  {
+    "nombre": "Hongo Shitake",
+    "categoria": "hongo",
+    "descripcion": "Hongo de sombrero marrón y tallo claro, con un aroma característico.",
+    "caracteristicas_visuales": "Sombrero marrón y tallo claro"
+  },
+  {
+    "nombre": "Hongo Maitake",
+    "categoria": "hongo",
+    "descripcion": "Hongo con forma de roseta, color marrón grisáceo, usado en la cocina.",
+    "caracteristicas_visuales": "Hongo con forma de roseta, color marrón grisáceo"
+  },
+  {
+    "nombre": "Hongo Reishi",
+    "categoria": "hongo",
+    "descripcion": "Hongo de sombrero brillante y color rojo o marrón, usado en la medicina tradicional.",
+    "caracteristicas_visuales": "Sombrero brillante de color rojo o marrón"
+  },
+  {
+    "nombre": "Hongo Cordyceps",
+    "categoria": "hongo",
+    "descripcion": "Hongo parásito de color naranja, usado como tónico energético.",
+    "caracteristicas_visuales": "Hongo de color naranja"
+  },
+  {
+    "nombre": "Hongo Chaga",
+    "categoria": "hongo",
+    "descripcion": "Hongo negro y carbonoso, con textura irregular. Rico en antioxidantes.",
+    "caracteristicas_visuales": "Hongo negro y carbonoso"
+  },
+  {
+    "nombre": "Tamarindo",
+    "categoria": "fruta",
+    "descripcion": "Fruta en vaina marrón, pulpa agridulce, semillas brillantes.",
+    "caracteristicas_visuales": "Vaina marrón, pulpa agridulce"
+  },
+  {
+    "nombre": "Melena de León",
+    "categoria": "hongo",
+    "descripcion": "Hongo con forma de bola blanca y textura similar a la melena de un león.",
+    "caracteristicas_visuales": "Bola blanca con textura similar a la melena de león"
+  },
+  {
+    "nombre": "Turkey Tail",
+    "categoria": "hongo",
+    "descripcion": "Hongo con forma de abanico, colores marrones y crema, usado en medicina.",
+    "caracteristicas_visuales": "Hongo en forma de abanico con colores marrones y crema"
+  },
+  {
+    "nombre": "Equinácea",
+    "categoria": "planta",
+    "descripcion": "Planta con flores moradas y hojas lanceoladas, usada para fortalecer el sistema inmune.",
+    "caracteristicas_visuales": "Flores moradas y hojas lanceoladas"
+  },
+  {
+    "nombre": "Árnica",
+    "categoria": "planta",
+    "descripcion": "Planta con flores amarillas, usada para tratar golpes y contusiones.",
+    "caracteristicas_visuales": "Flores amarillas"
+  },
+  {
+    "nombre": "Limón",
+    "categoria": "fruta",
+    "descripcion": "Fruta de color amarillo, forma ovalada, con pulpa ácida y jugosa.",
+    "caracteristicas_visuales": "Fruta ovalada de color amarillo"
+  },
+  {
+    "nombre": "Naranja",
+    "categoria": "fruta",
+    "descripcion": "Fruta redonda de color naranja, pulpa jugosa y dulce, cáscara gruesa.",
+    "caracteristicas_visuales": "Fruta redonda de color naranja"
+  },
+  {
+    "nombre": "Mango",
+    "categoria": "fruta",
+    "descripcion": "Fruta tropical ovalada, cáscara amarilla o roja, pulpa dulce y fibrosa.",
+    "caracteristicas_visuales": "Fruta ovalada con cáscara amarilla o roja"
+  },
+  {
+    "nombre": "Piña",
+    "categoria": "fruta",
+    "descripcion": "Fruta tropical con corona de hojas, cáscara rugosa y pulpa amarilla y jugosa.",
+    "caracteristicas_visuales": "Fruta con corona de hojas, cáscara rugosa y pulpa amarilla"
+  },
+  {
+    "nombre": "Uva",
+    "categoria": "fruta",
+    "descripcion": "Fruta pequeña y redonda, en racimos, de color verde, rojo o morado.",
+    "caracteristicas_visuales": "Fruta pequeña y redonda en racimos"
+  },
+  {
+    "nombre": "Cranberry",
+    "categoria": "fruta",
+    "descripcion": "Baya pequeña y redonda de color rojo, con un sabor ácido. Usada en jugos.",
+    "caracteristicas_visuales": "Bayas pequeñas y redondas de color rojo"
+  },
+  {
+    "nombre": "Manzana",
+    "categoria": "fruta",
+    "descripcion": "Fruta redonda de color rojo, verde o amarillo, pulpa blanca y crujiente.",
+    "caracteristicas_visuales": "Fruta redonda de color rojo, verde o amarillo"
+  },
+  {
+    "nombre": "Jamaica",
+    "categoria": "planta",
+    "descripcion": "Flor de color rojo intenso, usada en infusiones y aguas frescas.",
+    "caracteristicas_visuales": "Flor de color rojo intenso"
+  },
+  {
+    "nombre": "Toronja",
+    "categoria": "fruta",
+    "descripcion": "Fruta redonda de color amarillo o rosa, pulpa jugosa y ligeramente amarga.",
+    "caracteristicas_visuales": "Fruta redonda de color amarillo o rosa"
+  },
+  {
+    "nombre": "Guayaba",
+    "categoria": "fruta",
+    "descripcion": "Fruta redonda o piriforme de color verde o amarillo, pulpa rosada o blanca.",
+    "caracteristicas_visuales": "Fruta redonda o piriforme de color verde o amarillo"
+  },
+  {
+    "nombre": "Papaya",
+    "categoria": "fruta",
+    "descripcion": "Fruta tropical grande, de forma ovalada, cáscara verde a naranja, pulpa naranja con semillas negras.",
+    "caracteristicas_visuales": "Fruta grande ovalada, cáscara verde a naranja, pulpa naranja"
+  },
+  {
+    "nombre": "Maracuyá",
+    "categoria": "fruta",
+    "descripcion": "Fruta redonda de color morado o amarillo, con pulpa gelatinosa y semillas negras.",
+    "caracteristicas_visuales": "Fruta redonda de color morado o amarillo, pulpa gelatinosa"
+  },
+  {
+    "nombre": "Zarzamora",
+    "categoria": "fruta",
+    "descripcion": "Fruta compuesta por pequeños granos de color negro o morado oscuro, de sabor dulce y ligeramente ácido.",
+    "caracteristicas_visuales": "Fruta formada por pequeños granos de color negro o morado"
+  },
+  {
+    "nombre": "Zanahoria",
+    "categoria": "verdura",
+    "descripcion": "Raíz de color naranja, alargada y cónica. Textura crujiente y sabor dulce.",
+    "caracteristicas_visuales": "Raíz naranja alargada y cónica"
+  },
+  {
+    "nombre": "Brócoli",
+    "categoria": "verdura",
+    "descripcion": "Inflorescencia verde, con tallos gruesos y cabezas pequeñas. Rico en vitaminas.",
+    "caracteristicas_visuales": "Inflorescencia verde con cabezas pequeñas"
+  },
+  {
+    "nombre": "Espinaca",
+    "categoria": "verdura",
+    "descripcion": "Hojas verdes y anchas, de textura suave, con tallos cortos.",
+    "caracteristicas_visuales": "Hojas verdes y anchas"
+  },
+  {
+    "nombre": "Pepino",
+    "categoria": "verdura",
+    "descripcion": "Fruto alargado de color verde, con piel rugosa y pulpa jugosa.",
+    "caracteristicas_visuales": "Fruto alargado de color verde"
+  },
+  {
+    "nombre": "Calabaza",
+    "categoria": "verdura",
+    "descripcion": "Fruto grande redondo de color naranja, con cáscara dura y pulpa dulce.",
+    "caracteristicas_visuales": "Fruto redondo de color naranja"
+  },
+  {
+    "nombre": "Jícama",
+    "categoria": "verdura",
+    "descripcion": "Raíz de color marrón claro, forma redonda y aplanada, pulpa blanca crujiente.",
+    "caracteristicas_visuales": "Raíz marrón clara redonda y aplanada, pulpa blanca"
+  },
+  {
+    "nombre": "Haba",
+    "categoria": "legumbre",
+    "descripcion": "Vaina verde alargada, con semillas grandes de color verde pálido.",
+    "caracteristicas_visuales": "Vainas verdes alargadas, semillas grandes y verdes"
+  },
+  {
+    "nombre": "Lenteja",
+    "categoria": "legumbre",
+    "descripcion": "Semilla pequeña y redonda de color marrón o verde, con forma de disco.",
+    "caracteristicas_visuales": "Semillas pequeñas y redondas de color marrón o verde"
+  },
+  {
+    "nombre": "Garbanzo",
+    "categoria": "legumbre",
+    "descripcion": "Legumbre redonda de color beige, con una pequeña punta. Usada en ensaladas y guisos.",
+    "caracteristicas_visuales": "Legumbres redondas de color beige"
+  },
+  {
+    "nombre": "Frijol",
+    "categoria": "legumbre",
+    "descripcion": "Semilla en forma de riñón, de color negro, rojo o beige.",
+    "caracteristicas_visuales": "Semillas en forma de riñón"
+  },
+  {
+    "nombre": "Maíz",
+    "categoria": "cereal",
+    "descripcion": "Grano de color amarillo o blanco, en mazorca. Usado en la alimentación.",
+    "caracteristicas_visuales": "Granos de color amarillo o blanco en mazorca"
+  },
+  {
+    "nombre": "Trigo",
+    "categoria": "cereal",
+    "descripcion": "Grano pequeño de color dorado, usado para hacer harina.",
+    "caracteristicas_visuales": "Granos pequeños de color dorado"
+  },
+  {
+    "nombre": "Arroz",
+    "categoria": "cereal",
+    "descripcion": "Grano pequeño y blanco, alargado o redondo. Básico en la alimentación.",
+    "caracteristicas_visuales": "Granos pequeños y blancos"
+  },
+  {
+    "nombre": "Quinoa",
+    "categoria": "cereal",
+    "descripcion": "Grano pequeño de color beige o rojo, con forma de disco. Rico en proteínas.",
+    "caracteristicas_visuales": "Granos pequeños de color beige o rojo"
+  },
+  {
+    "nombre": "Amaranto",
+    "categoria": "cereal",
+    "descripcion": "Grano muy pequeño de color dorado, con forma de esfera. Rico en proteínas.",
+    "caracteristicas_visuales": "Granos muy pequeños y dorados"
+  },
+  {
+    "nombre": "Cebada",
+    "categoria": "cereal",
+    "descripcion": "Grano alargado de color marrón o beige, usado en sopas y cerveza.",
+    "caracteristicas_visuales": "Granos alargados de color marrón o beige"
+  },
+  {
+    "nombre": "Chía",
+    "categoria": "semilla",
+    "descripcion": "Semillas pequeñas de color negro o blanco, que forman gel al contacto con agua.",
+    "caracteristicas_visuales": "Semillas pequeñas de color negro o blanco"
+  },
+  {
+    "nombre": "Sésamo",
+    "categoria": "semilla",
+    "descripcion": "Semillas pequeñas y planas, de color crema o negro. Usadas en panadería.",
+    "caracteristicas_visuales": "Semillas pequeñas y planas de color crema o negro"
+  },
+  {
+    "nombre": "Almendra",
+    "categoria": "fruto seco",
+    "descripcion": "Fruto seco de forma ovalada, con cáscara dura y semilla comestible de color marrón.",
+    "caracteristicas_visuales": "Fruto seco ovalado con cáscara dura"
+  },
+  {
+    "nombre": "Nuez",
+    "categoria": "fruto seco",
+    "descripcion": "Fruto seco con cáscara dura y rugosa, semilla comestible en dos mitades.",
+    "caracteristicas_visuales": "Fruto seco con cáscara rugosa"
+  },
+  {
+    "nombre": "Cacahuate",
+    "categoria": "fruto seco",
+    "descripcion": "Fruto seco con cáscara delgada y dos semillas dentro, de color marrón.",
+    "caracteristicas_visuales": "Fruto seco con cáscara delgada, dos semillas marrones"
+  },
+  {
+    "nombre": "Pepita de Calabaza",
+    "categoria": "semilla",
+    "descripcion": "Semilla plana de color verde, con bordes blancos.",
+    "caracteristicas_visuales": "Semillas planas de color verde con bordes blancos"
+  },
+  {
+    "nombre": "Girasol",
+    "categoria": "semilla",
+    "descripcion": "Semillas alargadas y planas, con cáscara blanca y negra.",
+    "caracteristicas_visuales": "Semillas alargadas y planas con cáscara blanca y negra"
+  },
+  {
+    "nombre": "Espirulina",
+    "categoria": "alga",
+    "descripcion": "Alga verde-azulada, en polvo o tabletas. Rica en proteínas y vitaminas.",
+    "caracteristicas_visuales": "Polvo o tabletas de color verde-azulado"
+  },
+  {
+    "nombre": "Chlorella",
+    "categoria": "alga",
+    "descripcion": "Alga verde unicelular, en polvo o tabletas. Rica en nutrientes.",
+    "caracteristicas_visuales": "Polvo o tabletas de color verde"
+  },
+  {
+    "nombre": "Alga Kelp",
+    "categoria": "alga",
+    "descripcion": "Alga marina de color marrón oscuro, con hojas anchas.",
+    "caracteristicas_visuales": "Alga marina de color marrón oscuro con hojas anchas"
+  },
+  {
+    "nombre": "Alga Wakame",
+    "categoria": "alga",
+    "descripcion": "Alga marina de color verde oscuro, con hojas delgadas y onduladas.",
+    "caracteristicas_visuales": "Alga marina de color verde oscuro con hojas onduladas"
+  },
+  {
+    "nombre": "Aceite de Aguacate",
+    "categoria": "aceite",
+    "descripcion": "Aceite de color verde claro, extraído del aguacate. Rico en grasas saludables.",
+    "caracteristicas_visuales": "Aceite de color verde claro"
+  },
+  {
+    "nombre": "Aceite de Oliva",
+    "categoria": "aceite",
+    "descripcion": "Aceite de color amarillo verdoso, extraído de la aceituna.",
+    "caracteristicas_visuales": "Aceite de color amarillo verdoso"
+  },
+  {
+    "nombre": "Aceite de Argán",
+    "categoria": "aceite",
+    "descripcion": "Aceite de color ámbar, extraído de las semillas del árbol de argán.",
+    "caracteristicas_visuales": "Aceite de color ámbar"
+  },
+  {
+    "nombre": "Aceite de Coco",
+    "categoria": "aceite",
+    "descripcion": "Aceite blanco sólido a temperatura ambiente, extraído de la pulpa del coco.",
+    "caracteristicas_visuales": "Aceite blanco sólido o líquido"
+  },
+  {
+    "nombre": "Aceite de Jojoba",
+    "categoria": "aceite",
+    "descripcion": "Aceite líquido de color dorado, extraído de las semillas de jojoba.",
+    "caracteristicas_visuales": "Aceite líquido de color dorado"
+  },
+  {
+    "nombre": "Canela",
+    "categoria": "especia",
+    "descripcion": "Corteza de árbol enrollada, de color marrón y aroma dulce.",
+    "caracteristicas_visuales": "Corteza enrollada de color marrón"
+  },
+  {
+    "nombre": "Clavo",
+    "categoria": "especia",
+    "descripcion": "Brote seco de color marrón oscuro, con forma de clavo y aroma intenso.",
+    "caracteristicas_visuales": "Brote seco de color marrón oscuro con forma de clavo"
+  },
+  {
+    "nombre": "Cebolla",
+    "categoria": "verdura",
+    "descripcion": "Bulbo de color blanco, amarillo o morado, con capas superpuestas. Usada en cocina.",
+    "caracteristicas_visuales": "Bulbo redondo con capas superpuestas"
+  },
+  {
+    "nombre": "Ajo",
+    "categoria": "verdura",
+    "descripcion": "Bulbo de color blanco, compuesto por dientes. Usado como condimento.",
+    "caracteristicas_visuales": "Bulbo blanco compuesto por dientes"
+  },
+  {
+    "nombre": "Betabel",
+    "categoria": "verdura",
+    "descripcion": "Raíz redonda de color rojo intenso, con hojas verdes y tallos rojos.",
+    "caracteristicas_visuales": "Raíz redonda de color rojo intenso con hojas verdes"
+  },
+  {
+    "nombre": "Chícharo",
+    "categoria": "legumbre",
+    "descripcion": "Vaina verde redonda, con semillas pequeñas y verdes.",
+    "caracteristicas_visuales": "Vainas verdes redondas, semillas pequeñas y verdes"
+  },
+  {
+    "nombre": "Elote",
+    "categoria": "cereal",
+    "descripcion": "Mazorca de maíz con hojas verdes y granos amarillos.",
+    "caracteristicas_visuales": "Mazorca con hojas verdes y granos amarillos"
+  },
+  {
+    "nombre": "Calabacita",
+    "categoria": "verdura",
+    "descripcion": "Fruto alargado de color verde claro, con pulpa suave.",
+    "caracteristicas_visuales": "Fruto alargado de color verde claro"
+  },
+  {
+    "nombre": "Chayote",
+    "categoria": "verdura",
+    "descripcion": "Fruto verde con forma de pera y surcos, textura firme.",
+    "caracteristicas_visuales": "Fruto verde con forma de pera y surcos"
+  },
+  {
+    "nombre": "Nabo",
+    "categoria": "verdura",
+    "descripcion": "Raíz blanca con corona morada, forma redonda, hojas verdes.",
+    "caracteristicas_visuales": "Raíz blanca con corona morada y hojas verdes"
+  },
+  {
+    "nombre": "Rábano",
+    "categoria": "verdura",
+    "descripcion": "Raíz pequeña y redonda de color rojo intenso, con hojas verdes.",
+    "caracteristicas_visuales": "Raíz pequeña y redonda de color rojo intenso"
+  },
+  {
+    "nombre": "Col",
+    "categoria": "verdura",
+    "descripcion": "Hojas verdes o moradas, grandes y redondas, formando una cabeza compacta.",
+    "caracteristicas_visuales": "Hojas grandes formando una cabeza redonda"
+  },
+  {
+    "nombre": "Lechuga",
+    "categoria": "verdura",
+    "descripcion": "Hojas verdes y alargadas, con textura crujiente y sabor suave.",
+    "caracteristicas_visuales": "Hojas verdes y alargadas"
+  },
+  {
+    "nombre": "Espárrago",
+    "categoria": "verdura",
+    "descripcion": "Tallos verdes y delgados, con yemas en la punta.",
+    "caracteristicas_visuales": "Tallos verdes y delgados con yemas"
+  },
+  {
+    "nombre": "Fresa",
+    "categoria": "fruta",
+    "descripcion": "Fruta pequeña, roja y con semillas en la superficie, de forma cónica.",
+    "caracteristicas_visuales": "Fruta pequeña y roja con semillas"
+  },
+  {
+    "nombre": "Durazno",
+    "categoria": "fruta",
+    "descripcion": "Fruta redonda con piel aterciopelada de color amarillo o rojo, pulpa dulce.",
+    "caracteristicas_visuales": "Fruta redonda con piel aterciopelada"
+  },
+  {
+    "nombre": "Ciruela",
+    "categoria": "fruta",
+    "descripcion": "Fruta ovalada de color rojo, morado o amarillo, con pulpa jugosa.",
+    "caracteristicas_visuales": "Fruta ovalada de color rojo, morado o amarillo"
+  },
+  {
+    "nombre": "Higo",
+    "categoria": "fruta",
+    "descripcion": "Fruta pequeña y redonda, con piel fina y pulpa dulce y llena de semillas.",
+    "caracteristicas_visuales": "Fruta pequeña y redonda con piel fina"
+  },
+  {
+    "nombre": "Dátil",
+    "categoria": "fruta",
+    "descripcion": "Fruta alargada y arrugada de color marrón oscuro, con pulpa muy dulce.",
+    "caracteristicas_visuales": "Fruta alargada y arrugada de color marrón oscuro"
+  },
+  {
+    "nombre": "Kiwi",
+    "categoria": "fruta",
+    "descripcion": "Fruta ovalada de color marrón con piel peluda, pulpa verde y semillas negras.",
+    "caracteristicas_visuales": "Fruta ovalada de color marrón con piel peluda, pulpa verde"
+  },
+  {
+    "nombre": "Melón",
+    "categoria": "fruta",
+    "descripcion": "Fruta grande y redonda, con cáscara rugosa y pulpa dulce de color naranja o verde.",
+    "caracteristicas_visuales": "Fruta grande y redonda con cáscara rugosa"
+  },
+  {
+    "nombre": "Sandía",
+    "categoria": "fruta",
+    "descripcion": "Fruta grande y redonda, con cáscara verde y pulpa roja o rosa, con semillas negras.",
+    "caracteristicas_visuales": "Fruta grande y redonda con cáscara verde y pulpa roja"
+  },
+  {
+    "nombre": "Pera",
+    "categoria": "fruta",
+    "descripcion": "Fruta con forma de campana, piel verde o amarilla, pulpa blanca y jugosa.",
+    "caracteristicas_visuales": "Fruta con forma de campana de color verde o amarillo"
+  },
+  {
+    "nombre": "Membrillo",
+    "categoria": "fruta",
+    "descripcion": "Fruta de color amarillo, con forma de pera o manzana, de textura firme.",
+    "caracteristicas_visuales": "Fruta de color amarillo con forma de pera o manzana"
+  },
+  {
+    "nombre": "Tuna",
+    "categoria": "fruta",
+    "descripcion": "Fruto del nopal, de forma ovalada, piel de color rojo o amarillo con pequeñas espinas.",
+    "caracteristicas_visuales": "Fruto ovalado de color rojo o amarillo con pequeñas espinas"
+  },
+  {
+    "nombre": "Pitaya",
+    "categoria": "fruta",
+    "descripcion": "Fruta de forma ovalada, piel rosa con escamas verdes, pulpa blanca o roja con semillas negras.",
+    "caracteristicas_visuales": "Fruta ovalada con piel rosa y escamas verdes, pulpa con semillas negras"
+  },
+  {
+    "nombre": "Mijo",
+    "categoria": "cereal",
+    "descripcion": "Grano pequeño y redondo de color amarillo o blanco. Usado en la alimentación.",
+    "caracteristicas_visuales": "Granos pequeños y redondos de color amarillo o blanco"
+  },
+  {
+    "nombre": "Teff",
+    "categoria": "cereal",
+    "descripcion": "Grano muy pequeño de color marrón o beige, originario de Etiopía.",
+    "caracteristicas_visuales": "Granos muy pequeños de color marrón o beige"
+  },
+  {
+    "nombre": "Sorgo",
+    "categoria": "cereal",
+    "descripcion": "Grano pequeño de color marrón, usado en la alimentación y forraje.",
+    "caracteristicas_visuales": "Granos pequeños de color marrón"
+  },
+  {
+    "nombre": "Kamut",
+    "categoria": "cereal",
+    "descripcion": "Grano de trigo antiguo, de color marrón dorado y forma alargada.",
+    "caracteristicas_visuales": "Granos de color marrón dorado y forma alargada"
+  },
+  {
+    "nombre": "Espelta",
+    "categoria": "cereal",
+    "descripcion": "Grano de trigo antiguo, de color marrón claro y forma alargada.",
+    "caracteristicas_visuales": "Granos de color marrón claro y forma alargada"
+  },
+  {
+    "nombre": "Nuez de la India",
+    "categoria": "fruto seco",
+    "descripcion": "Fruto seco en forma de riñón, con cáscara dura y semilla comestible.",
+    "caracteristicas_visuales": "Fruto seco en forma de riñón con cáscara dura"
+  },
+  {
+    "nombre": "Pistache",
+    "categoria": "fruto seco",
+    "descripcion": "Fruto seco con cáscara beige y semilla verde, con un sabor característico.",
+    "caracteristicas_visuales": "Fruto seco con cáscara beige y semilla verde"
+  },
+  {
+    "nombre": "Avellana",
+    "categoria": "fruto seco",
+    "descripcion": "Fruto seco redondo, con cáscara marrón y semilla comestible.",
+    "caracteristicas_visuales": "Fruto seco redondo con cáscara marrón"
+  },
+  {
+    "nombre": "Piñón",
+    "categoria": "fruto seco",
+    "descripcion": "Semilla alargada de color marrón claro, con cáscara fina.",
+    "caracteristicas_visuales": "Semilla alargada de color marrón claro"
+  },
+  {
+    "nombre": "Semilla de Girasol",
+    "categoria": "semilla",
+    "descripcion": "Semilla alargada con cáscara blanca y negra, y semilla comestible.",
+    "caracteristicas_visuales": "Semilla alargada con cáscara blanca y negra"
+  },
+  {
+    "nombre": "Semilla de Calabaza",
+    "categoria": "semilla",
+    "descripcion": "Semilla plana de color verde, con bordes blancos.",
+    "caracteristicas_visuales": "Semillas planas de color verde con bordes blancos"
+  },
+  {
+    "nombre": "Semilla de Amapola",
+    "categoria": "semilla",
+    "descripcion": "Semilla muy pequeña de color negro o azul, usada en repostería.",
+    "caracteristicas_visuales": "Semillas muy pequeñas de color negro o azul"
+  },
+  {
+    "nombre": "Champiñón",
+    "categoria": "hongo",
+    "descripcion": "Hongo de sombrero blanco y redondo, tallo corto.",
+    "caracteristicas_visuales": "Hongo con sombrero blanco y tallo corto"
+  },
+  {
+    "nombre": "Portobello",
+    "categoria": "hongo",
+    "descripcion": "Hongo grande con sombrero marrón oscuro y textura carnosa.",
+    "caracteristicas_visuales": "Hongo grande con sombrero marrón oscuro"
+  },
+  {
+    "nombre": "Setas",
+    "categoria": "hongo",
+    "descripcion": "Hongo de sombrero marrón o beige, con tallo delgado.",
+    "caracteristicas_visuales": "Hongo con sombrero marrón o beige y tallo delgado"
+  },
+  {
+    "nombre": "Hongo Blanco",
+    "categoria": "hongo",
+    "descripcion": "Hongo de color blanco, con sombrero redondo y tallo corto.",
+    "caracteristicas_visuales": "Hongo blanco con sombrero redondo y tallo corto"
+  },
+  {
+    "nombre": "Mostaza",
+    "categoria": "especia",
+    "descripcion": "Semillas pequeñas y redondas de color marrón o amarillo, de sabor picante.",
+    "caracteristicas_visuales": "Semillas pequeñas y redondas de color marrón o amarillo"
+  },
+  {
+    "nombre": "Comino",
+    "categoria": "especia",
+    "descripcion": "Semillas alargadas de color marrón, con un aroma característico.",
+    "caracteristicas_visuales": "Semillas alargadas de color marrón"
+  },
+  {
+    "nombre": "Anís",
+    "categoria": "especia",
+    "descripcion": "Semillas pequeñas de color marrón, con un aroma dulce y característico.",
+    "caracteristicas_visuales": "Semillas pequeñas de color marrón"
+  },
+  {
+    "nombre": "Hinojo (semillas)",
+    "categoria": "especia",
+    "descripcion": "Semillas alargadas de color verde o marrón, con aroma a anís.",
+    "caracteristicas_visuales": "Semillas alargadas de color verde o marrón"
+  },
+  {
+    "nombre": "Cardamomo",
+    "categoria": "especia",
+    "descripcion": "Vaina pequeña de color verde o marrón, con semillas aromáticas.",
+    "caracteristicas_visuales": "Vaina pequeña de color verde o marrón"
+  },
+  {
+    "nombre": "Nuez Moscada",
+    "categoria": "especia",
+    "descripcion": "Fruto seco de forma ovalada, color marrón, con aroma dulce y picante.",
+    "caracteristicas_visuales": "Fruto seco ovalado de color marrón"
+  },
+  {
+    "nombre": "Lenteja Roja",
+    "categoria": "legumbre",
+    "descripcion": "Legumbre pequeña y redonda de color rojo, se cocina rápidamente.",
+    "caracteristicas_visuales": "Legumbres pequeñas y redondas de color rojo"
+  },
+  {
+    "nombre": "Frijol Negro",
+    "categoria": "legumbre",
+    "descripcion": "Legumbre en forma de riñón, de color negro brillante.",
+    "caracteristicas_visuales": "Legumbres en forma de riñón de color negro"
+  },
+  {
+    "nombre": "Alga Nori",
+    "categoria": "alga",
+    "descripcion": "Alga seca de color verde oscuro, en hojas delgadas. Usada en sushi.",
+    "caracteristicas_visuales": "Hojas delgadas de color verde oscuro"
+  },
+  {
+    "nombre": "Alga Kombu",
+    "categoria": "alga",
+    "descripcion": "Alga marina de color marrón oscuro, con hojas anchas.",
+    "caracteristicas_visuales": "Alga marina de color marrón oscuro con hojas anchas"
+  },
+  {
+    "nombre": "Alga Dulse",
+    "categoria": "alga",
+    "descripcion": "Alga marina de color rojizo o morado, con hojas delgadas.",
+    "caracteristicas_visuales": "Alga marina de color rojizo o morado con hojas delgadas"
+  },
+  {
+    "nombre": "Aceite de Sésamo",
+    "categoria": "aceite",
+    "descripcion": "Aceite de color dorado o marrón, extraído de las semillas de sésamo.",
+    "caracteristicas_visuales": "Aceite de color dorado o marrón"
+  },
+  {
+    "nombre": "Aceite de Linaza",
+    "categoria": "aceite",
+    "descripcion": "Aceite de color dorado, extraído de las semillas de linaza. Rico en omega-3.",
+    "caracteristicas_visuales": "Aceite de color dorado"
+  }
 ]
