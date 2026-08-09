@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # Permite hacer commit y push
+  contents: write   # Necesario para que el bot pueda hacer commit
 
 jobs:
   publicar:
