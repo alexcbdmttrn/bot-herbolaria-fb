@@ -53,7 +53,6 @@ def cargar_estado():
             estado = json.load(f)
             # Migrar estado viejo si es necesario
             if "publicadas" in estado and not isinstance(estado.get("publicadas"), dict):
-                # Estado viejo: convertir a nuevo formato
                 publicadas_viejas = estado["publicadas"]
                 estado = {
                     "publicadas": {
@@ -195,7 +194,7 @@ Salida: SOLO el prompt en inglés, sin texto adicional.
         return f"Scientific medical illustration, human anatomy diagram, modern clean design, blue and white color scheme, educational infographic style, 4k, vertical format 4:5"
 
 # ================================================================
-# 🌿 TEXTO DEEPSEEK PARA HIERBAS (el original)
+# 🌿 TEXTO DEEPSEEK PARA HIERBAS (SIN hashtags en el prompt)
 # ================================================================
 def generar_texto_hierba(ingrediente):
     prompt = f"""Eres un experto en herbolaria y redacción para redes sociales. Escribe un post CORTO y ATRACTIVO para Facebook sobre {ingrediente['nombre']}.
@@ -209,12 +208,12 @@ REGLAS ESTRICTAS:
   Línea 5: 🍵 Tip: [consejo práctico corto]
   Línea 6: ¿Quieres saber qué producto es ideal para ti? 
   Línea 7: ✨¡Pregunta gratis 24/7! 👉 https://t.me/alex_xanax_bot
-  Línea 8: [3 hashtags relevantes]
 
 - Cada línea DEBE ser corta (máx 60 caracteres).
 - SIN líneas en blanco entre cada línea.
 - Usa un tono cálido, cercano y convincente.
 - Menciona beneficios reales y prácticos.
+- NO agregues hashtags (yo los agregaré después).
 
 Formato EXACTO:
 🌿 Jengibre: la raíz que enciende tu vitalidad.
@@ -224,7 +223,6 @@ Formato EXACTO:
 🍵 Tip: Añade 3 rodajas a tu agua caliente.
 ¿Quieres saber qué producto es ideal para ti? 
 ✨¡Pregunta gratis 24/7! 👉 https://t.me/alex_xanax_bot
-#Jengibre #SaludNatural #RemediosCaseros
 """
     url = "https://api.deepseek.com/v1/chat/completions"
     headers = {"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"}
@@ -242,11 +240,10 @@ Formato EXACTO:
 ✅ Calma la tos y la irritación.
 🍵 Tip: Prepara una infusión caliente.
 ¿Quieres saber qué producto es ideal para ti? 
-✨¡Pregunta gratis 24/7! 👉 https://t.me/alex_xanax_bot
-#SaludNatural #Herbolaria #Bienestar"""
+✨¡Pregunta gratis 24/7! 👉 https://t.me/alex_xanax_bot"""
 
 # ================================================================
-# 🧠 TEXTO DEEPSEEK PARA CURIOSIDADES
+# 🧠 TEXTO DEEPSEEK PARA CURIOSIDADES (SIN hashtags en el prompt)
 # ================================================================
 def generar_texto_curiosidad(curiosidad):
     prompt = f"""Eres un divulgador científico experto en biología humana, nutrición y salud. Escribe un post CORTO y FASCINANTE para Facebook sobre: "{curiosidad['nombre']}".
@@ -262,11 +259,11 @@ def generar_texto_curiosidad(curiosidad):
   Línea 5: 💡 Sabías que: [curiosidad adicional breve]
   Línea 6: ¿Quieres más datos fascinantes?
   Línea 7: ✨Pregunta gratis 24/7 👉 https://t.me/alex_xanax_bot
-  Línea 8: [3 hashtags relevantes]
 - Cada línea máx 60 caracteres.
 - SIN líneas en blanco entre cada línea.
 - Tono: educativo, fascinante, accesible pero riguroso.
 - Incluye números, porcentajes o datos concretos.
+- NO agregues hashtags (yo los agregaré después).
 
 Ejemplo:
 🧠 Tu cerebro usa el 20% de tu energía total.
@@ -276,7 +273,6 @@ Ejemplo:
 💡 Sabías que: nunca descansa, ni dormido.
 ¿Quieres más datos fascinantes?
 ✨Pregunta gratis 24/7 👉 https://t.me/alex_xanax_bot
-#Cerebro #Ciencia #CuriosidadesDelCuerpo
 """
     url = "https://api.deepseek.com/v1/chat/completions"
     headers = {"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"}
@@ -304,8 +300,27 @@ def generar_fallback_curiosidad(curiosidad):
 ✅ La ciencia aún descubre nuevos secretos.
 💡 Sabías que: tu cuerpo se renueva constantemente.
 ¿Quieres más datos fascinantes?
-✨Pregunta gratis 24/7 👉 https://t.me/alex_xanax_bot
-#Ciencia #CuerpoHumano #Curiosidades"""
+✨Pregunta gratis 24/7 👉 https://t.me/alex_xanax_bot"""
+
+# ================================================================
+# 🏷️ AGREGAR HASHTAGS SIEMPRE AL FINAL
+# ================================================================
+def agregar_hashtags_al_final(texto, tipo):
+    """Agrega hashtags consistentes al final del post."""
+    # Quitar hashtags existentes
+    texto = re.sub(r'#\w+', '', texto)
+    
+    # Limpiar líneas vacías excesivas
+    texto = texto.strip()
+    texto = re.sub(r'\n{3,}', '\n\n', texto)
+    
+    # Hashtags según tipo
+    if tipo == "hierba":
+        hashtags = "\n\n#Herbolaria #SaludNatural #RemediosCaseros #Bienestar #MedicinaNatural"
+    else:
+        hashtags = "\n\n#Curiosidades #Ciencia #Salud #Bienestar #CuerpoHumano"
+    
+    return texto + hashtags
 
 # ================================================================
 # GENERAR IMAGEN CON AGNES AI
@@ -403,7 +418,8 @@ def main():
         
         print("📝 Generando texto con DeepSeek...")
         texto = generar_texto_hierba(item)
-        print("✅ Texto generado")
+        texto = agregar_hashtags_al_final(texto, "hierba")  # 🆕 Hashtags al final
+        print("✅ Texto generado con hashtags")
         
         print("🎨 Generando prompt de imagen...")
         prompt_img = generar_prompt_imagen_hierba(item)
@@ -422,7 +438,8 @@ def main():
         
         print("📝 Generando texto científico con DeepSeek...")
         texto = generar_texto_curiosidad(item)
-        print("✅ Texto científico generado")
+        texto = agregar_hashtags_al_final(texto, "curiosidad")  # 🆕 Hashtags al final
+        print("✅ Texto científico generado con hashtags")
         
         print("🎨 Generando prompt de imagen científica...")
         prompt_img = generar_prompt_imagen_curiosidad(item)
