@@ -21,6 +21,12 @@ CATALOGO_FILE = "catalogo_ingredientes.json"
 CATALOGO_CURIOSIDADES_FILE = "catalogo_curiosidades_salud.json"
 
 # ================================================================
+# 🤖 DISCLOSURE DE IA (transparencia)
+# ================================================================
+ACTIVAR_DISCLOSURE_IA = True
+DISCLOSURE_TEXT = "\n\n🤖 Contenido generado con inteligencia artificial (texto e imágenes)."
+
+# ================================================================
 # CARGAR CATÁLOGOS
 # ================================================================
 def cargar_catalogo_hierbas():
@@ -303,10 +309,10 @@ def generar_fallback_curiosidad(curiosidad):
 ✨Pregunta gratis 24/7 👉 https://t.me/alex_xanax_bot"""
 
 # ================================================================
-# 🏷️ AGREGAR HASHTAGS SIEMPRE AL FINAL
+# 🏷️ AGREGAR HASHTAGS + DISCLOSURE IA SIEMPRE AL FINAL
 # ================================================================
 def agregar_hashtags_al_final(texto, tipo):
-    """Agrega hashtags consistentes al final del post."""
+    """Agrega hashtags consistentes + disclosure de IA al final del post."""
     # Quitar hashtags existentes
     texto = re.sub(r'#\w+', '', texto)
     
@@ -320,7 +326,12 @@ def agregar_hashtags_al_final(texto, tipo):
     else:
         hashtags = "\n\n#Curiosidades #Ciencia #Salud #Bienestar #CuerpoHumano"
     
-    return texto + hashtags
+    # 🆕 Agregar disclosure de IA si está activado
+    resultado = texto + hashtags
+    if ACTIVAR_DISCLOSURE_IA:
+        resultado += DISCLOSURE_TEXT
+    
+    return resultado
 
 # ================================================================
 # GENERAR IMAGEN CON AGNES AI
@@ -418,8 +429,8 @@ def main():
         
         print("📝 Generando texto con DeepSeek...")
         texto = generar_texto_hierba(item)
-        texto = agregar_hashtags_al_final(texto, "hierba")  # 🆕 Hashtags al final
-        print("✅ Texto generado con hashtags")
+        texto = agregar_hashtags_al_final(texto, "hierba")  # 🆕 Hashtags + disclosure
+        print("✅ Texto generado con hashtags y disclosure")
         
         print("🎨 Generando prompt de imagen...")
         prompt_img = generar_prompt_imagen_hierba(item)
@@ -438,8 +449,8 @@ def main():
         
         print("📝 Generando texto científico con DeepSeek...")
         texto = generar_texto_curiosidad(item)
-        texto = agregar_hashtags_al_final(texto, "curiosidad")  # 🆕 Hashtags al final
-        print("✅ Texto científico generado con hashtags")
+        texto = agregar_hashtags_al_final(texto, "curiosidad")  # 🆕 Hashtags + disclosure
+        print("✅ Texto científico generado con hashtags y disclosure")
         
         print("🎨 Generando prompt de imagen científica...")
         prompt_img = generar_prompt_imagen_curiosidad(item)
