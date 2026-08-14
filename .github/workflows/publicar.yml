@@ -1,13 +1,14 @@
-name: Bot Herbolaria - Publicación
+name: Bot Herbolaria - Publicación 3x diario
 
 on:
   schedule:
-    - cron: '0 14 * * *'   # 7 AM CDMX (UTC-6)
-    - cron: '0 21 * * *'   # 3 PM CDMX
+    - cron: '0 14 * * *'   # 7:00 AM CDMX (14:00 UTC) -> HIERBA
+    - cron: '0 21 * * *'   # 3:00 PM CDMX (21:00 UTC) -> HIERBA
+    - cron: '0 2 * * *'    # 8:00 PM CDMX (02:00 UTC) -> CURIOSIDAD 🆕
   workflow_dispatch:
 
 permissions:
-  contents: write   # Necesario para que el bot pueda hacer commit
+  contents: write
 
 jobs:
   publicar:
@@ -23,13 +24,14 @@ jobs:
 
       - name: Instalar dependencias
         run: |
-          pip install requests
+          pip install requests pytz
 
       - name: Ejecutar bot de herbolaria
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+          CRON_SCHEDULE: ${{ github.event.schedule }}
         run: python bot_herbolaria.py
 
       - name: Commit y push del estado
