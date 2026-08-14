@@ -1,0 +1,182 @@
+[
+  {
+    "nombre": "El cerebro y la energía",
+    "categoria": "cerebro",
+    "descripcion": "Cómo el cerebro consume el 20% de la energía del cuerpo",
+    "caracteristicas_visuales": "Cerebro humano brillante con conexiones neuronales eléctricas"
+  },
+  {
+    "nombre": "El corazón eléctrico",
+    "categoria": "corazon",
+    "descripcion": "Tu corazón genera su propia electricidad y late 100,000 veces al día",
+    "caracteristicas_visuales": "Corazón humano con impulsos eléctricos visibles"
+  },
+  {
+    "nombre": "El azúcar y tu cerebro",
+    "categoria": "nutricion",
+    "descripcion": "Efectos del exceso de azúcar en la función cognitiva",
+    "caracteristicas_visuales": "Moléculas de glucosa interactuando con neuronas"
+  },
+  {
+    "nombre": "Músculos y memoria muscular",
+    "categoria": "ejercicio",
+    "descripcion": "Por qué tus músculos recuerdan movimientos aunque no entrenes",
+    "caracteristicas_visuales": "Fibras musculares microscópicas con conexiones nerviosas"
+  },
+  {
+    "nombre": "Hormonas del estrés",
+    "categoria": "hormonas",
+    "descripcion": "Qué le hace el cortisol a tu cuerpo cuando estás estresado",
+    "caracteristicas_visuales": "Glándulas suprarrenales liberando hormonas al torrente sanguíneo"
+  },
+  {
+    "nombre": "El sistema inmune guerrero",
+    "categoria": "inmunologia",
+    "descripcion": "Cómo tus glóbulos blancos combaten invasores microscópicos",
+    "caracteristicas_visuales": "Glóbulo blanco atacando bacteria con colores vibrantes"
+  },
+  {
+    "nombre": "Sueño y limpieza cerebral",
+    "categoria": "sueno",
+    "descripcion": "Tu cerebro se limpia de toxinas mientras duermes",
+    "caracteristicas_visuales": "Cerebro durante el sueño con flujo de líquido cefalorraquídeo"
+  },
+  {
+    "nombre": "La cafeína en tu cuerpo",
+    "categoria": "sustancias",
+    "descripcion": "Qué pasa exactamente cuando la cafeína llega a tu cerebro",
+    "caracteristicas_visuales": "Moléculas de cafeína bloqueando receptores de adenosina"
+  },
+  {
+    "nombre": "Hidratación celular",
+    "categoria": "hidratacion",
+    "descripcion": "Por qué el agua es crucial para cada célula de tu cuerpo",
+    "caracteristicas_visuales": "Células humanas hidratadas vs deshidratadas comparadas"
+  },
+  {
+    "nombre": "El alcohol y tu hígado",
+    "categoria": "sustancias",
+    "descripcion": "Qué le hace el alcohol a tu hígado paso a paso",
+    "caracteristicas_visuales": "Hígado procesando moléculas de etanol con enzimas"
+  },
+  {
+    "nombre": "Ejercicio y neurogénesis",
+    "categoria": "ejercicio",
+    "descripcion": "El ejercicio crea nuevas neuronas en tu cerebro adulto",
+    "caracteristicas_visuales": "Nuevas neuronas formándose en el hipocampo"
+  },
+  {
+    "nombre": "La piel se renueva",
+    "categoria": "piel",
+    "descripcion": "Tu piel se reemplaza completamente cada 27 días",
+    "caracteristicas_visuales": "Capas de la piel mostrando renovación celular"
+  },
+  {
+    "nombre": "Digestión y microbiota",
+    "categoria": "digestion",
+    "descripcion": "Tienes más bacterias que células humanas en tu cuerpo",
+    "caracteristicas_visuales": "Microbiota intestinal diversa con colores vibrantes"
+  },
+  {
+    "nombre": "Carbohidratos simples vs complejos",
+    "categoria": "nutricion",
+    "descripcion": "La verdad científica sobre diferentes tipos de carbohidratos",
+    "caracteristicas_visuales": "Moléculas de carbohidratos simples y complejos comparadas"
+  },
+  {
+    "nombre": "Ayuno intermitente",
+    "categoria": "nutricion",
+    "descripcion": "Qué pasa en tu cuerpo después de 16 horas sin comer",
+    "caracteristicas_visuales": "Células en autofagia limpiándose a sí mismas"
+  },
+  {
+    "nombre": "Grasas buenas vs malas",
+    "categoria": "nutricion",
+    "descripcion": "La diferencia molecular entre grasas saturadas e insaturadas",
+    "caracteristicas_visuales": "Estructuras moleculares de diferentes tipos de grasas"
+  },
+  {
+    "nombre": "Proteínas y recuperación",
+    "categoria": "nutricion",
+    "descripcion": "Cómo las proteínas reparan tus músculos después del ejercicio",
+    "caracteristicas_visuales": "Aminoácidos reconstruyendo fibras musculares"
+  },
+  {
+    "nombre": "El intestino segundo cerebro",
+    "categoria": "digestion",
+    "descripcion": "Tu intestino tiene 500 millones de neuronas propias",
+    "caracteristicas_visuales": "Red neuronal del sistema digestivo iluminada"
+  },
+  {
+    "nombre": "Vitamina D y sol",
+    "categoria": "nutricion",
+    "descripcion": "Por qué necesitas 15 minutos de sol diario",
+    "caracteristicas_visuales": "Piel sintetizando vitamina D con rayos UV"
+  },
+  {
+    "nombre": "El ejercicio HIIT",
+    "categoria": "ejercicio",
+    "descripcion": "Por qué 20 minutos de HIIT equivalen a 1 hora de cardio",
+    "caracteristicas_visuales": "Silueta humana haciendo ejercicio con gráficos de intensidad"
+  },
+  {
+    "nombre": "Dopamina y motivación",
+    "categoria": "hormonas",
+    "descripcion": "Cómo la dopamina controla tu motivación y recompensas",
+    "caracteristicas_visuales": "Neuronas liberando dopamina en el cerebro"
+  },
+  {
+    "nombre": "Serotonina y felicidad",
+    "categoria": "hormonas",
+    "descripcion": "El 95% de tu serotonina se produce en el intestino",
+    "caracteristicas_visuales": "Conexión intestino-cerebro con flujo de serotonina"
+  },
+  {
+    "nombre": "El tabaco y tus pulmones",
+    "categoria": "sustancias",
+    "descripcion": "Qué le hace exactamente el humo a los alvéolos pulmonares",
+    "caracteristicas_visuales": "Alvéolos pulmonares sanos vs dañados por tabaco"
+  },
+  {
+    "nombre": "Sal y presión arterial",
+    "categoria": "nutricion",
+    "descripcion": "Por qué el exceso de sodio eleva tu presión arterial",
+    "caracteristicas_visuales": "Vasos sanguíneos con cristales de sodio afectando flujo"
+  },
+  {
+    "nombre": "El hierro en tu sangre",
+    "categoria": "nutricion",
+    "descripcion": "Cómo el hierro transporta oxígeno a cada célula",
+    "caracteristicas_visuales": "Glóbulos rojos con moléculas de hemoglobina cargando oxígeno"
+  },
+  {
+    "nombre": "Calcio y huesos",
+    "categoria": "nutricion",
+    "descripcion": "Tus huesos se regeneran completamente cada 10 años",
+    "caracteristicas_visuales": "Estructura ósea microscópica con depósito de calcio"
+  },
+  {
+    "nombre": "Omega 3 y cerebro",
+    "categoria": "nutricion",
+    "descripcion": "Por qué el 60% de tu cerebro es grasa y necesita omega 3",
+    "caracteristicas_visuales": "Moléculas de omega 3 integrándose en membranas neuronales"
+  },
+  {
+    "nombre": "Ejercicio y telómeros",
+    "categoria": "ejercicio",
+    "descripcion": "El ejercicio alarga tus telómeros y retrasa el envejecimiento",
+    "caracteristicas_visuales": "Cromosomas con telómeros largos vs cortos comparados"
+  },
+  {
+    "nombre": "Melatonina y oscuridad",
+    "categoria": "sueno",
+    "descripcion": "Tu glándula pineal solo produce melatonina en completa oscuridad",
+    "caracteristicas_visuales": "Glándula pineal brillando en cerebro con ambiente oscuro"
+  },
+  {
+    "nombre": "Azúcar y adicción",
+    "categoria": "sustancias",
+    "descripcion": "El azúcar activa las mismas áreas cerebrales que la cocaína",
+    "caracteristicas_visuales": "Cerebro mostrando áreas de recompensa activadas por azúcar"
+  }
+]
