@@ -1,182 +1,265 @@
 [
-  {
-    "nombre": "El cerebro y la energía",
-    "categoria": "cerebro",
-    "descripcion": "Cómo el cerebro consume el 20% de la energía del cuerpo",
-    "caracteristicas_visuales": "Cerebro humano brillante con conexiones neuronales eléctricas"
-  },
-  {
-    "nombre": "El corazón eléctrico",
-    "categoria": "corazon",
-    "descripcion": "Tu corazón genera su propia electricidad y late 100,000 veces al día",
-    "caracteristicas_visuales": "Corazón humano con impulsos eléctricos visibles"
-  },
-  {
-    "nombre": "El azúcar y tu cerebro",
-    "categoria": "nutricion",
-    "descripcion": "Efectos del exceso de azúcar en la función cognitiva",
-    "caracteristicas_visuales": "Moléculas de glucosa interactuando con neuronas"
-  },
-  {
-    "nombre": "Músculos y memoria muscular",
-    "categoria": "ejercicio",
-    "descripcion": "Por qué tus músculos recuerdan movimientos aunque no entrenes",
-    "caracteristicas_visuales": "Fibras musculares microscópicas con conexiones nerviosas"
-  },
-  {
-    "nombre": "Hormonas del estrés",
-    "categoria": "hormonas",
-    "descripcion": "Qué le hace el cortisol a tu cuerpo cuando estás estresado",
-    "caracteristicas_visuales": "Glándulas suprarrenales liberando hormonas al torrente sanguíneo"
-  },
-  {
-    "nombre": "El sistema inmune guerrero",
-    "categoria": "inmunologia",
-    "descripcion": "Cómo tus glóbulos blancos combaten invasores microscópicos",
-    "caracteristicas_visuales": "Glóbulo blanco atacando bacteria con colores vibrantes"
-  },
-  {
-    "nombre": "Sueño y limpieza cerebral",
-    "categoria": "sueno",
-    "descripcion": "Tu cerebro se limpia de toxinas mientras duermes",
-    "caracteristicas_visuales": "Cerebro durante el sueño con flujo de líquido cefalorraquídeo"
-  },
-  {
-    "nombre": "La cafeína en tu cuerpo",
-    "categoria": "sustancias",
-    "descripcion": "Qué pasa exactamente cuando la cafeína llega a tu cerebro",
-    "caracteristicas_visuales": "Moléculas de cafeína bloqueando receptores de adenosina"
-  },
-  {
-    "nombre": "Hidratación celular",
-    "categoria": "hidratacion",
-    "descripcion": "Por qué el agua es crucial para cada célula de tu cuerpo",
-    "caracteristicas_visuales": "Células humanas hidratadas vs deshidratadas comparadas"
-  },
-  {
-    "nombre": "El alcohol y tu hígado",
-    "categoria": "sustancias",
-    "descripcion": "Qué le hace el alcohol a tu hígado paso a paso",
-    "caracteristicas_visuales": "Hígado procesando moléculas de etanol con enzimas"
-  },
-  {
-    "nombre": "Ejercicio y neurogénesis",
-    "categoria": "ejercicio",
-    "descripcion": "El ejercicio crea nuevas neuronas en tu cerebro adulto",
-    "caracteristicas_visuales": "Nuevas neuronas formándose en el hipocampo"
-  },
-  {
-    "nombre": "La piel se renueva",
-    "categoria": "piel",
-    "descripcion": "Tu piel se reemplaza completamente cada 27 días",
-    "caracteristicas_visuales": "Capas de la piel mostrando renovación celular"
-  },
-  {
-    "nombre": "Digestión y microbiota",
-    "categoria": "digestion",
-    "descripcion": "Tienes más bacterias que células humanas en tu cuerpo",
-    "caracteristicas_visuales": "Microbiota intestinal diversa con colores vibrantes"
-  },
-  {
-    "nombre": "Carbohidratos simples vs complejos",
-    "categoria": "nutricion",
-    "descripcion": "La verdad científica sobre diferentes tipos de carbohidratos",
-    "caracteristicas_visuales": "Moléculas de carbohidratos simples y complejos comparadas"
-  },
-  {
-    "nombre": "Ayuno intermitente",
-    "categoria": "nutricion",
-    "descripcion": "Qué pasa en tu cuerpo después de 16 horas sin comer",
-    "caracteristicas_visuales": "Células en autofagia limpiándose a sí mismas"
-  },
-  {
-    "nombre": "Grasas buenas vs malas",
-    "categoria": "nutricion",
-    "descripcion": "La diferencia molecular entre grasas saturadas e insaturadas",
-    "caracteristicas_visuales": "Estructuras moleculares de diferentes tipos de grasas"
-  },
-  {
-    "nombre": "Proteínas y recuperación",
-    "categoria": "nutricion",
-    "descripcion": "Cómo las proteínas reparan tus músculos después del ejercicio",
-    "caracteristicas_visuales": "Aminoácidos reconstruyendo fibras musculares"
-  },
-  {
-    "nombre": "El intestino segundo cerebro",
-    "categoria": "digestion",
-    "descripcion": "Tu intestino tiene 500 millones de neuronas propias",
-    "caracteristicas_visuales": "Red neuronal del sistema digestivo iluminada"
-  },
-  {
-    "nombre": "Vitamina D y sol",
-    "categoria": "nutricion",
-    "descripcion": "Por qué necesitas 15 minutos de sol diario",
-    "caracteristicas_visuales": "Piel sintetizando vitamina D con rayos UV"
-  },
-  {
-    "nombre": "El ejercicio HIIT",
-    "categoria": "ejercicio",
-    "descripcion": "Por qué 20 minutos de HIIT equivalen a 1 hora de cardio",
-    "caracteristicas_visuales": "Silueta humana haciendo ejercicio con gráficos de intensidad"
-  },
-  {
-    "nombre": "Dopamina y motivación",
-    "categoria": "hormonas",
-    "descripcion": "Cómo la dopamina controla tu motivación y recompensas",
-    "caracteristicas_visuales": "Neuronas liberando dopamina en el cerebro"
-  },
-  {
-    "nombre": "Serotonina y felicidad",
-    "categoria": "hormonas",
-    "descripcion": "El 95% de tu serotonina se produce en el intestino",
-    "caracteristicas_visuales": "Conexión intestino-cerebro con flujo de serotonina"
-  },
-  {
-    "nombre": "El tabaco y tus pulmones",
-    "categoria": "sustancias",
-    "descripcion": "Qué le hace exactamente el humo a los alvéolos pulmonares",
-    "caracteristicas_visuales": "Alvéolos pulmonares sanos vs dañados por tabaco"
-  },
-  {
-    "nombre": "Sal y presión arterial",
-    "categoria": "nutricion",
-    "descripcion": "Por qué el exceso de sodio eleva tu presión arterial",
-    "caracteristicas_visuales": "Vasos sanguíneos con cristales de sodio afectando flujo"
-  },
-  {
-    "nombre": "El hierro en tu sangre",
-    "categoria": "nutricion",
-    "descripcion": "Cómo el hierro transporta oxígeno a cada célula",
-    "caracteristicas_visuales": "Glóbulos rojos con moléculas de hemoglobina cargando oxígeno"
-  },
-  {
-    "nombre": "Calcio y huesos",
-    "categoria": "nutricion",
-    "descripcion": "Tus huesos se regeneran completamente cada 10 años",
-    "caracteristicas_visuales": "Estructura ósea microscópica con depósito de calcio"
-  },
-  {
-    "nombre": "Omega 3 y cerebro",
-    "categoria": "nutricion",
-    "descripcion": "Por qué el 60% de tu cerebro es grasa y necesita omega 3",
-    "caracteristicas_visuales": "Moléculas de omega 3 integrándose en membranas neuronales"
-  },
-  {
-    "nombre": "Ejercicio y telómeros",
-    "categoria": "ejercicio",
-    "descripcion": "El ejercicio alarga tus telómeros y retrasa el envejecimiento",
-    "caracteristicas_visuales": "Cromosomas con telómeros largos vs cortos comparados"
-  },
-  {
-    "nombre": "Melatonina y oscuridad",
-    "categoria": "sueno",
-    "descripcion": "Tu glándula pineal solo produce melatonina en completa oscuridad",
-    "caracteristicas_visuales": "Glándula pineal brillando en cerebro con ambiente oscuro"
-  },
-  {
-    "nombre": "Azúcar y adicción",
-    "categoria": "sustancias",
-    "descripcion": "El azúcar activa las mismas áreas cerebrales que la cocaína",
-    "caracteristicas_visuales": "Cerebro mostrando áreas de recompensa activadas por azúcar"
-  }
+  {"nombre": "El cerebro y la energía", "categoria": "cerebro", "descripcion": "Cómo el cerebro consume el 20% de la energía del cuerpo", "caracteristicas_visuales": "Cerebro humano brillante con conexiones neuronales eléctricas"},
+  {"nombre": "El corazón eléctrico", "categoria": "corazon", "descripcion": "Tu corazón genera su propia electricidad y late 100,000 veces al día", "caracteristicas_visuales": "Corazón humano con impulsos eléctricos visibles"},
+  {"nombre": "El azúcar y tu cerebro", "categoria": "nutricion", "descripcion": "Efectos del exceso de azúcar en la función cognitiva", "caracteristicas_visuales": "Moléculas de glucosa interactuando con neuronas"},
+  {"nombre": "Músculos y memoria muscular", "categoria": "ejercicio", "descripcion": "Por qué tus músculos recuerdan movimientos aunque no entrenes", "caracteristicas_visuales": "Fibras musculares microscópicas con conexiones nerviosas"},
+  {"nombre": "Hormonas del estrés", "categoria": "hormonas", "descripcion": "Qué le hace el cortisol a tu cuerpo cuando estás estresado", "caracteristicas_visuales": "Glándulas suprarrenales liberando hormonas al torrente sanguíneo"},
+  {"nombre": "El sistema inmune guerrero", "categoria": "inmunologia", "descripcion": "Cómo tus glóbulos blancos combaten invasores microscópicos", "caracteristicas_visuales": "Glóbulo blanco atacando bacteria con colores vibrantes"},
+  {"nombre": "Sueño y limpieza cerebral", "categoria": "sueno", "descripcion": "Tu cerebro se limpia de toxinas mientras duermes", "caracteristicas_visuales": "Cerebro durante el sueño con flujo de líquido cefalorraquídeo"},
+  {"nombre": "La cafeína en tu cuerpo", "categoria": "sustancias", "descripcion": "Qué pasa exactamente cuando la cafeína llega a tu cerebro", "caracteristicas_visuales": "Moléculas de cafeína bloqueando receptores de adenosina"},
+  {"nombre": "Hidratación celular", "categoria": "hidratacion", "descripcion": "Por qué el agua es crucial para cada célula de tu cuerpo", "caracteristicas_visuales": "Células humanas hidratadas vs deshidratadas comparadas"},
+  {"nombre": "El alcohol y tu hígado", "categoria": "sustancias", "descripcion": "Qué le hace el alcohol a tu hígado paso a paso", "caracteristicas_visuales": "Hígado procesando moléculas de etanol con enzimas"},
+  {"nombre": "Ejercicio y neurogénesis", "categoria": "ejercicio", "descripcion": "El ejercicio crea nuevas neuronas en tu cerebro adulto", "caracteristicas_visuales": "Nuevas neuronas formándose en el hipocampo"},
+  {"nombre": "La piel se renueva", "categoria": "piel", "descripcion": "Tu piel se reemplaza completamente cada 27 días", "caracteristicas_visuales": "Capas de la piel mostrando renovación celular"},
+  {"nombre": "Digestión y microbiota", "categoria": "digestion", "descripcion": "Tienes más bacterias que células humanas en tu cuerpo", "caracteristicas_visuales": "Microbiota intestinal diversa con colores vibrantes"},
+  {"nombre": "Carbohidratos simples vs complejos", "categoria": "nutricion", "descripcion": "La verdad científica sobre diferentes tipos de carbohidratos", "caracteristicas_visuales": "Moléculas de carbohidratos simples y complejos comparadas"},
+  {"nombre": "Ayuno intermitente", "categoria": "nutricion", "descripcion": "Qué pasa en tu cuerpo después de 16 horas sin comer", "caracteristicas_visuales": "Células en autofagia limpiándose a sí mismas"},
+  {"nombre": "Grasas buenas vs malas", "categoria": "nutricion", "descripcion": "La diferencia molecular entre grasas saturadas e insaturadas", "caracteristicas_visuales": "Estructuras moleculares de diferentes tipos de grasas"},
+  {"nombre": "Proteínas y recuperación", "categoria": "nutricion", "descripcion": "Cómo las proteínas reparan tus músculos después del ejercicio", "caracteristicas_visuales": "Aminoácidos reconstruyendo fibras musculares"},
+  {"nombre": "El intestino segundo cerebro", "categoria": "digestion", "descripcion": "Tu intestino tiene 500 millones de neuronas propias", "caracteristicas_visuales": "Red neuronal del sistema digestivo iluminada"},
+  {"nombre": "Vitamina D y sol", "categoria": "nutricion", "descripcion": "Por qué necesitas 15 minutos de sol diario", "caracteristicas_visuales": "Piel sintetizando vitamina D con rayos UV"},
+  {"nombre": "El ejercicio HIIT", "categoria": "ejercicio", "descripcion": "Por qué 20 minutos de HIIT equivalen a 1 hora de cardio", "caracteristicas_visuales": "Silueta humana haciendo ejercicio con gráficos de intensidad"},
+  {"nombre": "Dopamina y motivación", "categoria": "hormonas", "descripcion": "Cómo la dopamina controla tu motivación y recompensas", "caracteristicas_visuales": "Neuronas liberando dopamina en el cerebro"},
+  {"nombre": "Serotonina y felicidad", "categoria": "hormonas", "descripcion": "El 95% de tu serotonina se produce en el intestino", "caracteristicas_visuales": "Conexión intestino-cerebro con flujo de serotonina"},
+  {"nombre": "El tabaco y tus pulmones", "categoria": "sustancias", "descripcion": "Qué le hace exactamente el humo a los alvéolos pulmonares", "caracteristicas_visuales": "Alvéolos pulmonares sanos vs dañados por tabaco"},
+  {"nombre": "Sal y presión arterial", "categoria": "nutricion", "descripcion": "Por qué el exceso de sodio eleva tu presión arterial", "caracteristicas_visuales": "Vasos sanguíneos con cristales de sodio afectando flujo"},
+  {"nombre": "El hierro en tu sangre", "categoria": "nutricion", "descripcion": "Cómo el hierro transporta oxígeno a cada célula", "caracteristicas_visuales": "Glóbulos rojos con moléculas de hemoglobina cargando oxígeno"},
+  {"nombre": "Calcio y huesos", "categoria": "nutricion", "descripcion": "Tus huesos se regeneran completamente cada 10 años", "caracteristicas_visuales": "Estructura ósea microscópica con depósito de calcio"},
+  {"nombre": "Omega 3 y cerebro", "categoria": "nutricion", "descripcion": "Por qué el 60% de tu cerebro es grasa y necesita omega 3", "caracteristicas_visuales": "Moléculas de omega 3 integrándose en membranas neuronales"},
+  {"nombre": "Ejercicio y telómeros", "categoria": "ejercicio", "descripcion": "El ejercicio alarga tus telómeros y retrasa el envejecimiento", "caracteristicas_visuales": "Cromosomas con telómeros largos vs cortos comparados"},
+  {"nombre": "Melatonina y oscuridad", "categoria": "sueno", "descripcion": "Tu glándula pineal solo produce melatonina en completa oscuridad", "caracteristicas_visuales": "Glándula pineal brillando en cerebro con ambiente oscuro"},
+  {"nombre": "Azúcar y adicción", "categoria": "sustancias", "descripcion": "El azúcar activa las mismas áreas cerebrales que la cocaína", "caracteristicas_visuales": "Cerebro mostrando áreas de recompensa activadas por azúcar"},
+  
+  {"nombre": "Diabetes tipo 2", "categoria": "enfermedades", "descripcion": "Cómo la resistencia a la insulina daña tus órganos silenciosamente", "caracteristicas_visuales": "Células pancreáticas y receptores de insulina bloqueados"},
+  {"nombre": "Hipertensión silenciosa", "categoria": "enfermedades", "descripcion": "Por qué la presión alta daña arterias sin que lo notes", "caracteristicas_visuales": "Arterias con placas de colesterol bajo presión"},
+  {"nombre": "Colesterol bueno y malo", "categoria": "enfermedades", "descripcion": "La diferencia entre HDL y LDL y por qué importa", "caracteristicas_visuales": "Moléculas de colesterol HDL vs LDL comparadas"},
+  {"nombre": "Arterioesclerosis", "categoria": "enfermedades", "descripcion": "Cómo se tapan tus arterias con el tiempo", "caracteristicas_visuales": "Corte transversal de arteria con placa aterosclerótica"},
+  {"nombre": "Infarto cerebral", "categoria": "enfermedades", "descripcion": "Qué pasa en tu cerebro cuando se bloquea una arteria", "caracteristicas_visuales": "Cerebro con área afectada por falta de riego sanguíneo"},
+  {"nombre": "Alzheimer y placas amiloides", "categoria": "enfermedades", "descripcion": "Las proteínas que destruyen la memoria", "caracteristicas_visuales": "Neuronas con placas amiloides acumulándose"},
+  {"nombre": "Parkinson y dopamina", "categoria": "enfermedades", "descripcion": "Por qué mueren las neuronas productoras de dopamina", "caracteristicas_visuales": "Sustancia negra del cerebro con neuronas degeneradas"},
+  {"nombre": "Esclerosis múltiple", "categoria": "enfermedades", "descripcion": "Cuando el sistema inmune ataca la mielina de tus nervios", "caracteristicas_visuales": "Nervios con vaina de mielina dañada"},
+  {"nombre": "Asma y bronquios", "categoria": "enfermedades", "descripcion": "Qué pasa exactamente en tus pulmones durante un ataque", "caracteristicas_visuales": "Bronquios inflamados y contraídos vs sanos"},
+  {"nombre": "Cáncer y metástasis", "categoria": "enfermedades", "descripcion": "Cómo las células cancerosas viajan por tu cuerpo", "caracteristicas_visuales": "Células cancerosas migrando por torrente sanguíneo"},
+  {"nombre": "Lupus y autoinmunidad", "categoria": "enfermedades", "descripcion": "Cuando tu sistema inmune ataca tus propios órganos", "caracteristicas_visuales": "Anticuerpos atacando células propias"},
+  {"nombre": "Artritis reumatoide", "categoria": "enfermedades", "descripcion": "La inflamación crónica que destruye articulaciones", "caracteristicas_visuales": "Articulación inflamada con cartílago dañado"},
+  {"nombre": "Osteoporosis", "categoria": "enfermedades", "descripcion": "Por qué tus huesos se vuelven frágiles con la edad", "caracteristicas_visuales": "Hueso sano vs hueso osteoporótico comparados"},
+  {"nombre": "Migraña y cerebro", "categoria": "enfermedades", "descripcion": "Qué pasa en tu cerebro durante una migraña severa", "caracteristicas_visuales": "Cerebro con actividad eléctrica anormal y vasos dilatados"},
+  {"nombre": "Depresión y neurotransmisores", "categoria": "enfermedades_mentales", "descripcion": "Los desequilibrios químicos detrás de la depresión", "caracteristicas_visuales": "Sinapsis con niveles alterados de serotonina"},
+  {"nombre": "Ansiedad y amígdala", "categoria": "enfermedades_mentales", "descripcion": "Por qué la amígdala se hiperactiva en personas ansiosas", "caracteristicas_visuales": "Amígdala cerebral con actividad eléctrica aumentada"},
+  {"nombre": "TDAH y corteza prefrontal", "categoria": "enfermedades_mentales", "descripcion": "Las diferencias cerebrales en personas con TDAH", "caracteristicas_visuales": "Corteza prefrontal con menor actividad en áreas ejecutivas"},
+  {"nombre": "Estrés crónico y telómeros", "categoria": "enfermedades", "descripcion": "Cómo el estrés acelera el envejecimiento celular", "caracteristicas_visuales": "Cromosomas con telómeros acortados por estrés"},
+  {"nombre": "Síndrome metabólico", "categoria": "enfermedades", "descripcion": "La combinación peligrosa de 5 factores de riesgo", "caracteristicas_visuales": "Diagrama circular con los 5 componentes del síndrome"},
+  {"nombre": "Hígado graso no alcohólico", "categoria": "enfermedades", "descripcion": "Cuando el azúcar se convierte en grasa en tu hígado", "caracteristicas_visuales": "Hígado con acumulación de grasa en hepatocitos"},
+  
+  {"nombre": "Sistema linfático", "categoria": "anatomia", "descripcion": "La red oculta que limpia tu cuerpo de toxinas", "caracteristicas_visuales": "Red linfática completa con ganglios y vasos"},
+  {"nombre": "Riñones y filtración", "categoria": "anatomia", "descripcion": "Cómo tus riñones filtran 180 litros de sangre al día", "caracteristicas_visuales": "Nefronas filtrando sangre con detalle microscópico"},
+  {"nombre": "Bazo y sangre", "categoria": "anatomia", "descripcion": "El órgano olvidado que recicla tus glóbulos rojos", "caracteristicas_visuales": "Bazo mostrando reciclaje de células sanguíneas"},
+  {"nombre": "Timo y sistema inmune", "categoria": "anatomia", "descripcion": "El órgano que entrena a tus células T de defensa", "caracteristicas_visuales": "Timo con linfocitos T madurando"},
+  {"nombre": "Tiroides y metabolismo", "categoria": "anatomia", "descripcion": "Cómo la tiroides controla la velocidad de tu metabolismo", "caracteristicas_visuales": "Glándula tiroides liberando hormonas T3 y T4"},
+  {"nombre": "Páncreas dual", "categoria": "anatomia", "descripcion": "El órgano que produce enzimas digestivas e insulina", "caracteristicas_visuales": "Páncreas con islotes de Langerhans y conductos"},
+  {"nombre": "Huesos vivos", "categoria": "anatomia", "descripcion": "Tus huesos tienen células vivas que se renuevan constantemente", "caracteristicas_visuales": "Osteoblastos y osteoclastos trabajando en hueso"},
+  {"nombre": "Médula ósea", "categoria": "anatomia", "descripcion": "La fábrica dentro de tus huesos que produce sangre", "caracteristicas_visuales": "Médula ósea con células madre hematopoyéticas"},
+  {"nombre": "Ojo humano", "categoria": "anatomia", "descripcion": "Cómo 120 millones de fotorreceptores procesan la luz", "caracteristicas_visuales": "Retina con conos y bastones en detalle"},
+  {"nombre": "Oído interno", "categoria": "anatomia", "descripcion": "El laberinto que te da equilibrio y audición", "caracteristicas_visuales": "Cóclea y canales semicirculares en detalle"},
+  {"nombre": "Columna vertebral", "categoria": "anatomia", "descripcion": "Las 33 vértebras que protegen tu médula espinal", "caracteristicas_visuales": "Columna vertebral con discos intervertebrales"},
+  {"nombre": "Sistema nervioso autónomo", "categoria": "anatomia", "descripcion": "El piloto automático de tu cuerpo", "caracteristicas_visuales": "Red nerviosa simpática y parasimpática"},
+  {"nombre": "Glándula pituitaria", "categoria": "anatomia", "descripcion": "La glándula maestra que controla todas las hormonas", "caracteristicas_visuales": "Hipófisis con sus lóbulos y conexiones hipotalámicas"},
+  {"nombre": "Piel y sus capas", "categoria": "anatomia", "descripcion": "El órgano más grande de tu cuerpo con 3 capas", "caracteristicas_visuales": "Corte transversal de piel con epidermis, dermis e hipodermis"},
+  {"nombre": "Cabello y folículos", "categoria": "anatomia", "descripcion": "Por qué pierdes entre 50 y 100 cabellos al día", "caracteristicas_visuales": "Folículo piloso con ciclo de crecimiento"},
+  
+  {"nombre": "Vitamina B12 y nervios", "categoria": "nutricion", "descripcion": "La vitamina que protege la mielina de tus nervios", "caracteristicas_visuales": "Nervios con vaina de mielina saludable"},
+  {"nombre": "Magnesio y músculos", "categoria": "nutricion", "descripcion": "Por qué el 80% de las personas tienen deficiencia de magnesio", "caracteristicas_visuales": "Moléculas de magnesio en contracción muscular"},
+  {"nombre": "Zinc y sistema inmune", "categoria": "nutricion", "descripcion": "El mineral que activa tus defensas naturales", "caracteristicas_visuales": "Glóbulos blancos activados por zinc"},
+  {"nombre": "Yodo y tiroides", "categoria": "nutricion", "descripcion": "Por qué tu tiroides necesita yodo para funcionar", "caracteristicas_visuales": "Tiroides capturando átomos de yodo"},
+  {"nombre": "Probióticos y microbiota", "categoria": "nutricion", "descripcion": "Las bacterias buenas que viven en tu intestino", "caracteristicas_visuales": "Microbiota intestinal diversa y saludable"},
+  {"nombre": "Fibra y digestión", "categoria": "nutricion", "descripcion": "Por qué necesitas 25-30g de fibra diarios", "caracteristicas_visuales": "Intestino con fibra moviendo contenido digestivo"},
+  {"nombre": "Creatina y músculo", "categoria": "nutricion", "descripcion": "El suplemento más estudiado para ganar fuerza", "caracteristicas_visuales": "Moléculas de creatina en fibras musculares"},
+  {"nombre": "Proteína y saciedad", "categoria": "nutricion", "descripcion": "Por qué la proteína te mantiene lleno por más tiempo", "caracteristicas_visuales": "Hormonas de saciedad liberadas por proteína"},
+  {"nombre": "Índice glucémico", "categoria": "nutricion", "descripcion": "Cómo diferentes alimentos afectan tu azúcar en sangre", "caracteristicas_visuales": "Gráfico de glucosa en sangre tras diferentes alimentos"},
+  {"nombre": "Ayuno y autofagia", "categoria": "nutricion", "descripcion": "El proceso de limpieza celular que ocurre al ayunar", "caracteristicas_visuales": "Células reciclando componentes dañados"},
+  {"nombre": "Ayuno prolongado", "categoria": "nutricion", "descripcion": "Qué pasa en tu cuerpo después de 48 horas sin comer", "caracteristicas_visuales": "Cuerpo en cetosis con cuerpos cetónicos"},
+  {"nombre": "Dieta cetogénica", "categoria": "nutricion", "descripcion": "Cuando tu cuerpo usa grasa como combustible principal", "caracteristicas_visuales": "Hígado produciendo cuerpos cetónicos"},
+  {"nombre": "Ciclos de hambre", "categoria": "nutricion", "descripcion": "Por qué la grelina te hace sentir hambre cada 4 horas", "caracteristicas_visuales": "Estómago liberando hormona grelina"},
+  {"nombre": "Saciedad y leptina", "categoria": "nutricion", "descripcion": "La hormona que le dice a tu cerebro que estás lleno", "caracteristicas_visuales": "Células grasas liberando leptina al hipotálamo"},
+  {"nombre": "Resistencia a la leptina", "categoria": "nutricion", "descripcion": "Por qué personas con obesidad no sienten saciedad", "caracteristicas_visuales": "Hipotálamo con receptores de leptina bloqueados"},
+  
+  {"nombre": "Entrenamiento de fuerza", "categoria": "ejercicio", "descripcion": "Por qué levantar pesas quema más grasa que el cardio", "caracteristicas_visuales": "Fibras musculares hipertrofiándose"},
+  {"nombre": "Cardio y corazón", "categoria": "ejercicio", "descripcion": "Cómo el ejercicio aeróbico fortalece tu corazón", "caracteristicas_visuales": "Corazón atleta vs corazón sedentario comparados"},
+  {"nombre": "Efecto afterburn", "categoria": "ejercicio", "descripcion": "Tu cuerpo sigue quemando calorías 48h después del ejercicio", "caracteristicas_visuales": "Metabolismo elevado post-ejercicio con gráfico"},
+  {"nombre": "Flexibilidad y fascia", "categoria": "ejercicio", "descripcion": "El tejido conectivo que envuelve todos tus músculos", "caracteristicas_visuales": "Fascia muscular en detalle"},
+  {"nombre": "Yoga y sistema nervioso", "categoria": "ejercicio", "descripcion": "Cómo el yoga activa el sistema nervioso parasimpático", "caracteristicas_visuales": "Silueta en postura de yoga con actividad parasimpática"},
+  {"nombre": "Pilates y core", "categoria": "ejercicio", "descripcion": "Los músculos profundos que estabilizan tu columna", "caracteristicas_visuales": "Músculos del core activados en corte transversal"},
+  {"nombre": "Calistenia", "categoria": "ejercicio", "descripcion": "Entrenar solo con tu peso corporal y sus beneficios", "caracteristicas_visuales": "Silueta haciendo dominadas con músculos activados"},
+  {"nombre": "Sobreentrenamiento", "categoria": "ejercicio", "descripcion": "Cuando hacer demasiado ejercicio daña tu cuerpo", "caracteristicas_visuales": "Cortisol elevado y músculos inflamados"},
+  {"nombre": "Recuperación muscular", "categoria": "ejercicio", "descripcion": "Por qué tus músculos crecen cuando descansas, no cuando entrenas", "caracteristicas_visuales": "Fibras musculares reparándose durante el sueño"},
+  {"nombre": "VO2 máximo", "categoria": "ejercicio", "descripcion": "La medida más precisa de tu capacidad cardiovascular", "caracteristicas_visuales": "Pulmones procesando oxígeno máximo"},
+  
+  {"nombre": "Sueño REM", "categoria": "sueno", "descripcion": "La fase del sueño donde ocurren los sueños más vívidos", "caracteristicas_visuales": "Cerebro en fase REM con ondas rápidas"},
+  {"nombre": "Sueño profundo", "categoria": "sueno", "descripcion": "Cuando tu cuerpo repara tejidos y libera hormona de crecimiento", "caracteristicas_visuales": "Ondas delta cerebrales durante sueño profundo"},
+  {"nombre": "Ciclos del sueño", "categoria": "sueno", "descripcion": "Los 4-6 ciclos de 90 minutos que completas cada noche", "caracteristicas_visuales": "Gráfico de ciclos del sueño durante la noche"},
+  {"nombre": "Apnea del sueño", "categoria": "sueno", "descripcion": "Cuando dejas de respirar durante el sueño sin saberlo", "caracteristicas_visuales": "Vía aérea colapsada durante el sueño"},
+  {"nombre": "Insomnio y cerebro", "categoria": "sueno", "descripcion": "Por qué el cerebro insomne no puede 'apagarse'", "caracteristicas_visuales": "Cerebro hiperactivo en la noche"},
+  {"nombre": "Jet lag y ritmos circadianos", "categoria": "sueno", "descripcion": "Cómo los viajes desincronizan tu reloj biológico", "caracteristicas_visuales": "Reloj circadiano desincronizado con zonas horarias"},
+  {"nombre": "Luz azul y sueño", "categoria": "sueno", "descripcion": "Por qué las pantallas antes de dormir afectan tu melatonina", "caracteristicas_visuales": "Ojo recibiendo luz azul de pantalla"},
+  {"nombre": "Siestas y rendimiento", "categoria": "sueno", "descripcion": "La duración perfecta de una siesta según la ciencia", "caracteristicas_visuales": "Gráfico de beneficios según duración de siesta"},
+  
+  {"nombre": "Testosterona y edad", "categoria": "hormonas", "descripcion": "Por qué la testosterona disminuye 1% anual después de los 30", "caracteristicas_visuales": "Gráfico de testosterona por edad"},
+  {"nombre": "Estrógenos y ciclo", "categoria": "hormonas", "descripcion": "Las 4 fases hormonales del ciclo menstrual", "caracteristicas_visuales": "Gráfico de hormonas durante el ciclo menstrual"},
+  {"nombre": "Progesterona y embarazo", "categoria": "hormonas", "descripcion": "La hormona que mantiene el embarazo", "caracteristicas_visuales": "Útero con progesterona preparando endometrio"},
+  {"nombre": "Adrenalina y huida", "categoria": "hormonas", "descripcion": "Qué le hace la adrenalina a tu cuerpo en segundos", "caracteristicas_visuales": "Glándulas suprarrenales liberando adrenalina"},
+  {"nombre": "Oxitocina y vínculos", "categoria": "hormonas", "descripcion": "La hormona del amor y los lazos sociales", "caracteristicas_visuales": "Cerebro liberando oxitocina durante abrazos"},
+  {"nombre": "Endorfinas y ejercicio", "categoria": "hormonas", "descripcion": "La 'euforia del corredor' explicada químicamente", "caracteristicas_visuales": "Endorfinas uniéndose a receptores opioides"},
+  {"nombre": "Grelina y hambre", "categoria": "hormonas", "descripcion": "La hormona que despierta tu apetito", "caracteristicas_visuales": "Estómago liberando grelina al hipotálamo"},
+  {"nombre": "Cortisol crónico", "categoria": "hormonas", "descripcion": "Cuando el cortisol elevado daña tu cuerpo", "caracteristicas_visuales": "Cortisol afectando múltiples órganos"},
+  {"nombre": "Insulina y glucosa", "categoria": "hormonas", "descripcion": "Cómo la insulina abre las puertas celulares a la glucosa", "caracteristicas_visuales": "Insulina abriendo receptores celulares"},
+  {"nombre": "Hormona del crecimiento", "categoria": "hormonas", "descripcion": "Se libera principalmente durante el sueño profundo", "caracteristicas_visuales": "Hipófisis liberando GH durante el sueño"},
+  
+  {"nombre": "Vacunas y memoria inmune", "categoria": "inmunologia", "descripcion": "Cómo las vacunas entrenan a tu sistema inmune", "caracteristicas_visuales": "Células de memoria inmunológica"},
+  {"nombre": "Fiebre y defensa", "categoria": "inmunologia", "descripcion": "Por qué tu cuerpo eleva la temperatura para combatir infecciones", "caracteristicas_visuales": "Hipotálamo regulando temperatura corporal"},
+  {"nombre": "Anticuerpos IgG vs IgM", "categoria": "inmunologia", "descripcion": "Los dos tipos principales de anticuerpos", "caracteristicas_visuales": "Estructuras moleculares de IgG e IgM"},
+  {"nombre": "Células NK", "categoria": "inmunologia", "descripcion": "Las células asesinas naturales que destruyen células infectadas", "caracteristicas_visuales": "Célula NK destruyendo célula tumoral"},
+  {"nombre": "Alergias e histamina", "categoria": "inmunologia", "descripcion": "Cuando tu sistema inmune reacciona exageradamente", "caracteristicas_visuales": "Mastocitos liberando histamina"},
+  {"nombre": "Enfermedades autoinmunes", "categoria": "inmunologia", "descripcion": "Cuando el cuerpo se ataca a sí mismo", "caracteristicas_visuales": "Anticuerpos atacando tejido propio"},
+  {"nombre": "Microbiota y defensas", "categoria": "inmunologia", "descripcion": "Cómo las bacterias intestinales entrenan tu sistema inmune", "caracteristicas_visuales": "Bacterias intestinales interactuando con células inmunes"},
+  
+  {"nombre": "ADN y genes", "categoria": "genetica", "descripcion": "Los 3 mil millones de pares de bases en tu genoma", "caracteristicas_visuales": "Doble hélice de ADN con genes marcados"},
+  {"nombre": "Epigenética", "categoria": "genetica", "descripcion": "Cómo tu estilo de vida activa o desactiva genes", "caracteristicas_visuales": "ADN con marcas epigenéticas (metilación)"},
+  {"nombre": "Telómeros y envejecimiento", "categoria": "genetica", "descripcion": "Los 'capuchones' que protegen tus cromosomas", "caracteristicas_visuales": "Cromosomas con telómeros de diferentes longitudes"},
+  {"nombre": "Mitocondrias", "categoria": "genetica", "descripcion": "Las centrales energéticas con su propio ADN", "caracteristicas_visuales": "Mitocondrias con ADN mitocondrial"},
+  {"nombre": "Mutaciones genéticas", "categoria": "genetica", "descripcion": "Cuando el ADN se copia con errores", "caracteristicas_visuales": "ADN con mutación puntual visible"},
+  {"nombre": "Cromosomas humanos", "categoria": "genetica", "descripcion": "Los 46 cromosomas que definen quién eres", "caracteristicas_visuales": "Cariotipo humano completo"},
+  
+  {"nombre": "Envejecimiento celular", "categoria": "envejecimiento", "descripcion": "Las 9 marcas del envejecimiento según la ciencia", "caracteristicas_visuales": "Célula joven vs célula senescente"},
+  {"nombre": "Zonas azules", "categoria": "envejecimiento", "descripcion": "Los 5 lugares del mundo donde la gente vive más de 100 años", "caracteristicas_visuales": "Mapa mundial con zonas azules marcadas"},
+  {"nombre": "Longevidad y dieta", "categoria": "envejecimiento", "descripcion": "Patrones alimenticios de los centenarios", "caracteristicas_visuales": "Alimentos típicos de zonas azules"},
+  {"nombre": "Ejercicio y longevidad", "categoria": "envejecimiento", "descripcion": "Cómo el ejercicio añade años a tu vida", "caracteristicas_visuales": "Gráfico de expectativa de vida vs actividad física"},
+  {"nombre": "Estrés oxidativo", "categoria": "envejecimiento", "descripcion": "Los radicales libres que dañan tus células", "caracteristicas_visuales": "Radicales libres atacando membranas celulares"},
+  {"nombre": "Antioxidantes", "categoria": "envejecimiento", "descripcion": "Las moléculas que neutralizan radicales libres", "caracteristicas_visuales": "Antioxidantes neutralizando radicales libres"},
+  
+  {"nombre": "Paracetamol y dolor", "categoria": "medicamentos", "descripcion": "Cómo el paracetamol alivia el dolor en el cerebro", "caracteristicas_visuales": "Moléculas de paracetamol en sistema nervioso central"},
+  {"nombre": "Ibuprofeno e inflamación", "categoria": "medicamentos", "descripcion": "Cómo los AINEs bloquean las prostaglandinas", "caracteristicas_visuales": "Ibuprofeno bloqueando enzima COX"},
+  {"nombre": "Antibióticos y resistencia", "categoria": "medicamentos", "descripcion": "Por qué el uso excesivo crea superbacterias", "caracteristicas_visuales": "Bacterias resistentes vs antibiótico"},
+  {"nombre": "Aspirina y coágulos", "categoria": "medicamentos", "descripcion": "Cómo la aspirina previene infartos", "caracteristicas_visuales": "Plaquetas con aspirina inhibiendo agregación"},
+  {"nombre": "Estatinas y colesterol", "categoria": "medicamentos", "descripcion": "Los medicamentos que reducen el colesterol", "caracteristicas_visuales": "Hígado con estatinas inhibiendo HMG-CoA reductasa"},
+  {"nombre": "Metformina y diabetes", "categoria": "medicamentos", "descripcion": "El medicamento más usado contra la diabetes tipo 2", "caracteristicas_visuales": "Metformina mejorando sensibilidad a insulina"},
+  {"nombre": "ISRS y depresión", "categoria": "medicamentos", "descripcion": "Cómo los antidepresivos aumentan serotonina", "caracteristicas_visuales": "Sinapsis con ISRS bloqueando recaptación"},
+  {"nombre": "Benzodiacepinas", "categoria": "medicamentos", "descripcion": "Los ansiolíticos que potencian el GABA", "caracteristicas_visuales": "Receptores GABA potenciados por benzodiacepinas"},
+  
+  {"nombre": "Presión arterial ideal", "categoria": "cardiovascular", "descripcion": "Los números exactos de presión arterial saludable", "caracteristicas_visuales": "Esfigmomanómetro mostrando 120/80"},
+  {"nombre": "Ritmo cardíaco en reposo", "categoria": "cardiovascular", "descripcion": "Por qué atletas tienen 40-60 lpm y personas sedentarias 80-100", "caracteristicas_visuales": "Corazones con diferentes frecuencias"},
+  {"nombre": "Variabilidad cardíaca", "categoria": "cardiovascular", "descripcion": "El indicador más preciso de salud cardiovascular", "caracteristicas_visuales": "Gráfico de variabilidad del ritmo cardíaco"},
+  {"nombre": "Colesterol y arterias", "categoria": "cardiovascular", "descripcion": "Cómo el LDL se oxida y forma placas", "caracteristicas_visuales": "LDL oxidado formando placa aterosclerótica"},
+  {"nombre": "Triglicéridos", "categoria": "cardiovascular", "descripcion": "La grasa en tu sangre que pocos monitorean", "caracteristicas_visuales": "Moléculas de triglicéridos en plasma sanguíneo"},
+  {"nombre": "Homocisteína", "categoria": "cardiovascular", "descripcion": "El aminoácido que daña arterias en exceso", "caracteristicas_visuales": "Homocisteína dañando endotelio arterial"},
+  
+  {"nombre": "Reflujo gastroesofágico", "categoria": "digestion", "descripcion": "Cuando el ácido estomacal sube al esófago", "caracteristicas_visuales": "Esfínter esofágico inferior fallando"},
+  {"nombre": "Úlceras gástricas", "categoria": "digestion", "descripcion": "Helicobacter pylori y las úlceras estomacales", "caracteristicas_visuales": "Estómago con bacteria H. pylori y úlcera"},
+  {"nombre": "Síndrome de intestino irritable", "categoria": "digestion", "descripcion": "El trastorno digestivo más común del mundo", "caracteristicas_visuales": "Intestino con motilidad alterada"},
+  {"nombre": "Enfermedad de Crohn", "categoria": "digestion", "descripcion": "Inflamación crónica del tracto digestivo", "caracteristicas_visuales": "Intestino con inflamación transmural"},
+  {"nombre": "Hígado y detox", "categoria": "digestion", "descripcion": "Las 2 fases de desintoxicación hepática", "caracteristicas_visuales": "Hígado con enzimas de fase 1 y fase 2"},
+  {"nombre": "Vesícula biliar", "categoria": "digestion", "descripcion": "Cómo la bilis digiere las grasas", "caracteristicas_visuales": "Vesícula liberando bilis al duodeno"},
+  
+  {"nombre": "EPOC y pulmones", "categoria": "respiratorio", "descripcion": "La enfermedad pulmonar que no tiene cura", "caracteristicas_visuales": "Pulmones con enfisema y bronquitis crónica"},
+  {"nombre": "Fibrosis pulmonar", "categoria": "respiratorio", "descripcion": "Cuando los pulmones se vuelven rígidos", "caracteristicas_visuales": "Pulmón sano vs fibrótico"},
+  {"nombre": "Capacidad pulmonar", "categoria": "respiratorio", "descripcion": "Los 6 litros de aire que tus pulmones pueden contener", "caracteristicas_visuales": "Volúmenes pulmonares en diagrama"},
+  {"nombre": "VO2 y rendimiento", "categoria": "respiratorio", "descripcion": "Tu capacidad máxima de usar oxígeno", "caracteristicas_visuales": "Pulmones y sistema cardiovascular en máximo esfuerzo"},
+  
+  {"nombre": "Estrés y digestión", "categoria": "psicosomatico", "descripcion": "Por qué el estrés te causa malestar estomacal", "caracteristicas_visuales": "Eje cerebro-intestino con nervio vago"},
+  {"nombre": "Efecto placebo", "categoria": "psicosomatico", "descripcion": "Cómo tu mente puede curar tu cuerpo", "caracteristicas_visuales": "Cerebro liberando endorfinas por expectativa"},
+  {"nombre": "Efecto nocebo", "categoria": "psicosomatico", "descripcion": "Cuando esperar algo negativo lo hace realidad", "caracteristicas_visuales": "Cerebro activando respuestas negativas por sugestión"},
+  {"nombre": "Somatización", "categoria": "psicosomatico", "descripcion": "Cuando las emociones se manifiestan como dolor físico", "caracteristicas_visuales": "Mapa corporal del dolor emocional"},
+  
+  {"nombre": "Meditación y cerebro", "categoria": "bienestar", "descripcion": "Cómo la meditación cambia la estructura cerebral", "caracteristicas_visuales": "Cerebro meditador con corteza prefrontal engrosada"},
+  {"nombre": "Respiración diafragmática", "categoria": "bienestar", "descripcion": "La técnica que activa el sistema parasimpático", "caracteristicas_visuales": "Diafragma moviéndose en respiración profunda"},
+  {"nombre": "Contacto con naturaleza", "categoria": "bienestar", "descripcion": "Por qué 20 minutos en la naturaleza reducen el cortisol", "caracteristicas_visuales": "Persona en bosque con niveles de cortisol disminuyendo"},
+  {"nombre": "Risa y salud", "categoria": "bienestar", "descripcion": "Cómo reír 15 minutos quema 40 calorías y reduce estrés", "caracteristicas_visuales": "Cerebro liberando endorfinas durante la risa"},
+  {"nombre": "Gratitud y cerebro", "categoria": "bienestar", "descripcion": "Los cambios cerebrales al practicar gratitud diaria", "caracteristicas_visuales": "Corteza prefrontal activada por gratitud"},
+  {"nombre": "Abrazos y oxitocina", "categoria": "bienestar", "descripcion": "Por qué un abrazo de 20 segundos libera oxitocina", "caracteristicas_visuales": "Cerebros liberando oxitocina durante abrazo"},
+  {"nombre": "Baños de bosque", "categoria": "bienestar", "descripcion": "La terapia japonesa Shinrin-yoku y sus beneficios", "caracteristicas_visuales": "Persona en bosque con fitoncidas"},
+  {"nombre": "Mindfulness y dolor", "categoria": "bienestar", "descripcion": "Cómo la atención plena reduce la percepción del dolor", "caracteristicas_visuales": "Cerebro con áreas de dolor moduladas"},
+  
+  {"nombre": "Menopausia y hormonas", "categoria": "salud_femenina", "descripcion": "Los cambios hormonales de la perimenopausia", "caracteristicas_visuales": "Ovarios con disminución de estrógenos"},
+  {"nombre": "Síndrome premenstrual", "categoria": "salud_femenina", "descripcion": "Por qué el 80% de mujeres experimentan SPM", "caracteristicas_visuales": "Fluctuaciones hormonales premenstruales"},
+  {"nombre": "Endometriosis", "categoria": "salud_femenina", "descripcion": "Cuando el tejido uterino crece fuera del útero", "caracteristicas_visuales": "Tejido endometrial ectópico"},
+  {"nombre": "SOP y resistencia insulina", "categoria": "salud_femenina", "descripcion": "El síndrome de ovario poliquístico y sus causas", "caracteristicas_visuales": "Ovarios con quistes múltiples"},
+  {"nombre": "Embarazo y cambios", "categoria": "salud_femenina", "descripcion": "Los 9 meses de transformaciones en el cuerpo", "caracteristicas_visuales": "Útero grávido con feto en desarrollo"},
+  
+  {"nombre": "Testosterona baja", "categoria": "salud_masculina", "descripcion": "Los síntomas del hipogonadismo masculino", "caracteristicas_visuales": "Testículos con producción reducida de testosterona"},
+  {"nombre": "Próstata y edad", "categoria": "salud_masculina", "descripcion": "Por qué la próstata crece con la edad", "caracteristicas_visuales": "Próstata normal vs hiperplásica"},
+  {"nombre": "Calvicie masculina", "categoria": "salud_masculina", "descripcion": "La DHT y la caída del cabello genética", "caracteristicas_visuales": "Folículos pilosos miniaturizados por DHT"},
+  {"nombre": "Disfunción eréctil", "categoria": "salud_masculina", "descripcion": "Causas vasculares, hormonales y psicológicas", "caracteristicas_visuales": "Flujo sanguíneo comprometido"},
+  
+  {"nombre": "Desarrollo cerebral infantil", "categoria": "pediatria", "descripcion": "Los primeros 1000 días críticos del cerebro", "caracteristicas_visuales": "Cerebro infantil con sinaptogénesis"},
+  {"nombre": "Sistema inmune infantil", "categoria": "pediatria", "descripcion": "Por qué los niños se enferman más seguido", "caracteristicas_visuales": "Sistema inmune inmaduro vs adulto"},
+  {"nombre": "Crecimiento óseo", "categoria": "pediatria", "descripcion": "Las placas de crecimiento en los huesos infantiles", "caracteristicas_visuales": "Hueso infantil con placas epifisarias"},
+  {"nombre": "Pubertad y hormonas", "categoria": "pediatria", "descripcion": "La tormenta hormonal de la adolescencia", "caracteristicas_visuales": "Eje hipotálamo-hipófisis-gonadal activándose"},
+  
+  {"nombre": "Menopausia masculina", "categoria": "geriatria", "descripcion": "La andropausia y sus efectos", "caracteristicas_visuales": "Hombre mayor con disminución hormonal"},
+  {"nombre": "Sarcopenia", "categoria": "geriatria", "descripcion": "La pérdida muscular por envejecimiento", "caracteristicas_visuales": "Músculo joven vs músculo sarcopénico"},
+  {"nombre": "Deterioro cognitivo", "categoria": "geriatria", "descripcion": "Diferencia entre envejecimiento normal y demencia", "caracteristicas_visuales": "Cerebro sano vs con atrofia"},
+  {"nombre": "Caídas en ancianos", "categoria": "geriatria", "descripcion": "Por qué las caídas son la principal causa de lesión", "caracteristicas_visuales": "Sistema vestibular y equilibrio deteriorados"},
+  {"nombre": "Polifarmacia", "categoria": "geriatria", "descripcion": "Los peligros de tomar múltiples medicamentos", "caracteristicas_visuales": "Múltiples fármacos interactuando"},
+  
+  {"nombre": "Mito: 8 vasos de agua", "categoria": "mitos", "descripcion": "La verdad científica sobre la hidratación diaria", "caracteristicas_visuales": "Persona hidratándose según sed"},
+  {"nombre": "Mito: desayuno obligatorio", "categoria": "mitos", "descripcion": "La ciencia detrás del desayuno y el metabolismo", "caracteristicas_visuales": "Metabolismo sin desayuno vs con desayuno"},
+  {"nombre": "Mito: grasa engorda", "categoria": "mitos", "descripcion": "Por qué las grasas saludables no causan obesidad", "caracteristicas_visuales": "Diferentes tipos de grasas y sus efectos"},
+  {"nombre": "Mito: sudar quema grasa", "categoria": "mitos", "descripcion": "La diferencia entre perder agua y perder grasa", "caracteristicas_visuales": "Sudor vs oxidación de grasa"},
+  {"nombre": "Mito: carbohidratos en la noche", "categoria": "mitos", "descripcion": "La verdad sobre comer carbohidratos antes de dormir", "caracteristicas_visuales": "Glucosa nocturna vs diurna"},
+  {"nombre": "Mito: huevos y colesterol", "categoria": "mitos", "descripcion": "Por qué los huevos no elevan tu colesterol", "caracteristicas_visuales": "Huevo con colesterol dietético vs sanguíneo"},
+  {"nombre": "Mito: comer 5 veces al día", "categoria": "mitos", "descripcion": "La frecuencia de comidas y el metabolismo", "caracteristicas_visuales": "Metabolismo con diferentes frecuencias"},
+  {"nombre": "Mito: detox con jugos", "categoria": "mitos", "descripcion": "Por qué tu hígado y riñones ya desintoxican", "caracteristicas_visuales": "Hígado y riñones funcionando normalmente"},
+  {"nombre": "Mito: azúcar y niños hiperactivos", "categoria": "mitos", "descripcion": "Los estudios que desmienten esta creencia", "caracteristicas_visuales": "Niños con y sin azúcar, mismo comportamiento"},
+  {"nombre": "Mito: leer en oscuridad", "categoria": "mitos", "descripcion": "La verdad sobre leer con poca luz", "caracteristicas_visuales": "Ojo adaptándose a baja luminosidad"},
+  
+  {"nombre": "Ritmos circadianos", "categoria": "cronobiologia", "descripcion": "Tu reloj biológico interno de 24 horas", "caracteristicas_visuales": "Núcleo supraquiasmático con ciclo circadiano"},
+  {"nombre": "Cronotipos", "categoria": "cronobiologia", "descripcion": "Si eres alondra, búho o tercer pájaro", "caracteristicas_visuales": "Diferentes cronotipos con sus horarios"},
+  {"nombre": "Jet lag social", "categoria": "cronobiologia", "descripcion": "El desfase entre tu reloj biológico y tu horario social", "caracteristicas_visuales": "Reloj biológico vs reloj social desincronizados"},
+  
+  {"nombre": "Respiración nasal vs bucal", "categoria": "respiratorio", "descripcion": "Por qué respirar por la nariz es 50% más eficiente", "caracteristicas_visuales": "Flujo de aire nasal vs bucal"},
+  {"nombre": "Óxido nítrico nasal", "categoria": "respiratorio", "descripcion": "El gas que produce tu nariz y dilata vasos sanguíneos", "caracteristicas_visuales": "Senos paranasales produciendo NO"},
+  {"nombre": "Apnea y corazón", "categoria": "respiratorio", "descripcion": "Cómo la apnea del sueño aumenta riesgo cardíaco", "caracteristicas_visuales": "Corazón bajo estrés por apnea"},
+  
+  {"nombre": "Postura y columna", "categoria": "postura", "descripcion": "Cómo la mala postura daña tu columna con el tiempo", "caracteristicas_visuales": "Columna con postura correcta vs incorrecta"},
+  {"nombre": "Text neck", "categoria": "postura", "descripcion": "El daño de mirar el celular hacia abajo", "caracteristicas_visuales": "Cuello con 27kg de presión al mirar celular"},
+  {"nombre": "Sedestación prolongada", "categoria": "postura", "descripcion": "Por qué estar sentado es el nuevo fumar", "caracteristicas_visuales": "Persona sentada con efectos en circulación"},
+  {"nombre": "Ergonomía laboral", "categoria": "postura", "descripcion": "Cómo configurar tu espacio de trabajo correctamente", "caracteristicas_visuales": "Puesto ergonómico ideal"},
+  
+  {"nombre": "Visión y pantallas", "categoria": "vision", "descripcion": "El síndrome visual informático y cómo prevenirlo", "caracteristicas_visuales": "Ojo fatigado frente a pantalla"},
+  {"nombre": "Miopía epidémica", "categoria": "vision", "descripcion": "Por qué el 50% del mundo será miope en 2050", "caracteristicas_visuales": "Ojo miope vs ojo normal"},
+  {"nombre": "Luz azul y retina", "categoria": "vision", "descripcion": "El daño real de la luz azul de las pantallas", "caracteristicas_visuales": "Retina expuesta a luz azul"},
+  {"nombre": "Regla 20-20-20", "categoria": "vision", "descripcion": "Cada 20 min, mirar 20 seg a 20 pies de distancia", "caracteristicas_visuales": "Persona aplicando regla 20-20-20"},
+  
+  {"nombre": "Audición y decibeles", "categoria": "audicion", "descripcion": "Los niveles de sonido que dañan tus oídos", "caracteristicas_visuales": "Escala de decibeles con ejemplos"},
+  {"nombre": "Pérdida auditiva", "categoria": "audicion", "descripcion": "Por qué perdemos audición con la edad", "caracteristicas_visuales": "Cóclea con células ciliadas dañadas"},
+  {"nombre": "Acúfenos", "categoria": "audicion", "descripcion": "El zumbido permanente en los oídos", "caracteristicas_visuales": "Oído con actividad neuronal anormal"},
+  
+  {"nombre": "Microbiota vaginal", "categoria": "salud_femenina", "descripcion": "El ecosistema bacteriano protector", "caracteristicas_visuales": "Flora vaginal saludable"},
+  {"nombre": "Candidiasis recurrente", "categoria": "salud_femenina", "descripcion": "Por qué algunas mujeres la sufren constantemente", "caracteristicas_visuales": "Candida albicans en mucosa"},
+  
+  {"nombre": "Fertilidad masculina", "categoria": "salud_masculina", "descripcion": "Factores que afectan la calidad del esperma", "caracteristicas_visuales": "Espermatozoides sanos vs dañados"},
+  {"nombre": "Temperatura testicular", "categoria": "salud_masculina", "descripcion": "Por qué los testículos están fuera del cuerpo", "caracteristicas_visuales": "Testículos a 34°C vs 37°C"},
+  
+  {"nombre": "Dolor crónico", "categoria": "dolor", "descripcion": "Cuando el dolor persiste más de 3 meses", "caracteristicas_visuales": "Sistema nervioso sensibilizado"},
+  {"nombre": "Fibromialgia", "categoria": "dolor", "descripcion": "El dolor generalizado sin causa aparente", "caracteristicas_visuales": "Puntos dolorosos en cuerpo"},
+  {"nombre": "Migraña con aura", "categoria": "dolor", "descripcion": "Los síntomas neurológicos antes del dolor", "caracteristicas_visuales": "Cerebro con depresión cortical propagada"},
+  
+  {"nombre": "Ayunos prolongados", "categoria": "nutricion", "descripcion": "Qué pasa después de 72 horas sin comer", "caracteristicas_visuales": "Cuerpo en cetosis profunda"},
+  {"nombre": "Refeed days", "categoria": "nutricion", "descripcion": "Los días de realimentación en dietas restrictivas", "caracteristicas_visuales": "Metabolismo acelerándose tras refeed"},
+  {"nombre": "Carga glucémica", "categoria": "nutricion", "descripcion": "Más precisa que el índice glucémico", "caracteristicas_visuales": "Carga glucémica de alimentos comunes"},
+  
+  {"nombre": "Ejercicio en ayunas", "categoria": "ejercicio", "descripcion": "Beneficios y riesgos de entrenar sin comer", "caracteristicas_visuales": "Músculos usando grasa como combustible"},
+  {"nombre": "Entrenamiento polarizado", "categoria": "ejercicio", "descripcion": "80% suave, 20% muy intenso", "caracteristicas_visuales": "Distribución de intensidades en entrenamiento"},
+  {"nombre": "Periodización", "categoria": "ejercicio", "descripcion": "Cómo planificar el entrenamiento a largo plazo", "caracteristicas_visuales": "Ciclo de entrenamiento periodizado"},
+  
+  {"nombre": "Baños fríos", "categoria": "bienestar", "descripcion": "Los beneficios de la exposición al frío", "caracteristicas_visuales": "Cuerpo con activación de grasa parda"},
+  {"nombre": "Sauna y salud", "categoria": "bienestar", "descripcion": "Los efectos de la sauna en el sistema cardiovascular", "caracteristicas_visuales": "Cuerpo en sauna con vasodilatación"},
+  {"nombre": "Contraste térmico", "categoria": "bienestar", "descripcion": "Alternar frío y calor y sus beneficios", "caracteristicas_visuales": "Vasos sanguíneos con vasoconstricción y dilatación"},
+  {"nombre": "Respiración Wim Hof", "categoria": "bienestar", "descripcion": "El método de respiración que alcaliniza la sangre", "caracteristicas_visuales": "Sangre con pH alterado por respiración"},
+  
+  {"nombre": "Ayuno de dopamina", "categoria": "bienestar", "descripcion": "Desintoxicar el cerebro de estímulos constantes", "caracteristicas_visuales": "Cerebro con receptores de dopamina recuperándose"},
+  {"nombre": "Adicción a pantallas", "categoria": "bienestar", "descripcion": "Cómo las apps diseñan adicción", "caracteristicas_visuales": "Cerebro con circuito de recompensa activado"},
+  
+  {"nombre": "Epigenética del ejercicio", "categoria": "genetica", "descripcion": "Cómo el ejercicio cambia la expresión de tus genes", "caracteristicas_visuales": "ADN con marcas epigenéticas por ejercicio"},
+  {"nombre": "Nutrigenómica", "categoria": "genetica", "descripcion": "Cómo los alimentos afectan tus genes", "caracteristicas_visuales": "Genes activados por nutrientes"},
+  {"nombre": "Farmacogenómica", "categoria": "genetica", "descripcion": "Por qué los medicamentos funcionan diferente en cada persona", "caracteristicas_visuales": "Variantes genéticas afectando metabolismo de fármacos"}
 ]
