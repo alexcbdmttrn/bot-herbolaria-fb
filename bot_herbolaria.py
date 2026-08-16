@@ -24,7 +24,8 @@ CATALOGO_CURIOSIDADES_FILE = "catalogo_curiosidades_salud.json"
 # 🤖 DISCLOSURE DE IA (transparencia)
 # ================================================================
 ACTIVAR_DISCLOSURE_IA = True
-DISCLOSURE_TEXT = "\n\n🤖 Contenido generado con inteligencia artificial (texto e imágenes)."
+# 🔽 Cambiamos el texto para que sea exactamente igual al del bot de terror
+DISCLOSURE_TEXT = "\n\n_Imágenes generadas con IA_"
 
 # ================================================================
 # CARGAR CATÁLOGOS
