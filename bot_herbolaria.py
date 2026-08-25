@@ -10,11 +10,21 @@ from datetime import datetime
 import pytz
 import time
 import edge_tts
-from moviepy.editor import ImageClip, AudioFileClip, CompositeAudioClip, concatenate_videoclips, CompositeVideoClip
-from moviepy.audio.compositing.concatenate import concatenate_audioclips
-from PIL import Image
-import numpy as np
 import shutil
+import numpy as np
+from PIL import Image
+
+# ================================================================
+# IMPORTACIONES CORREGIDAS DE MOVIEPY (v1.0.3)
+# ================================================================
+from moviepy.editor import (
+    ImageClip, 
+    AudioFileClip, 
+    CompositeAudioClip, 
+    concatenate_videoclips, 
+    concatenate_audioclips,
+    AudioClip
+)
 
 # ================================================================
 # CONFIGURACIÓN
@@ -46,16 +56,11 @@ CATALOGO_FILE = "catalogo_ingredientes.json"
 CATALOGO_CURIOSIDADES_FILE = "catalogo_curiosidades_salud.json"
 
 VOCES_FEMENINAS = [
-    "es-MX-DaliaNeural",
-    "es-MX-BeatrizNeural",
-    "es-ES-ElviraNeural",
-    "es-ES-AlbaNeural",
-    "es-CO-SalomeNeural",
-    "es-AR-ElenaNeural",
-    "es-US-PalomaNeural",
+    "es-MX-DaliaNeural", "es-MX-BeatrizNeural", "es-ES-ElviraNeural",
+    "es-ES-AlbaNeural", "es-CO-SalomeNeural", "es-AR-ElenaNeural", "es-US-PalomaNeural",
 ]
 VOZ_SELECCIONADA = random.choice(VOCES_FEMENINAS)
-print(f"🎤 Voz: {VOZ_SELECCIONADA}")
+print(f"🎤 Voz seleccionada: {VOZ_SELECCIONADA}")
 
 # ================================================================
 # CARGA DE CATÁLOGOS Y ESTADO
@@ -100,13 +105,15 @@ def obtener_item_no_repetido(catalogo, estado, tipo, excluir_nombre=None):
     clave_estado = tipo + "s"
     publicadas = set(p["nombre"] if isinstance(p, dict) else p for p in estado["publicadas"][clave_estado])
     disponibles = [item for item in catalogo if item["nombre"] not in publicadas and item["nombre"] != excluir_nombre]
+    
     if not disponibles:
-        print(f"🔄 Reiniciando {clave_estado}")
+        print(f"🔄 Reiniciando historial de {clave_estado}")
         estado["publicadas"][clave_estado] = []
         guardar_estado(estado)
         disponibles = [item for item in catalogo if item["nombre"] != excluir_nombre]
         if not disponibles:
             disponibles = catalogo
+            
     return random.choice(disponibles)
 
 def detectar_tipo_publicacion():
@@ -131,13 +138,11 @@ Reglas:
 - Línea 6: Pregunta al lector
 - Línea 7: ✨ Descubre tu remedio ideal (gratis) 👉 https://t.me/alex_xanax_bot
 - Línea 8: 5 hashtags
-- Línea 9: 📸 Edición digital con IA.
-"""
-    url = "https://api.deepseek.com/v1/chat/completions"
-    headers = {"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"}
-    payload = {"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt}], "temperature": 0.75, "max_tokens": 400}
+- Línea 9: 📸 Edición digital con IA."""
     try:
-        r = requests.post(url, headers=headers, json=payload, timeout=60)
+        r = requests.post("https://api.deepseek.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"},
+            json={"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt}], "temperature": 0.75, "max_tokens": 400}, timeout=60)
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
     except:
@@ -153,13 +158,11 @@ Reglas:
 - Línea 6: Pregunta al lector
 - Línea 7: ✨ Más ciencia gratis 👉 https://t.me/alex_xanax_bot
 - Línea 8: 5 hashtags
-- Línea 9: 📸 Edición digital con IA.
-"""
-    url = "https://api.deepseek.com/v1/chat/completions"
-    headers = {"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"}
-    payload = {"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt}], "temperature": 0.8, "max_tokens": 400}
+- Línea 9: 📸 Edición digital con IA."""
     try:
-        r = requests.post(url, headers=headers, json=payload, timeout=60)
+        r = requests.post("https://api.deepseek.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"},
+            json={"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt}], "temperature": 0.8, "max_tokens": 400}, timeout=60)
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
     except:
@@ -181,8 +184,7 @@ REGLAS:
 FORMATO:
 SEGMENTO_1: [texto]
 SEGMENTO_2: [texto]
-SEGMENTO_3: [texto]
-"""
+SEGMENTO_3: [texto]"""
     else:
         prompt = f"""Crea guion de 30s (3 segmentos de 10s) sobre {item['nombre']}.
 CARACTERÍSTICAS: {item['caracteristicas_visuales']}
@@ -196,13 +198,12 @@ REGLAS:
 FORMATO:
 SEGMENTO_1: [texto]
 SEGMENTO_2: [texto]
-SEGMENTO_3: [texto]
-"""
-    url = "https://api.deepseek.com/v1/chat/completions"
-    headers = {"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"}
-    payload = {"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt}], "temperature": 0.7, "max_tokens": 500}
+SEGMENTO_3: [texto]"""
+    
     try:
-        r = requests.post(url, headers=headers, json=payload, timeout=60)
+        r = requests.post("https://api.deepseek.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"},
+            json={"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt}], "temperature": 0.7, "max_tokens": 500}, timeout=60)
         r.raise_for_status()
         texto = r.json()["choices"][0]["message"]["content"].strip()
         segmentos = {}
@@ -212,6 +213,7 @@ SEGMENTO_3: [texto]
             segmentos['s2'] = texto.split("SEGMENTO_2:")[1].split("SEGMENTO_3:")[0].strip()
         if "SEGMENTO_3:" in texto:
             segmentos['s3'] = texto.split("SEGMENTO_3:")[1].strip()
+            
         for k in segmentos:
             segmentos[k] = re.sub(r'[^\w\sáéíóúñÁÉÍÓÚÑ.,;:!?¿¡\-]', '', segmentos[k]).strip()
         return segmentos
@@ -219,7 +221,7 @@ SEGMENTO_3: [texto]
         if tipo == "hierba":
             return {
                 's1': f"¿Sabías que el {item['nombre']} puede acelerar tu metabolismo mientras descansas?",
-                's2': f"Acelera tu metabolismo basal hasta un 15% en solo 30 minutos. Reduce la inflamación muscular hasta un 40% después del entrenamiento. Activa la circulación sanguínea y ayuda a eliminar toxinas retenidas.",
+                's2': f"Acelera tu metabolismo basal hasta un 15 por ciento en solo 30 minutos. Reduce la inflamación muscular hasta un 40 por ciento. Activa la circulación sanguínea.",
                 's3': f"Tip práctico: Rállalo fresco y tómalo con limón en ayunas. Visita nuestro asistente inteligente gratis."
             }
         else:
@@ -233,36 +235,26 @@ SEGMENTO_3: [texto]
 # GENERACIÓN DE IMÁGENES
 # ================================================================
 def generar_prompt_imagen_hierba(ingrediente):
-    prompt_ia = f"""Foto vertical 4:5 de {ingrediente['nombre']}.
-CARACTERÍSTICAS: {ingrediente['caracteristicas_visuales']}
-REGLAS: hiperrealista, madera rústica, luz dorada, espacio inferior oscuro para texto.
-"""
-    url = "https://api.deepseek.com/v1/chat/completions"
-    headers = {"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"}
-    payload = {"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt_ia}], "temperature": 0.7, "max_tokens": 200}
+    prompt_ia = f"Foto vertical 4:5 de {ingrediente['nombre']}. CARACTERÍSTICAS: {ingrediente['caracteristicas_visuales']}. REGLAS: hiperrealista, madera rústica, luz dorada, espacio inferior oscuro para texto."
     try:
-        r = requests.post(url, headers=headers, json=payload, timeout=60)
+        r = requests.post("https://api.deepseek.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"},
+            json={"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt_ia}], "temperature": 0.7, "max_tokens": 200}, timeout=60)
         r.raise_for_status()
         prompt = r.json()["choices"][0]["message"]["content"].strip()
-        prompt += " Vertical 4:5, hyperrealistic, 4k, bottom dark gradient for text."
-        return prompt
+        return prompt + " Vertical 4:5, hyperrealistic, 4k, bottom dark gradient for text."
     except:
         return f"Fresh {ingrediente['nombre']} close-up, wooden table, natural light, photorealistic, 4k, vertical 4:5, bottom dark gradient"
 
 def generar_prompt_imagen_curiosidad(curiosidad):
-    prompt_ia = f"""Ilustración científica vertical 4:5 sobre {curiosidad['nombre']}.
-CARACTERÍSTICAS: {curiosidad['caracteristicas_visuales']}
-REGLAS: moderno, azul/blanco, prohibido plantas, espacio inferior oscuro.
-"""
-    url = "https://api.deepseek.com/v1/chat/completions"
-    headers = {"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"}
-    payload = {"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt_ia}], "temperature": 0.7, "max_tokens": 200}
+    prompt_ia = f"Ilustración científica vertical 4:5 sobre {curiosidad['nombre']}. CARACTERÍSTICAS: {curiosidad['caracteristicas_visuales']}. REGLAS: moderno, azul/blanco, prohibido plantas, espacio inferior oscuro."
     try:
-        r = requests.post(url, headers=headers, json=payload, timeout=60)
+        r = requests.post("https://api.deepseek.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"},
+            json={"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt_ia}], "temperature": 0.7, "max_tokens": 200}, timeout=60)
         r.raise_for_status()
         prompt = r.json()["choices"][0]["message"]["content"].strip()
-        prompt += " Vertical 4:5, scientific, modern, 4k, no plants, no herbs, bottom dark gradient."
-        return prompt
+        return prompt + " Vertical 4:5, scientific, modern, 4k, no plants, no herbs, bottom dark gradient."
     except:
         return f"Scientific illustration, human anatomy, modern design, blue/white, 4k, vertical 4:5, no plants, bottom dark gradient"
 
@@ -298,8 +290,8 @@ async def generar_audio(texto, output_path, velocidad=1.10):
     voz = VOZ_SELECCIONADA
     for voz_intento in [voz] + [v for v in VOCES_FEMENINAS if v != voz]:
         try:
-            comunicate = edge_tts.Communicate(texto, voz_intento, rate=f"+{int((velocidad-1)*100)}%")
-            await comunicate.save(output_path)
+            communicate = edge_tts.Communicate(texto, voz_intento, rate=f"+{int((velocidad-1)*100)}%")
+            await communicate.save(output_path)
             print(f"✅ Audio generado con {voz_intento}")
             return True
         except Exception as e:
@@ -336,6 +328,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             img_resized.save(resized_path)
         
         clip = ImageClip(resized_path).set_duration(duracion_segmento)
+        # Zoom lento tipo Ken Burns
         clip = clip.resize(lambda t: 1 + 0.15 * (t / duracion_segmento))
         clip = clip.set_position(('center', 'center'))
         clips.append(clip)
@@ -345,43 +338,34 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
     # --- GENERAR AUDIO ---
     audios = []
     for i, key in enumerate(['s1', 's2', 's3']):
-        texto = guion.get(key, "")
-        if not texto.strip():
-            texto = "Contenido informativo sobre salud y bienestar."
+        texto = guion.get(key, "").strip()
+        if not texto:
+            texto = "Contenido informativo sobre salud y bienestar natural."
+        
         audio_path = f"audio_seg_{i}.mp3"
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         exito = loop.run_until_complete(generar_audio(texto, audio_path, velocidad=1.10))
         loop.close()
-        if exito:
+        
+        if exito and os.path.exists(audio_path):
             audios.append(AudioFileClip(audio_path))
         else:
             print(f"⚠️ No se generó audio segmento {i+1}")
     
-    # Si no hay audios, crear un silencio de 30 segundos
+    # Fallback de silencio si fallan todos los audios
     if not audios:
-        print("⚠️ Sin audios. Se creará silencio.")
-        silencio = AudioFileClip("silencio.mp3")  # fallback
+        print("⚠️ Sin audios. Se creará pista de silencio.")
         try:
-            # Crear un audio de silencio con numpy
-            import numpy as np
-            sample_rate = 44100
-            duration = duracion_segmento * 3  # 30 segundos
-            silence = np.zeros(int(sample_rate * duration))
-            from scipy.io import wavfile  # si no tienes scipy, usar otro método
-            # Mejor: usar moviepy para crear silencio
-            from moviepy.audio.AudioClip import AudioClip
             def make_frame(t):
                 return np.zeros((1,))
-            silent_clip = AudioClip(make_frame, duration=duration)
-            silent_clip.write_audiofile("silencio.mp3")
+            silent_clip = AudioClip(make_frame, duration=30, fps=44100)
+            silent_clip.write_audiofile("silencio.mp3", verbose=False, logger=None)
             audios.append(AudioFileClip("silencio.mp3"))
-        except:
-            # Si falla, solo continuar sin audio
-            pass
+        except Exception as e:
+            print(f"⚠️ No se pudo crear silencio: {e}")
     
     if audios:
-        # 🔥 CORRECCIÓN AQUÍ: usar concatenate_audioclips
         audio_combinado = concatenate_audioclips(audios)
         
         # Buscar música
@@ -389,9 +373,10 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         musicas = [m for m in musicas if not m.startswith("temp_") and not m.startswith("audio_") and not m.startswith("narracion_") and not m.startswith("silencio")]
         if not musicas:
             musicas = [m for m in glob.glob("*") if m in ["Green Remedy.mp3", "Sacred Root.mp3", "Verdant Stillness.mp3"]]
+            
         if musicas:
             musica_path = random.choice(musicas)
-            print(f"🎵 Música: {musica_path}")
+            print(f"🎵 Música seleccionada: {musica_path}")
             try:
                 musica = AudioFileClip(musica_path).set_duration(video_final.duration).volumex(0.3)
                 # Overlay: música desde 0, voz desde 2 segundos
@@ -410,7 +395,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         print("⚠️ Sin audio. Video mudo.")
     
     output_path = "reel_temp.mp4"
-    video_final.write_videofile(output_path, fps=24, codec='libx264', audio_codec='aac')
+    video_final.write_videofile(output_path, fps=24, codec='libx264', audio_codec='aac', verbose=False, logger=None)
     
     # Subir a Cloudinary o Base64
     if CLOUDINARY_DISPONIBLE:
@@ -424,24 +409,28 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             )
             video_url = respuesta.get('secure_url')
             print(f"✅ Video subido: {video_url}")
-            # Limpiar
-            for path in imagenes_contenido + [f"resized_{i}.jpg" for i in range(len(imagenes_contenido))] + [f"audio_seg_{i}.mp3" for i in range(3)] + [output_path, "silencio.mp3"]:
+            
+            # Limpiar archivos temporales
+            archivos_a_borrar = imagenes_contenido + [f"resized_{i}.jpg" for i in range(len(imagenes_contenido))] + [f"audio_seg_{i}.mp3" for i in range(3)] + [output_path, "silencio.mp3"]
+            for path in archivos_a_borrar:
                 if os.path.exists(path):
                     try: os.remove(path)
                     except: pass
             return video_url
         except Exception as e:
             print(f"❌ Error Cloudinary: {e}. Usando Base64...")
-    else:
-        print("⚠️ Cloudinary no disponible. Base64...")
     
     # Fallback Base64
+    print("⚠️ Usando método Base64...")
     with open(output_path, "rb") as f:
         video_base64 = base64.b64encode(f.read()).decode('utf-8')
-    for path in imagenes_contenido + [f"resized_{i}.jpg" for i in range(len(imagenes_contenido))] + [f"audio_seg_{i}.mp3" for i in range(3)] + [output_path, "silencio.mp3"]:
+    
+    archivos_a_borrar = imagenes_contenido + [f"resized_{i}.jpg" for i in range(len(imagenes_contenido))] + [f"audio_seg_{i}.mp3" for i in range(3)] + [output_path, "silencio.mp3"]
+    for path in archivos_a_borrar:
         if os.path.exists(path):
             try: os.remove(path)
             except: pass
+            
     return video_base64
 
 # ================================================================
@@ -452,22 +441,19 @@ def main():
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     tipo = detectar_tipo_publicacion()
-    print(f"🎯 Tipo: {tipo.upper()}")
+    print(f"🎯 Tipo detectado: {tipo.upper()}")
     
     estado = cargar_estado()
-    
-    if tipo == "hierba":
-        catalogo = cargar_catalogo_hierbas()
-    else:
-        catalogo = cargar_catalogo_curiosidades()
+    catalogo = cargar_catalogo_hierbas() if tipo == "hierba" else cargar_catalogo_curiosidades()
     
     item_post = obtener_item_no_repetido(catalogo, estado, tipo)
     print(f"📝 POST: {item_post['nombre']}")
+    
     item_reel = obtener_item_no_repetido(catalogo, estado, tipo, excluir_nombre=item_post['nombre'])
-    print(f"🎬 REEL: {item_reel['nombre']}")
+    print(f"🎬 REEL: {item_reel['nombre']} (Diferente al post)")
     
     # --- POST ---
-    print("📝 Generando texto POST...")
+    print("\n📝 Generando texto POST...")
     if tipo == "hierba":
         post_texto = generar_texto_hierba(item_post)
         post_comentario = "🌿 ¿Qué opinas? Visita nuestro asistente 👉 https://t.me/alex_xanax_bot"
@@ -477,45 +463,44 @@ def main():
         post_comentario = "🧠 ¿Te sorprendió? Asistente gratis 👉 https://t.me/alex_xanax_bot"
         prompt_img = generar_prompt_imagen_curiosidad(item_post)
     
-    print("🎨 Imagen POST...")
-    post_image_url = generar_imagen_agnes(prompt_img, tipo=tipo)
+    print("🎨 Generando imagen POST...")
+    post_image_url = generar_imagen_agnes(prompt_img, tipo=tipo, width=1080, height=1350)
     if not post_image_url:
-        post_image_url = "https://via.placeholder.com/1080x1350/2a2a2a/6a6a6a?text=No+disponible"
+        post_image_url = "https://via.placeholder.com/1080x1350/2a2a2a/6a6a6a?text=Salud+Natural"
     
     # --- REEL ---
-    print("🎬 Guion REEL...")
+    print("\n🎬 Generando REEL...")
     guion = generar_guion_reel(item_reel, tipo)
     print(f"   S1: {guion['s1'][:50]}...")
-    print(f"   S2: {guion['s2'][:50]}...")
-    print(f"   S3: {guion['s3'][:50]}...")
     
-    print("🎨 3 imágenes REEL...")
+    print("🎨 Generando 3 imágenes REEL...")
     imagenes_reel = []
     for i in range(3):
         if tipo == "hierba":
             prompt = generar_prompt_imagen_hierba(item_reel) + f" variation {i+1}"
         else:
             prompt = generar_prompt_imagen_curiosidad(item_reel) + f" variation {i+1}"
-        url_img = generar_imagen_agnes(prompt, tipo=tipo)
+            
+        url_img = generar_imagen_agnes(prompt, tipo=tipo, width=1080, height=1920)
         if url_img:
             imagenes_reel.append(url_img)
         else:
-            if post_image_url and post_image_url != "https://via.placeholder.com/1080x1350/2a2a2a/6a6a6a?text=No+disponible":
+            if post_image_url and not post_image_url.startswith("https://via.placeholder.com"):
                 imagenes_reel.append(post_image_url)
             else:
                 imagenes_reel.append("https://via.placeholder.com/1080x1920/2a2a2a/6a6a6a?text=Respaldo")
     
-    print("🎥 Renderizando REEL...")
+    print("🎥 Renderizando video REEL...")
     video_resultado = generar_video_reel(imagenes_reel, guion, tipo, duracion_segmento=10)
     
-    if video_resultado and video_resultado.startswith("http"):
+    if video_resultado and isinstance(video_resultado, str) and video_resultado.startswith("http"):
         reel_video_url = video_resultado
         reel_video_base64 = ""
     else:
         reel_video_url = ""
         reel_video_base64 = video_resultado if video_resultado else ""
     
-    # --- ENVIAR ---
+    # --- ENVIAR A MAKE ---
     payload = {
         "post_message": post_texto,
         "post_image_url": post_image_url,
@@ -526,11 +511,11 @@ def main():
         "reel_comment": "🎬 ¿Qué te pareció? Visita nuestro asistente 👉 https://t.me/alex_xanax_bot"
     }
     
-    print("📤 Enviando a Make.com...")
+    print("\n📤 Enviando a Make.com...")
     try:
-        r = requests.post(MAKE_WEBHOOK_URL, json=payload, timeout=60)
+        r = requests.post(MAKE_WEBHOOK_URL, json=payload, timeout=120)
         if r.status_code in [200, 201, 202]:
-            print("✅ Enviado a Make.com")
+            print("✅ Enviado a Make.com correctamente")
             clave = tipo + "s"
             estado["publicadas"][clave].append({"nombre": item_post["nombre"], "fecha": datetime.now().isoformat()})
             estado["publicadas"][clave].append({"nombre": item_reel["nombre"], "fecha": datetime.now().isoformat()})
@@ -539,7 +524,13 @@ def main():
         else:
             print(f"❌ Error Make: {r.status_code} - {r.text}")
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"❌ Error de conexión: {e}")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(f"❌ Error fatal: {e}")
+        import traceback
+        traceback.print_exc()
+        exit(1)
