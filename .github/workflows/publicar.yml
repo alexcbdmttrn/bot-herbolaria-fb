@@ -1,10 +1,9 @@
-name: Bot Herbolaria - Publicación 3x diario
+name: Bot Herbolaria - Publicación 2x diario
 
 on:
   schedule:
-    - cron: '0 14 * * *'   # 7:00 AM CDMX (14:00 UTC) -> HIERBA
+    - cron: '0 14 * * *'   # 8:00 AM CDMX (14:00 UTC) -> HIERBA
     - cron: '0 21 * * *'   # 3:00 PM CDMX (21:00 UTC) -> HIERBA
-    - cron: '0 2 * * *'    # 8:00 PM CDMX (02:00 UTC) -> CURIOSIDAD 🆕
   workflow_dispatch:
 
 permissions:
