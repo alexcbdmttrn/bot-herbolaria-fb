@@ -15,13 +15,13 @@ import numpy as np
 from PIL import Image
 
 # ================================================================
-# IMPORTACIONES CORREGIDAS DE MOVIEPY (v1.0.3)
+# IMPORTACIONES DE MOVIEPY (v1.0.3)
 # ================================================================
 from moviepy.editor import (
-    ImageClip, 
-    AudioFileClip, 
-    CompositeAudioClip, 
-    concatenate_videoclips, 
+    ImageClip,
+    AudioFileClip,
+    CompositeAudioClip,
+    concatenate_videoclips,
     concatenate_audioclips,
     AudioClip
 )
@@ -47,20 +47,28 @@ if all([CLOUD_NAME, CLOUD_API_KEY, CLOUD_API_SECRET]):
         api_secret=CLOUD_API_SECRET
     )
     CLOUDINARY_DISPONIBLE = True
-    print("✅ Cloudinary configurado")
+    print("✅ Cloudinary configurado correctamente")
 else:
-    print("⚠️ Cloudinary NO configurado. Se usará Base64.")
+    print("⚠️ Cloudinary NO configurado. Se usará file.io como fallback.")
 
 ESTADO_FILE = "estado_herbolaria.json"
 CATALOGO_FILE = "catalogo_ingredientes.json"
 CATALOGO_CURIOSIDADES_FILE = "catalogo_curiosidades_salud.json"
 
+# ================================================================
+# VOCES FEMENINAS DISPONIBLES
+# ================================================================
 VOCES_FEMENINAS = [
-    "es-MX-DaliaNeural", "es-MX-BeatrizNeural", "es-ES-ElviraNeural",
-    "es-ES-AlbaNeural", "es-CO-SalomeNeural", "es-AR-ElenaNeural", "es-US-PalomaNeural",
+    "es-MX-DaliaNeural",
+    "es-MX-BeatrizNeural",
+    "es-ES-ElviraNeural",
+    "es-ES-AlbaNeural",
+    "es-CO-SalomeNeural",
+    "es-AR-ElenaNeural",
+    "es-US-PalomaNeural",
 ]
 VOZ_SELECCIONADA = random.choice(VOCES_FEMENINAS)
-print(f"🎤 Voz seleccionada: {VOZ_SELECCIONADA}")
+print(f"🎤 Voz femenina seleccionada: {VOZ_SELECCIONADA}")
 
 # ================================================================
 # CARGA DE CATÁLOGOS Y ESTADO
@@ -70,6 +78,7 @@ def cargar_catalogo_hierbas():
         with open(CATALOGO_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     except:
+        print("⚠️ No se pudo cargar catálogo de hierbas. Usando respaldo.")
         return [{"nombre": "Manzanilla", "categoria": "hierba", "descripcion": "Flor blanca y amarilla", "caracteristicas_visuales": "Flores blancas con centro amarillo"}]
 
 def cargar_catalogo_curiosidades():
@@ -77,6 +86,7 @@ def cargar_catalogo_curiosidades():
         with open(CATALOGO_CURIOSIDADES_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     except:
+        print("⚠️ No se pudo cargar catálogo de curiosidades. Usando respaldo.")
         return [{"nombre": "El cerebro y la energía", "categoria": "cerebro", "descripcion": "El cerebro consume el 20% de la energía", "caracteristicas_visuales": "Cerebro brillante"}]
 
 def cargar_estado():
@@ -102,6 +112,7 @@ def guardar_estado(estado):
         print(f"❌ Error guardando estado: {e}")
 
 def obtener_item_no_repetido(catalogo, estado, tipo, excluir_nombre=None):
+    """Obtiene un item no publicado. Si se pasa excluir_nombre, lo omite (para que reel sea diferente al post)"""
     clave_estado = tipo + "s"
     publicadas = set(p["nombre"] if isinstance(p, dict) else p for p in estado["publicadas"][clave_estado])
     disponibles = [item for item in catalogo if item["nombre"] not in publicadas and item["nombre"] != excluir_nombre]
@@ -119,6 +130,7 @@ def obtener_item_no_repetido(catalogo, estado, tipo, excluir_nombre=None):
 def detectar_tipo_publicacion():
     cdmx = pytz.timezone("America/Mexico_City")
     hora = datetime.now(cdmx).hour
+    print(f"🕒 Hora actual en CDMX: {hora}:00")
     if hora == 8:
         return "hierba"
     elif hora == 15:
@@ -146,7 +158,7 @@ Reglas:
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
     except:
-        return f"🚨 {ingrediente['nombre']}: el secreto que nadie te cuenta.\n✅ Alivia molestias en 10 min.\n✅ Fortalece tu sistema inmune.\n✅ Mejora digestión.\n🍵 Tip: Tómalo caliente.\n👇 ¿Lo usas? Reacciona 🔥.\n✨ Descubre tu remedio ideal 👉 https://t.me/alex_xanax_bot\n#SaludNatural #Bienestar #Herbolaria #NaturalHealth #RemedioEfectivo\n📸 Edición digital con IA."
+        return f"🚨 {ingrediente['nombre']}: el secreto que nadie te cuenta.\n✅ Alivia molestias en 10 min.\n✅ Fortalece tu sistema inmune.\n✅ Mejora digestión.\n🍵 Tip: Tómalo caliente.\n ¿Lo usas? Reacciona 🔥.\n✨ Descubre tu remedio ideal 👉 https://t.me/alex_xanax_bot\n#SaludNatural #Bienestar #Herbolaria #NaturalHealth #RemedioEfectivo\n📸 Edición digital con IA."
 
 def generar_texto_curiosidad(curiosidad):
     prompt = f"""Escribe un post fascinante sobre "{curiosidad['nombre']}".
@@ -166,7 +178,7 @@ Reglas:
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
     except:
-        return f"💡 {curiosidad['nombre']}: dato sorprendente.\n✅ 25M células nuevas/segundo.\n✅ Estómago se renueva cada 3 días.\n✅ Hígado 500+ funciones.\n💡 Sabías que: la piel se renueva cada mes.\n👇 ¿Sorprendido? Dale 👍.\n✨ Más ciencia 👉 https://t.me/alex_xanax_bot\n#Ciencia #CuerpoHumano #DatosIncreibles #HealthScience #Biologia\n📸 Edición digital con IA."
+        return f"💡 {curiosidad['nombre']}: dato sorprendente.\n✅ 25M células nuevas/segundo.\n✅ Estómago se renueva cada 3 días.\n✅ Hígado 500+ funciones.\n💡 Sabías que: la piel se renueva cada mes.\n👇 ¿Sorprendido? Dale 👍.\n✨ Más ciencia  https://t.me/alex_xanax_bot\n#Ciencia #CuerpoHumano #DatosIncreibles #HealthScience #Biologia\n📸 Edición digital con IA."
 
 # ================================================================
 # GUION PARA REEL (3 SEGMENTOS)
@@ -284,7 +296,7 @@ def generar_imagen_agnes(prompt, tipo="hierba", width=1080, height=1350):
     return None
 
 # ================================================================
-# GENERACIÓN DE REEL (CON CLOUDINARY O BASE64)
+# GENERACIÓN DE AUDIO (VOZ FEMENINA)
 # ================================================================
 async def generar_audio(texto, output_path, velocidad=1.10):
     voz = VOZ_SELECCIONADA
@@ -299,7 +311,13 @@ async def generar_audio(texto, output_path, velocidad=1.10):
             continue
     return False
 
+# ================================================================
+# GENERACIÓN DE VIDEO REEL
+# ================================================================
 def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
+    print("🎬 Renderizando video Reel...")
+    
+    # Descargar imágenes
     imagenes_contenido = []
     for idx, url in enumerate(imagenes_urls):
         try:
@@ -320,6 +338,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
                 img.save(f"temp_img_{idx}.jpg")
                 imagenes_contenido.append(f"temp_img_{idx}.jpg")
     
+    # Crear clips con zoom lento
     clips = []
     for i, path in enumerate(imagenes_contenido):
         with Image.open(path) as img:
@@ -335,7 +354,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
     
     video_final = concatenate_videoclips(clips, method="compose")
     
-    # --- GENERAR AUDIO ---
+    # Generar audio por segmento
     audios = []
     for i, key in enumerate(['s1', 's2', 's3']):
         texto = guion.get(key, "").strip()
@@ -355,7 +374,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
     
     # Fallback de silencio si fallan todos los audios
     if not audios:
-        print("⚠️ Sin audios. Se creará pista de silencio.")
+        print("⚠️ Sin audios. Creando pista de silencio...")
         try:
             def make_frame(t):
                 return np.zeros((1,))
@@ -365,6 +384,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         except Exception as e:
             print(f"⚠️ No se pudo crear silencio: {e}")
     
+    # Mezclar audio: voz + música
     if audios:
         audio_combinado = concatenate_audioclips(audios)
         
@@ -373,20 +393,20 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         musicas = [m for m in musicas if not m.startswith("temp_") and not m.startswith("audio_") and not m.startswith("narracion_") and not m.startswith("silencio")]
         if not musicas:
             musicas = [m for m in glob.glob("*") if m in ["Green Remedy.mp3", "Sacred Root.mp3", "Verdant Stillness.mp3"]]
-            
+        
         if musicas:
             musica_path = random.choice(musicas)
             print(f"🎵 Música seleccionada: {musica_path}")
             try:
                 musica = AudioFileClip(musica_path).set_duration(video_final.duration).volumex(0.3)
-                # Overlay: música desde 0, voz desde 2 segundos
+                # Música desde 0, voz desde 2 segundos
                 audio_final = CompositeAudioClip([
                     musica.set_start(0),
                     audio_combinado.set_start(2.0)
                 ])
                 video_final = video_final.set_audio(audio_final)
             except Exception as e:
-                print(f"⚠️ Error mezclando música: {e}")
+                print(f"️ Error mezclando música: {e}")
                 video_final = video_final.set_audio(audio_combinado)
         else:
             print("⚠️ Sin música. Solo voz.")
@@ -394,10 +414,12 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
     else:
         print("⚠️ Sin audio. Video mudo.")
     
+    # Exportar video
     output_path = "reel_temp.mp4"
     video_final.write_videofile(output_path, fps=24, codec='libx264', audio_codec='aac', verbose=False, logger=None)
+    print(f"✅ Video exportado: {output_path}")
     
-    # Subir a Cloudinary o Base64
+    # Subir a Cloudinary
     if CLOUDINARY_DISPONIBLE:
         try:
             print("☁️ Subiendo a Cloudinary...")
@@ -408,7 +430,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
                 overwrite=True
             )
             video_url = respuesta.get('secure_url')
-            print(f"✅ Video subido: {video_url}")
+            print(f"✅ Video subido a Cloudinary: {video_url}")
             
             # Limpiar archivos temporales
             archivos_a_borrar = imagenes_contenido + [f"resized_{i}.jpg" for i in range(len(imagenes_contenido))] + [f"audio_seg_{i}.mp3" for i in range(3)] + [output_path, "silencio.mp3"]
@@ -418,27 +440,43 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
                     except: pass
             return video_url
         except Exception as e:
-            print(f"❌ Error Cloudinary: {e}. Usando Base64...")
+            print(f"❌ Error Cloudinary: {e}. Usando file.io...")
     
-    # Fallback Base64
-    print("⚠️ Usando método Base64...")
-    with open(output_path, "rb") as f:
-        video_base64 = base64.b64encode(f.read()).decode('utf-8')
+    # Fallback: subir a file.io (servicio gratuito temporal)
+    print(" Subiendo a file.io (servicio temporal)...")
+    try:
+        with open(output_path, "rb") as f:
+            files = {"file": f}
+            r_upload = requests.post("https://file.io/?expires=1h", files=files, timeout=60)
+            if r_upload.status_code == 200:
+                video_url = r_upload.json().get("link", "")
+                print(f"✅ Video subido a file.io: {video_url}")
+            else:
+                print(f"❌ Error subiendo a file.io: {r_upload.status_code}")
+                video_url = ""
+    except Exception as e:
+        print(f"❌ Error file.io: {e}")
+        video_url = ""
     
+    # Limpiar archivos temporales
     archivos_a_borrar = imagenes_contenido + [f"resized_{i}.jpg" for i in range(len(imagenes_contenido))] + [f"audio_seg_{i}.mp3" for i in range(3)] + [output_path, "silencio.mp3"]
     for path in archivos_a_borrar:
         if os.path.exists(path):
             try: os.remove(path)
             except: pass
-            
-    return video_base64
+    
+    return video_url
 
 # ================================================================
 # MAIN
 # ================================================================
 def main():
-    print("🌿 Bot Herbolaria + Reels")
-    print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("🌿 Bot Herbolaria + Reels (Versión Final)")
+    print(f" {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    
+    if not all([DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, AGNES_API_KEY]):
+        print("❌ Faltan variables de entorno. Revisa los Secrets de GitHub.")
+        return
     
     tipo = detectar_tipo_publicacion()
     print(f"🎯 Tipo detectado: {tipo.upper()}")
@@ -446,17 +484,21 @@ def main():
     estado = cargar_estado()
     catalogo = cargar_catalogo_hierbas() if tipo == "hierba" else cargar_catalogo_curiosidades()
     
+    # Seleccionar item para POST
     item_post = obtener_item_no_repetido(catalogo, estado, tipo)
     print(f"📝 POST: {item_post['nombre']}")
     
+    # Seleccionar item para REEL (diferente al post)
     item_reel = obtener_item_no_repetido(catalogo, estado, tipo, excluir_nombre=item_post['nombre'])
-    print(f"🎬 REEL: {item_reel['nombre']} (Diferente al post)")
+    print(f" REEL: {item_reel['nombre']} (Diferente al post)")
     
-    # --- POST ---
+    # ==========================================
+    # GENERAR POST
+    # ==========================================
     print("\n📝 Generando texto POST...")
     if tipo == "hierba":
         post_texto = generar_texto_hierba(item_post)
-        post_comentario = "🌿 ¿Qué opinas? Visita nuestro asistente 👉 https://t.me/alex_xanax_bot"
+        post_comentario = " ¿Qué opinas? Visita nuestro asistente  https://t.me/alex_xanax_bot"
         prompt_img = generar_prompt_imagen_hierba(item_post)
     else:
         post_texto = generar_texto_curiosidad(item_post)
@@ -468,10 +510,14 @@ def main():
     if not post_image_url:
         post_image_url = "https://via.placeholder.com/1080x1350/2a2a2a/6a6a6a?text=Salud+Natural"
     
-    # --- REEL ---
+    # ==========================================
+    # GENERAR REEL
+    # ==========================================
     print("\n🎬 Generando REEL...")
     guion = generar_guion_reel(item_reel, tipo)
     print(f"   S1: {guion['s1'][:50]}...")
+    print(f"   S2: {guion['s2'][:50]}...")
+    print(f"   S3: {guion['s3'][:50]}...")
     
     print("🎨 Generando 3 imágenes REEL...")
     imagenes_reel = []
@@ -480,7 +526,7 @@ def main():
             prompt = generar_prompt_imagen_hierba(item_reel) + f" variation {i+1}"
         else:
             prompt = generar_prompt_imagen_curiosidad(item_reel) + f" variation {i+1}"
-            
+        
         url_img = generar_imagen_agnes(prompt, tipo=tipo, width=1080, height=1920)
         if url_img:
             imagenes_reel.append(url_img)
@@ -491,22 +537,19 @@ def main():
                 imagenes_reel.append("https://via.placeholder.com/1080x1920/2a2a2a/6a6a6a?text=Respaldo")
     
     print("🎥 Renderizando video REEL...")
-    video_resultado = generar_video_reel(imagenes_reel, guion, tipo, duracion_segmento=10)
+    reel_video_url = generar_video_reel(imagenes_reel, guion, tipo, duracion_segmento=10)
     
-    if video_resultado and isinstance(video_resultado, str) and video_resultado.startswith("http"):
-        reel_video_url = video_resultado
-        reel_video_base64 = ""
-    else:
-        reel_video_url = ""
-        reel_video_base64 = video_resultado if video_resultado else ""
+    if not reel_video_url:
+        print("⚠️ No se pudo generar/subir el video. Se enviará sin reel.")
     
-    # --- ENVIAR A MAKE ---
+    # ==========================================
+    # ENVIAR A MAKE.COM
+    # ==========================================
     payload = {
         "post_message": post_texto,
         "post_image_url": post_image_url,
         "post_comment": post_comentario,
         "reel_video_url": reel_video_url,
-        "reel_video_base64": reel_video_base64,
         "reel_caption": f"🌿 {item_reel['nombre']} - Asistente 👉 https://t.me/alex_xanax_bot",
         "reel_comment": "🎬 ¿Qué te pareció? Visita nuestro asistente 👉 https://t.me/alex_xanax_bot"
     }
