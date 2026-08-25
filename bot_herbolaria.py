@@ -56,19 +56,17 @@ CATALOGO_FILE = "catalogo_ingredientes.json"
 CATALOGO_CURIOSIDADES_FILE = "catalogo_curiosidades_salud.json"
 
 # ================================================================
-# VOCES FEMENINAS DISPONIBLES
+# VOCES FEMENINAS (Priorizando las más naturales)
 # ================================================================
 VOCES_FEMENINAS = [
-    "es-MX-DaliaNeural",
-    "es-MX-BeatrizNeural",
-    "es-ES-ElviraNeural",
-    "es-ES-AlbaNeural",
-    "es-CO-SalomeNeural",
-    "es-AR-ElenaNeural",
-    "es-US-PalomaNeural",
+    "es-MX-DaliaNeural",      # La más natural y cálida
+    "es-MX-JorgeNeural",      # Muy profesional y clara
+    "es-ES-ElviraNeural",     # Excelente dicción
+    "es-CO-SalomeNeural",     # Cálida y amable
+    "es-AR-ElenaNeural",      # Expresiva
 ]
 VOZ_SELECCIONADA = random.choice(VOCES_FEMENINAS)
-print(f"🎤 Voz femenina seleccionada: {VOZ_SELECCIONADA}")
+print(f"🎤 Voz seleccionada: {VOZ_SELECCIONADA}")
 
 # ================================================================
 # CARGA DE CATÁLOGOS Y ESTADO
@@ -78,7 +76,6 @@ def cargar_catalogo_hierbas():
         with open(CATALOGO_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     except:
-        print("⚠️ No se pudo cargar catálogo de hierbas. Usando respaldo.")
         return [{"nombre": "Manzanilla", "categoria": "hierba", "descripcion": "Flor blanca y amarilla", "caracteristicas_visuales": "Flores blancas con centro amarillo"}]
 
 def cargar_catalogo_curiosidades():
@@ -86,7 +83,6 @@ def cargar_catalogo_curiosidades():
         with open(CATALOGO_CURIOSIDADES_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     except:
-        print("⚠️ No se pudo cargar catálogo de curiosidades. Usando respaldo.")
         return [{"nombre": "El cerebro y la energía", "categoria": "cerebro", "descripcion": "El cerebro consume el 20% de la energía", "caracteristicas_visuales": "Cerebro brillante"}]
 
 def cargar_estado():
@@ -112,7 +108,6 @@ def guardar_estado(estado):
         print(f"❌ Error guardando estado: {e}")
 
 def obtener_item_no_repetido(catalogo, estado, tipo, excluir_nombre=None):
-    """Obtiene un item no publicado. Si se pasa excluir_nombre, lo omite (para que reel sea diferente al post)"""
     clave_estado = tipo + "s"
     publicadas = set(p["nombre"] if isinstance(p, dict) else p for p in estado["publicadas"][clave_estado])
     disponibles = [item for item in catalogo if item["nombre"] not in publicadas and item["nombre"] != excluir_nombre]
@@ -158,7 +153,7 @@ Reglas:
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
     except:
-        return f"🚨 {ingrediente['nombre']}: el secreto que nadie te cuenta.\n✅ Alivia molestias en 10 min.\n✅ Fortalece tu sistema inmune.\n✅ Mejora digestión.\n🍵 Tip: Tómalo caliente.\n ¿Lo usas? Reacciona 🔥.\n✨ Descubre tu remedio ideal 👉 https://t.me/alex_xanax_bot\n#SaludNatural #Bienestar #Herbolaria #NaturalHealth #RemedioEfectivo\n📸 Edición digital con IA."
+        return f"🚨 {ingrediente['nombre']}: el secreto que nadie te cuenta.\n✅ Alivia molestias en 10 min.\n✅ Fortalece tu sistema inmune.\n✅ Mejora digestión.\n🍵 Tip: Tómalo caliente.\n👇 ¿Lo usas? Reacciona 🔥.\n✨ Descubre tu remedio ideal 👉 https://t.me/alex_xanax_bot\n#SaludNatural #Bienestar #Herbolaria #NaturalHealth #RemedioEfectivo\n📸 Edición digital con IA."
 
 def generar_texto_curiosidad(curiosidad):
     prompt = f"""Escribe un post fascinante sobre "{curiosidad['nombre']}".
@@ -178,35 +173,37 @@ Reglas:
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
     except:
-        return f"💡 {curiosidad['nombre']}: dato sorprendente.\n✅ 25M células nuevas/segundo.\n✅ Estómago se renueva cada 3 días.\n✅ Hígado 500+ funciones.\n💡 Sabías que: la piel se renueva cada mes.\n👇 ¿Sorprendido? Dale 👍.\n✨ Más ciencia  https://t.me/alex_xanax_bot\n#Ciencia #CuerpoHumano #DatosIncreibles #HealthScience #Biologia\n📸 Edición digital con IA."
+        return f"💡 {curiosidad['nombre']}: dato sorprendente.\n✅ 25M células nuevas/segundo.\n✅ Estómago se renueva cada 3 días.\n✅ Hígado 500+ funciones.\n💡 Sabías que: la piel se renueva cada mes.\n👇 ¿Sorprendido? Dale 👍.\n✨ Más ciencia 👉 https://t.me/alex_xanax_bot\n#Ciencia #CuerpoHumano #DatosIncreibles #HealthScience #Biologia\n📸 Edición digital con IA."
 
 # ================================================================
-# GUION PARA REEL (3 SEGMENTOS)
+# GUION PARA REEL (3 SEGMENTOS - VOZ NATURAL)
 # ================================================================
 def generar_guion_reel(item, tipo):
     if tipo == "hierba":
-        prompt = f"""Crea guion de 30s (3 segmentos de 10s) sobre {item['nombre']}.
+        prompt = f"""Crea un guion de 30 segundos (3 segmentos de 10s) sobre {item['nombre']}.
 CARACTERÍSTICAS: {item['caracteristicas_visuales']}
 DESCRIPCIÓN: {item['descripcion']}
-REGLAS:
-- SIN emojis, SIN URLs en el texto hablado
-- S1: Gancho (15-20 palabras)
-- S2: 3 beneficios (40-50 palabras)
-- S3: Tip + mención del asistente inteligente (20-25 palabras)
+REGLAS DE VOZ NATURAL:
+- Usa puntuación natural (comas y puntos) para que la voz de IA haga pausas reales.
+- SIN emojis, SIN URLs en el texto hablado.
+- S1: Gancho impactante (15-20 palabras).
+- S2: 3 beneficios detallados (40-50 palabras).
+- S3: Tip práctico + la frase exacta: "Usa nuestro asistente, está en los comentarios." (20-25 palabras).
 FORMATO:
 SEGMENTO_1: [texto]
 SEGMENTO_2: [texto]
 SEGMENTO_3: [texto]"""
     else:
-        prompt = f"""Crea guion de 30s (3 segmentos de 10s) sobre {item['nombre']}.
+        prompt = f"""Crea un guion de 30 segundos (3 segmentos de 10s) sobre {item['nombre']}.
 CARACTERÍSTICAS: {item['caracteristicas_visuales']}
 DESCRIPCIÓN: {item['descripcion']}
-REGLAS:
-- PROHIBIDO plantas/hierbas
-- SIN emojis, SIN URLs en el texto hablado
-- S1: Dato impactante (15-20 palabras)
-- S2: 3 datos científicos (40-50 palabras)
-- S3: Curiosidad + asistente inteligente (20-25 palabras)
+REGLAS DE VOZ NATURAL:
+- PROHIBIDO mencionar plantas o hierbas.
+- Usa puntuación natural para pausas reales.
+- SIN emojis, SIN URLs en el texto hablado.
+- S1: Dato impactante (15-20 palabras).
+- S2: 3 datos científicos (40-50 palabras).
+- S3: Curiosidad + la frase exacta: "Usa nuestro asistente, está en los comentarios." (20-25 palabras).
 FORMATO:
 SEGMENTO_1: [texto]
 SEGMENTO_2: [texto]
@@ -226,21 +223,23 @@ SEGMENTO_3: [texto]"""
         if "SEGMENTO_3:" in texto:
             segmentos['s3'] = texto.split("SEGMENTO_3:")[1].strip()
             
+        # Limpieza suave: solo quitamos emojis y URLs, pero dejamos comas y puntos para la naturalidad
         for k in segmentos:
-            segmentos[k] = re.sub(r'[^\w\sáéíóúñÁÉÍÓÚÑ.,;:!?¿¡\-]', '', segmentos[k]).strip()
+            segmentos[k] = re.sub(r'http\S+', '', segmentos[k])
+            segmentos[k] = re.sub(r'[\U0001F600-\U0001F64F\U0001F300-\U0001F5FF\U0001F680-\U0001F6FF]', '', segmentos[k]).strip()
         return segmentos
     except:
         if tipo == "hierba":
             return {
-                's1': f"¿Sabías que el {item['nombre']} puede acelerar tu metabolismo mientras descansas?",
-                's2': f"Acelera tu metabolismo basal hasta un 15 por ciento en solo 30 minutos. Reduce la inflamación muscular hasta un 40 por ciento. Activa la circulación sanguínea.",
-                's3': f"Tip práctico: Rállalo fresco y tómalo con limón en ayunas. Visita nuestro asistente inteligente gratis."
+                's1': "¿Sabías que este ingrediente puede acelerar tu metabolismo, mientras descansas?",
+                's2': "Acelera tu metabolismo basal, hasta un 15 por ciento en solo 30 minutos. Reduce la inflamación muscular, y activa la circulación sanguínea de forma natural.",
+                's3': "Tip práctico: consúmelo fresco por la mañana. Usa nuestro asistente, está en los comentarios."
             }
         else:
             return {
-                's1': f"¿Sabías que {item['nombre']} es un dato que pocos conocen?",
-                's2': f"Cada día tu cuerpo genera 25 millones de células nuevas. El estómago se renueva cada 3 días. El hígado tiene más de 500 funciones diferentes.",
-                's3': f"Tu piel se reemplaza por completo cada mes. Conoce más datos fascinantes con nuestro asistente inteligente gratis."
+                's1': "¿Sabías que este es un dato fascinante que muy pocos conocen?",
+                's2': "Cada día, tu cuerpo genera 25 millones de células nuevas. El estómago se renueva cada 3 días, y el hígado tiene más de 500 funciones diferentes.",
+                's3': "Tu piel se reemplaza por completo cada mes. Usa nuestro asistente, está en los comentarios."
             }
 
 # ================================================================
@@ -296,13 +295,16 @@ def generar_imagen_agnes(prompt, tipo="hierba", width=1080, height=1350):
     return None
 
 # ================================================================
-# GENERACIÓN DE AUDIO (VOZ FEMENINA)
+# GENERACIÓN DE AUDIO (VOZ NATURAL)
 # ================================================================
-async def generar_audio(texto, output_path, velocidad=1.10):
-    voz = VOZ_SELECCIONADA
-    for voz_intento in [voz] + [v for v in VOCES_FEMENINAS if v != voz]:
+async def generar_audio(texto, output_path, velocidad=1.08): # 1.08x suena más natural que 1.10x
+    # Priorizar Dalia o Jorge para máxima naturalidad
+    voces_prioritarias = ["es-MX-DaliaNeural", "es-MX-JorgeNeural"] + [v for v in VOCES_FEMENINAS if v not in ["es-MX-DaliaNeural", "es-MX-JorgeNeural"]]
+    
+    for voz_intento in voces_prioritarias:
         try:
-            communicate = edge_tts.Communicate(texto, voz_intento, rate=f"+{int((velocidad-1)*100)}%")
+            # +8% es más natural que +10%, evita el efecto "ardilla"
+            communicate = edge_tts.Communicate(texto, voz_intento, rate="+8%")
             await communicate.save(output_path)
             print(f"✅ Audio generado con {voz_intento}")
             return True
@@ -312,7 +314,7 @@ async def generar_audio(texto, output_path, velocidad=1.10):
     return False
 
 # ================================================================
-# GENERACIÓN DE VIDEO REEL
+# GENERACIÓN DE VIDEO REEL (MÚSICA CONTINUA AL 20%)
 # ================================================================
 def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
     print("🎬 Renderizando video Reel...")
@@ -347,8 +349,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             img_resized.save(resized_path)
         
         clip = ImageClip(resized_path).set_duration(duracion_segmento)
-        # Zoom lento tipo Ken Burns
-        clip = clip.resize(lambda t: 1 + 0.15 * (t / duracion_segmento))
+        clip = clip.resize(lambda t: 1 + 0.15 * (t / duracion_segmento)) # Zoom lento
         clip = clip.set_position(('center', 'center'))
         clips.append(clip)
     
@@ -364,7 +365,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         audio_path = f"audio_seg_{i}.mp3"
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        exito = loop.run_until_complete(generar_audio(texto, audio_path, velocidad=1.10))
+        exito = loop.run_until_complete(generar_audio(texto, audio_path, velocidad=1.08))
         loop.close()
         
         if exito and os.path.exists(audio_path):
@@ -372,7 +373,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         else:
             print(f"⚠️ No se generó audio segmento {i+1}")
     
-    # Fallback de silencio si fallan todos los audios
+    # Fallback de silencio
     if not audios:
         print("⚠️ Sin audios. Creando pista de silencio...")
         try:
@@ -384,7 +385,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         except Exception as e:
             print(f"⚠️ No se pudo crear silencio: {e}")
     
-    # Mezclar audio: voz + música
+    # Mezclar audio: voz + música CONTINUA al 20%
     if audios:
         audio_combinado = concatenate_audioclips(audios)
         
@@ -398,7 +399,18 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             musica_path = random.choice(musicas)
             print(f"🎵 Música seleccionada: {musica_path}")
             try:
-                musica = AudioFileClip(musica_path).set_duration(video_final.duration).volumex(0.3)
+                musica = AudioFileClip(musica_path)
+                
+                # 🔥 LÓGICA DE LOOP: Si la música es menor a 30s, se repite para cubrir todo el video
+                if musica.duration < 30:
+                    veces = int(30 / musica.duration) + 1
+                    musica = concatenate_audioclips([musica] * veces).subclip(0, 30)
+                else:
+                    musica = musica.subclip(0, 30)
+                
+                # 🔥 VOLUMEN AL 20%
+                musica = musica.volumex(0.2)
+                
                 # Música desde 0, voz desde 2 segundos
                 audio_final = CompositeAudioClip([
                     musica.set_start(0),
@@ -406,7 +418,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
                 ])
                 video_final = video_final.set_audio(audio_final)
             except Exception as e:
-                print(f"️ Error mezclando música: {e}")
+                print(f"⚠️ Error mezclando música: {e}")
                 video_final = video_final.set_audio(audio_combinado)
         else:
             print("⚠️ Sin música. Solo voz.")
@@ -432,7 +444,6 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             video_url = respuesta.get('secure_url')
             print(f"✅ Video subido a Cloudinary: {video_url}")
             
-            # Limpiar archivos temporales
             archivos_a_borrar = imagenes_contenido + [f"resized_{i}.jpg" for i in range(len(imagenes_contenido))] + [f"audio_seg_{i}.mp3" for i in range(3)] + [output_path, "silencio.mp3"]
             for path in archivos_a_borrar:
                 if os.path.exists(path):
@@ -442,8 +453,8 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         except Exception as e:
             print(f"❌ Error Cloudinary: {e}. Usando file.io...")
     
-    # Fallback: subir a file.io (servicio gratuito temporal)
-    print(" Subiendo a file.io (servicio temporal)...")
+    # Fallback: file.io
+    print("⚠️ Subiendo a file.io (servicio temporal)...")
     try:
         with open(output_path, "rb") as f:
             files = {"file": f}
@@ -458,7 +469,6 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         print(f"❌ Error file.io: {e}")
         video_url = ""
     
-    # Limpiar archivos temporales
     archivos_a_borrar = imagenes_contenido + [f"resized_{i}.jpg" for i in range(len(imagenes_contenido))] + [f"audio_seg_{i}.mp3" for i in range(3)] + [output_path, "silencio.mp3"]
     for path in archivos_a_borrar:
         if os.path.exists(path):
@@ -471,8 +481,8 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
 # MAIN
 # ================================================================
 def main():
-    print("🌿 Bot Herbolaria + Reels (Versión Final)")
-    print(f" {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("🌿 Bot Herbolaria + Reels (Versión Final Optimizada)")
+    print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     if not all([DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, AGNES_API_KEY]):
         print("❌ Faltan variables de entorno. Revisa los Secrets de GitHub.")
@@ -484,13 +494,11 @@ def main():
     estado = cargar_estado()
     catalogo = cargar_catalogo_hierbas() if tipo == "hierba" else cargar_catalogo_curiosidades()
     
-    # Seleccionar item para POST
     item_post = obtener_item_no_repetido(catalogo, estado, tipo)
     print(f"📝 POST: {item_post['nombre']}")
     
-    # Seleccionar item para REEL (diferente al post)
     item_reel = obtener_item_no_repetido(catalogo, estado, tipo, excluir_nombre=item_post['nombre'])
-    print(f" REEL: {item_reel['nombre']} (Diferente al post)")
+    print(f"🎬 REEL: {item_reel['nombre']} (Diferente al post)")
     
     # ==========================================
     # GENERAR POST
@@ -498,7 +506,7 @@ def main():
     print("\n📝 Generando texto POST...")
     if tipo == "hierba":
         post_texto = generar_texto_hierba(item_post)
-        post_comentario = " ¿Qué opinas? Visita nuestro asistente  https://t.me/alex_xanax_bot"
+        post_comentario = "🌿 ¿Qué opinas? Visita nuestro asistente 👉 https://t.me/alex_xanax_bot"
         prompt_img = generar_prompt_imagen_hierba(item_post)
     else:
         post_texto = generar_texto_curiosidad(item_post)
@@ -516,8 +524,6 @@ def main():
     print("\n🎬 Generando REEL...")
     guion = generar_guion_reel(item_reel, tipo)
     print(f"   S1: {guion['s1'][:50]}...")
-    print(f"   S2: {guion['s2'][:50]}...")
-    print(f"   S3: {guion['s3'][:50]}...")
     
     print("🎨 Generando 3 imágenes REEL...")
     imagenes_reel = []
@@ -551,7 +557,7 @@ def main():
         "post_comment": post_comentario,
         "reel_video_url": reel_video_url,
         "reel_caption": f"🌿 {item_reel['nombre']} - Asistente 👉 https://t.me/alex_xanax_bot",
-        "reel_comment": "🎬 ¿Qué te pareció? Visita nuestro asistente 👉 https://t.me/alex_xanax_bot"
+        "reel_comment": "🎬 ¿Qué te pareció? Usa nuestro asistente, está en los comentarios 👉 https://t.me/alex_xanax_bot"
     }
     
     print("\n📤 Enviando a Make.com...")
