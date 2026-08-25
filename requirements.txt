@@ -2,6 +2,7 @@ requests
 pytz
 edge-tts
 moviepy==1.0.3
-Pillow
+Pillow==9.5.0
 numpy
 cloudinary
+scipy
