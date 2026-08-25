@@ -38,7 +38,7 @@ if all([CLOUD_NAME, CLOUD_API_KEY, CLOUD_API_SECRET]):
     CLOUDINARY_DISPONIBLE = True
     print("✅ Cloudinary configurado para videos")
 else:
-    print("⚠️ Cloudinary NO configurado. Se usará Base64 (puede fallar).")
+    print("⚠️ Cloudinary NO configurado. Se usará Base64 (puede fallar por tamaño).")
 
 ESTADO_FILE = "estado_herbolaria.json"
 CATALOGO_FILE = "catalogo_ingredientes.json"
@@ -82,7 +82,6 @@ def cargar_estado():
     try:
         with open(ESTADO_FILE, "r", encoding="utf-8") as f:
             estado = json.load(f)
-            # Asegurar estructura
             if "publicadas" not in estado:
                 estado["publicadas"] = {"hierbas": [], "curiosidades": []}
             if "hierbas" not in estado["publicadas"]:
@@ -382,8 +381,11 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
     
     clips = []
     for i, path in enumerate(imagenes_contenido):
-        clip = ImageClip(path).resize(height=1920)
+        # ✅ CORRECCIÓN: Usamos resize(height=1920) y luego aplicamos el zoom con fx
+        clip = ImageClip(path)
+        clip = clip.resize(height=1920)
         clip = clip.set_duration(duracion_segmento)
+        # Zoom lento con fx (usando lambda)
         clip = clip.resize(lambda t: 1 + 0.15 * (t / duracion_segmento))
         clip = clip.set_position(('center', 'center'))
         clips.append(clip)
@@ -400,13 +402,14 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         asyncio.set_event_loop(loop)
         exito = loop.run_until_complete(generar_audio(texto, audio_path, velocidad=1.10))
         loop.close()
-        if exito:
+        if exito and os.path.exists(audio_path):
             audios.append(AudioFileClip(audio_path))
         else:
             print(f"⚠️ No se generó audio segmento {i+1}")
     
     if audios:
         audio_combinado = concatenate_videoclips(audios)
+        # Buscar música de fondo
         musicas = glob.glob("*.mp3") + glob.glob("**/*.mp3", recursive=True)
         musicas = [m for m in musicas if not m.startswith("temp_") and not m.startswith("audio_") and not m.startswith("narracion_")]
         if not musicas:
@@ -425,12 +428,13 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
                 print(f"⚠️ Error mezclando música: {e}")
                 video_final = video_final.set_audio(audio_combinado)
         else:
+            print("⚠️ No se encontró música. Usando solo voz.")
             video_final = video_final.set_audio(audio_combinado)
     else:
         print("⚠️ Sin audio. Video mudo.")
     
     output_path = "reel_temp.mp4"
-    video_final.write_videofile(output_path, fps=24, codec='libx264', audio_codec='aac')
+    video_final.write_videofile(output_path, fps=24, codec='libx264', audio_codec='aac', verbose=False, logger=None)
     
     # Subir a Cloudinary o codificar Base64
     if CLOUDINARY_DISPONIBLE:
@@ -449,7 +453,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
                 if os.path.exists(path):
                     try: os.remove(path)
                     except: pass
-            return video_url  # Devuelve URL
+            return video_url
         except Exception as e:
             print(f"❌ Error subiendo a Cloudinary: {e}. Usando Base64...")
     else:
