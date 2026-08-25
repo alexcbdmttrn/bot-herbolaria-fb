@@ -13,6 +13,7 @@ import edge_tts
 from moviepy.editor import ImageClip, AudioFileClip, CompositeAudioClip, concatenate_videoclips, CompositeVideoClip
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
+import shutil
 
 # ================================================================
 # CONFIGURACIÓN
@@ -101,10 +102,6 @@ def guardar_estado(estado):
         print(f"❌ Error guardando estado: {e}")
 
 def obtener_item_no_repetido(catalogo, estado, tipo, excluir_nombre=None):
-    """
-    tipo = 'hierba' o 'curiosidad'
-    En el estado las claves son 'hierbas' y 'curiosidades' (plural)
-    """
     clave_estado = tipo + "s"  # 'hierbas' o 'curiosidades'
     publicadas = set(p["nombre"] if isinstance(p, dict) else p for p in estado["publicadas"][clave_estado])
     disponibles = [item for item in catalogo if item["nombre"] not in publicadas and item["nombre"] != excluir_nombre]
@@ -371,27 +368,34 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
                 raise Exception("Status code no 200")
         except:
             if idx > 0 and len(imagenes_contenido) > 0:
-                import shutil
                 shutil.copy(imagenes_contenido[0], f"temp_img_{idx}.jpg")
                 imagenes_contenido.append(f"temp_img_{idx}.jpg")
             else:
+                # Imagen de respaldo
                 img = Image.new("RGB", (1080, 1920), (30, 30, 60))
                 img.save(f"temp_img_{idx}.jpg")
                 imagenes_contenido.append(f"temp_img_{idx}.jpg")
     
     clips = []
     for i, path in enumerate(imagenes_contenido):
-        # ✅ CORRECCIÓN: Usamos resize(height=1920) y luego aplicamos el zoom con fx
-        clip = ImageClip(path)
-        clip = clip.resize(height=1920)
-        clip = clip.set_duration(duracion_segmento)
-        # Zoom lento con fx (usando lambda)
+        # Redimensionar con PIL ANTES de crear el clip (evita el error ANTIALIAS)
+        with Image.open(path) as img:
+            # Redimensionar a 1080x1920 (vertical para Reel)
+            img_resized = img.resize((1080, 1920), Image.Resampling.LANCZOS)
+            # Guardar temporalmente
+            resized_path = f"resized_{i}.jpg"
+            img_resized.save(resized_path)
+        
+        clip = ImageClip(resized_path).set_duration(duracion_segmento)
+        # Zoom lento: 1.15x en 10 segundos (simulado con resize en el tiempo)
+        # Usamos la función resize de moviepy que ahora recibe un clip con tamaño fijo
         clip = clip.resize(lambda t: 1 + 0.15 * (t / duracion_segmento))
         clip = clip.set_position(('center', 'center'))
         clips.append(clip)
     
     video_final = concatenate_videoclips(clips, method="compose")
     
+    # Generar audios
     audios = []
     for i, key in enumerate(['s1', 's2', 's3']):
         texto = guion.get(key, "")
@@ -402,14 +406,14 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         asyncio.set_event_loop(loop)
         exito = loop.run_until_complete(generar_audio(texto, audio_path, velocidad=1.10))
         loop.close()
-        if exito and os.path.exists(audio_path):
+        if exito:
             audios.append(AudioFileClip(audio_path))
         else:
             print(f"⚠️ No se generó audio segmento {i+1}")
     
     if audios:
         audio_combinado = concatenate_videoclips(audios)
-        # Buscar música de fondo
+        # Buscar música
         musicas = glob.glob("*.mp3") + glob.glob("**/*.mp3", recursive=True)
         musicas = [m for m in musicas if not m.startswith("temp_") and not m.startswith("audio_") and not m.startswith("narracion_")]
         if not musicas:
@@ -428,15 +432,14 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
                 print(f"⚠️ Error mezclando música: {e}")
                 video_final = video_final.set_audio(audio_combinado)
         else:
-            print("⚠️ No se encontró música. Usando solo voz.")
             video_final = video_final.set_audio(audio_combinado)
     else:
         print("⚠️ Sin audio. Video mudo.")
     
     output_path = "reel_temp.mp4"
-    video_final.write_videofile(output_path, fps=24, codec='libx264', audio_codec='aac', verbose=False, logger=None)
+    video_final.write_videofile(output_path, fps=24, codec='libx264', audio_codec='aac')
     
-    # Subir a Cloudinary o codificar Base64
+    # Subir a Cloudinary o Base64
     if CLOUDINARY_DISPONIBLE:
         try:
             print("☁️ Subiendo a Cloudinary...")
@@ -449,7 +452,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             video_url = respuesta.get('secure_url')
             print(f"✅ Video subido: {video_url}")
             # Limpiar temporales
-            for path in imagenes_contenido + [f"audio_seg_{i}.mp3" for i in range(3)] + [output_path]:
+            for path in imagenes_contenido + [f"resized_{i}.jpg" for i in range(len(imagenes_contenido))] + [f"audio_seg_{i}.mp3" for i in range(3)] + [output_path]:
                 if os.path.exists(path):
                     try: os.remove(path)
                     except: pass
@@ -459,10 +462,11 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
     else:
         print("⚠️ Cloudinary no disponible. Usando Base64...")
     
-    # Fallback a Base64
+    # Fallback Base64
     with open(output_path, "rb") as f:
         video_base64 = base64.b64encode(f.read()).decode('utf-8')
-    for path in imagenes_contenido + [f"audio_seg_{i}.mp3" for i in range(3)] + [output_path]:
+    # Limpiar
+    for path in imagenes_contenido + [f"resized_{i}.jpg" for i in range(len(imagenes_contenido))] + [f"audio_seg_{i}.mp3" for i in range(3)] + [output_path]:
         if os.path.exists(path):
             try: os.remove(path)
             except: pass
