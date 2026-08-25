@@ -3,7 +3,7 @@ name: Bot Herbolaria - Publicación 2x diario
 on:
   schedule:
     - cron: '0 14 * * *'   # 8:00 AM CDMX (14:00 UTC) -> HIERBA
-    - cron: '0 21 * * *'   # 3:00 PM CDMX (21:00 UTC) -> HIERBA
+    - cron: '0 21 * * *'   # 3:00 PM CDMX (21:00 UTC) -> CURIOSIDAD (según lógica de Python)
   workflow_dispatch:
 
 permissions:
@@ -23,13 +23,16 @@ jobs:
 
       - name: Instalar dependencias
         run: |
-          pip install requests pytz
+          pip install -r requirements.txt
 
       - name: Ejecutar bot de herbolaria
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
           CRON_SCHEDULE: ${{ github.event.schedule }}
         run: python bot_herbolaria.py
 
