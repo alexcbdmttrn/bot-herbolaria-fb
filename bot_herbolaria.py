@@ -37,7 +37,7 @@ def cargar_catalogo_curiosidades():
         with open(CATALOGO_CURIOSIDADES_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     except:
-        print("⚠️ No se pudo cargar catálogo de curiosidades. Usando respaldo.")
+        print("️ No se pudo cargar catálogo de curiosidades. Usando respaldo.")
         return [{
             "nombre": "El cerebro y la energía",
             "categoria": "cerebro",
@@ -76,7 +76,7 @@ def guardar_estado(estado):
             json.dump(estado, f, indent=2, ensure_ascii=False)
         print(f"✅ Estado guardado correctamente en {ESTADO_FILE}")
     except Exception as e:
-        print(f" Error guardando estado: {e}")
+        print(f"❌ Error guardando estado: {e}")
 
 def obtener_item_no_repetido(catalogo, estado, tipo):
     publicadas = set(p["nombre"] if isinstance(p, dict) else p for p in estado["publicadas"][tipo])
@@ -91,27 +91,32 @@ def obtener_item_no_repetido(catalogo, estado, tipo):
     return random.choice(disponibles)
 
 # ================================================================
-# DETECTAR TIPO DE PUBLICACIÓN POR CRON
+# DETECTAR TIPO DE PUBLICACIÓN POR HORA (CDMX)
 # ================================================================
 def detectar_tipo_publicacion():
-    cron = os.getenv("CRON_SCHEDULE", "")
+    # Forzamos la zona horaria de México
+    cdmx = pytz.timezone("America/Mexico_City")
+    hora_actual = datetime.now(cdmx).hour
     
-    if cron == "0 14 * * *":
+    print(f"🕒 Hora actual en CDMX: {hora_actual}:00")
+    
+    # LÓGICA DE DISTRIBUCIÓN:
+    # 8:00 AM (hora 8) -> HIERBA
+    # 3:00 PM (hora 15) -> CURIOSIDAD
+    
+    if hora_actual == 8:
+        print("🌿 Horario matutino (8 AM) -> Publicando HIERBA")
         return "hierba"
-    elif cron == "0 21 * * *":
-        return "hierba"
-    elif cron == "0 2 * * *":
+    elif hora_actual == 15:
+        print(" Horario vespertino (3 PM) -> Publicando CURIOSIDAD")
         return "curiosidad"
     else:
-        cdmx = pytz.timezone("America/Mexico_City")
-        hora = datetime.now(cdmx).hour
-        if 19 <= hora <= 23:
-            return "curiosidad"
-        else:
-            return "hierba"
+        # Fallback por si se ejecuta manualmente a otra hora
+        print("⚙️ Ejecución manual o fuera de horario. Publicando HIERBA por defecto.")
+        return "hierba"
 
 # ================================================================
-# 🌿 NUEVO PROMPT DE TEXTO PARA HIERBAS (SEO ELITE)
+# 🌿 PROMPT DE TEXTO PARA HIERBAS (SEO ELITE)
 # ================================================================
 def generar_texto_hierba(ingrediente):
     prompt = f"""Eres un experto en copywriting viral para Facebook y herbolaria. 
@@ -119,13 +124,13 @@ Escribe un post CORTO, IMPACTANTE y con alto engagement sobre: {ingrediente['nom
 
 REGLAS ESTRICTAS (NO LAS ROMPAS):
 - Usa EXACTAMENTE este formato con saltos de línea (sin líneas vacías):
-  Línea 1: [Emoji de impacto como ⏳,  o ⚠️] + [Pregunta o afirmación contraintuitiva con números o mitos] 
+  Línea 1: [Emoji de impacto como , 🚨 o ⚠️] + [Pregunta o afirmación contraintuitiva con números o mitos] 
   Línea 2: ✅ [Beneficio 1 con porcentaje, tiempo o comparación concreta]
   Línea 3: ✅ [Beneficio 2 con porcentaje, tiempo o comparación concreta]
   Línea 4: ✅ [Beneficio 3 con porcentaje, tiempo o comparación concreta]
   Línea 5: 🍵 Tip: [Consejo práctico y accionable de 1 línea]
   Línea 6: [Pregunta DIRECTA al lector, pídele que reaccione o comente con un emoji específico]
-  Línea 7: ✨ Descubre tu remedio ideal (gratis)  https://t.me/alex_xanax_bot
+  Línea 7: ✨ Descubre tu remedio ideal (gratis) 👉 https://t.me/alex_xanax_bot
   Línea 8: [5 hashtags específicos: 3 en español + 2 en inglés, sin espacios entre #]
   Línea 9: 📸 Edición digital con IA.
 
@@ -141,8 +146,8 @@ EJEMPLO DE FORMATO (NO COPIES EL CONTENIDO, SOLO LA ESTRUCTURA):
 ✅ Reduce la inflamación muscular hasta un 40% post-entreno.
 ✅ Activa la circulación y elimina toxinas retenidas.
 🍵 Tip: Rállalo fresco y tómalo con limón en ayunas.
-👇 ¿Ya probaste el jengibre así? Cuéntame en comentarios.
-✨ Descubre tu remedio ideal (gratis)  https://t.me/alex_xanax_bot
+ ¿Ya probaste el jengibre así? Cuéntame en comentarios.
+✨ Descubre tu remedio ideal (gratis) 👉 https://t.me/alex_xanax_bot
 #JengibreQuemaGrasa #AntiInflamatorioNatural #MetabolismoActivo #GingerHealth #RemedioCaseroEfectivo
 📸 Edición digital con IA.
 """
@@ -170,18 +175,18 @@ def generar_fallback_hierba(ingrediente):
 ✅ Fortalece tu sistema inmune.
 ✅ Mejora tu digestión y energía.
  Tip: Tómalo caliente antes de dormir.
-👇 ¿Lo usas? Reacciona 🔥 si te funciona.
+👇 ¿Lo usas? Reacciona  si te funciona.
 ✨ Descubre tu remedio ideal (gratis) 👉 https://t.me/alex_xanax_bot
 #SaludNatural #RemedioEfectivo #Bienestar #NaturalHealth #Herbolaria
 📸 Edición digital con IA."""
 
 # ================================================================
-#  NUEVO PROMPT DE TEXTO PARA CURIOSIDADES (SEO ELITE)
+# 🧠 PROMPT DE TEXTO PARA CURIOSIDADES (SEO ELITE)
 # ================================================================
 def generar_texto_curiosidad(curiosidad):
     prompt = f"""Eres un divulgador científico y copywriter viral. Escribe un post CORTO y FASCINANTE para Facebook sobre: "{curiosidad['nombre']}".
 
- REGLAS ESTRICTAS:
+🚨 REGLAS ESTRICTAS:
 - PROHIBIDO mencionar: plantas, hierbas, remedios naturales, tés, infusiones.
 - PERMITIDO: datos científicos, porcentajes, estudios, anatomía, hormonas, cerebro, órganos.
 - Usa EXACTAMENTE este formato (sin líneas vacías):
@@ -204,7 +209,7 @@ EJEMPLO DE ESTRUCTURA:
 ✅ Genera 20 vatios de electricidad (suficiente para un LED).
 ✅ Si duermes menos de 6 horas, pierde el 30% de sus conexiones.
 💡 Sabías que: las neuronas no se regeneran, pero las sinapsis sí.
-🤯 ¿Te dejó loco? Reacciona 🤯 si es nuevo o 🔥 si ya lo sabías.
+🤯 ¿Te dejó loco? Reacciona  si es nuevo o 🔥 si ya lo sabías.
 ✨ Más ciencia fascinante (gratis) 👉 https://t.me/alex_xanax_bot
 #CerebroHumano #NeurocienciaReal #DatosQueSorprenden #BrainFacts #SaludMental
 📸 Edición digital con IA.
@@ -240,7 +245,7 @@ def generar_fallback_curiosidad(curiosidad):
 📸 Edición digital con IA."""
 
 # ================================================================
-#  PROMPT IMAGEN HIERBAS (con espacio para texto/overlay)
+# 🌿 PROMPT IMAGEN HIERBAS (con espacio para texto/overlay)
 # ================================================================
 def generar_prompt_imagen_hierba(ingrediente):
     prompt_ia = f"""Eres un EXPERTO EN FOTOGRAFÍA DE PRODUCTOS Y REDES SOCIALES.
@@ -292,7 +297,7 @@ REGLAS ESTRICTAS:
 - Estilo: ilustración científica moderna 3D o fotografía médica de alta gama.
 - Colores: azul profundo, blanco clínico, acentos en dorado o neón para destacar datos.
 - Elementos: órganos humanos estilizados, células, moléculas, gráficos de datos, siluetas humanas con resaltados.
-- ⚠️ PROHIBIDO: plantas, hierbas, frutas, vegetales, remedios naturales, estética vintage.
+- ️ PROHIBIDO: plantas, hierbas, frutas, vegetales, remedios naturales, estética vintage.
 - IMPORTANTE: Deja un espacio inferior limpio (20%) con fondo oscuro o gradiente para superponer texto.
 - Ambiente: moderno, limpio, educativo, tipo portada de National Geographic o revista científica.
 
@@ -389,22 +394,22 @@ def enviar_a_make(message, image_url):
             print(f"❌ Make respondió: {r.status_code} - {r.text}")
             return False
     except Exception as e:
-        print(f"❌ Error conexión con Make: {e}")
+        print(f" Error conexión con Make: {e}")
         return False
 
 # ================================================================
 # MAIN
 # ================================================================
 def main():
-    print(" Iniciando Bot de Herbolaria + Curiosidades (SEO Elite Edition)")
-    print(f" {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("🌿 Iniciando Bot de Herbolaria + Curiosidades (SEO Elite Edition)")
+    print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     if not all([DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, AGNES_API_KEY]):
         print("❌ Faltan variables de entorno. Revisa los Secrets de GitHub.")
         return
     
     tipo = detectar_tipo_publicacion()
-    print(f" Tipo de publicación detectado: {tipo.upper()}")
+    print(f"🎯 Tipo de publicación detectado: {tipo.upper()}")
     
     estado = cargar_estado()
     
@@ -430,9 +435,9 @@ def main():
         catalogo = cargar_catalogo_curiosidades()
         item = obtener_item_no_repetido(catalogo, estado, "curiosidades")
         print(f"🧠 Curiosidad del día: {item['nombre']}")
-        print(f" Publicadas: {len(estado['publicadas']['curiosidades'])} / {len(catalogo)}")
+        print(f"📊 Publicadas: {len(estado['publicadas']['curiosidades'])} / {len(catalogo)}")
         
-        print("📝 Generando texto científico con DeepSeek (formato viral)...")
+        print(" Generando texto científico con DeepSeek (formato viral)...")
         texto = generar_texto_curiosidad(item)
         print("✅ Texto científico generado con gancho, pregunta y hashtags específicos.")
         
@@ -444,7 +449,7 @@ def main():
         nombre_item = item["nombre"]
         tipo_registro = "curiosidades"
     
-    print(f" Prompt imagen: {prompt_img[:150]}...")
+    print(f"📝 Prompt imagen: {prompt_img[:150]}...")
     
     if image_url is None:
         print("⚠️ No se pudo generar imagen. Enviando solo texto.")
