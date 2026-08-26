@@ -31,7 +31,7 @@ from moviepy.editor import (
 # ================================================================
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 MAKE_WEBHOOK_URL = os.getenv("MAKE_WEBHOOK_URL")
-PEXELS_API_KEY = os.getenv("PEXELS_API_KEY") # 🔥 NUEVA CLAVE
+PEXELS_API_KEY = os.getenv("PEXELS_API_KEY")
 
 CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME")
 CLOUD_API_KEY = os.getenv("CLOUDINARY_API_KEY")
@@ -59,11 +59,11 @@ CATALOGO_CURIOSIDADES_FILE = "catalogo_curiosidades_salud.json"
 # VOCES (Priorizando las más naturales)
 # ================================================================
 VOCES_FEMENINAS = [
-    "es-MX-DaliaNeural",      # La más natural y cálida
-    "es-MX-JorgeNeural",      # Muy profesional y clara
-    "es-ES-ElviraNeural",     # Excelente dicción
-    "es-CO-SalomeNeural",     # Cálida y amable
-    "es-AR-ElenaNeural",      # Expresiva
+    "es-MX-DaliaNeural",
+    "es-MX-JorgeNeural",
+    "es-ES-ElviraNeural",
+    "es-CO-SalomeNeural",
+    "es-AR-ElenaNeural",
 ]
 VOZ_SELECCIONADA = random.choice(VOCES_FEMENINAS)
 print(f"🎤 Voz seleccionada: {VOZ_SELECCIONADA}")
@@ -153,7 +153,7 @@ Reglas:
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
     except:
-        return f"🚨 {ingrediente['nombre']}: el secreto que nadie te cuenta.\n✅ Alivia molestias en 10 min.\n✅ Fortalece tu sistema inmune.\n✅ Mejora digestión.\n🍵 Tip: Tómalo caliente.\n👇 ¿Lo usas? Reacciona 🔥.\n✨ Descubre tu remedio ideal 👉 https://t.me/alex_xanax_bot\n#SaludNatural #Bienestar #Herbolaria #NaturalHealth #RemedioEfectivo\n📸 Edición digital con IA."
+        return f" {ingrediente['nombre']}: el secreto que nadie te cuenta.\n✅ Alivia molestias en 10 min.\n✅ Fortalece tu sistema inmune.\n✅ Mejora digestión.\n Tip: Tómalo caliente.\n👇 ¿Lo usas? Reacciona 🔥.\n✨ Descubre tu remedio ideal 👉 https://t.me/alex_xanax_bot\n#SaludNatural #Bienestar #Herbolaria #NaturalHealth #RemedioEfectivo\n📸 Edición digital con IA."
 
 def generar_texto_curiosidad(curiosidad):
     prompt = f"""Escribe un post fascinante sobre "{curiosidad['nombre']}".
@@ -242,7 +242,7 @@ SEGMENTO_3: [texto]"""
             }
 
 # ================================================================
-# 🔥 GENERACIÓN DE IMÁGENES CON PEXELS (RÁPIDO Y CONFIABLE)
+# 🔥 GENERACIÓN DE IMÁGENES CON PEXELS
 # ================================================================
 def buscar_imagen_pexels(query, orientation="portrait"):
     """Busca imagen en Pexels API"""
@@ -260,7 +260,7 @@ def buscar_imagen_pexels(query, orientation="portrait"):
         if response.status_code == 200:
             data = response.json()
             if data.get('photos') and len(data['photos']) > 0:
-                image_url = data['photos'][0]['src']['large2x'] # Alta calidad
+                image_url = data['photos'][0]['src']['large2x']
                 print(f"   ✅ Imagen encontrada en Pexels")
                 return image_url
         print(f"   ⚠️ No se encontró imagen en Pexels")
@@ -268,6 +268,31 @@ def buscar_imagen_pexels(query, orientation="portrait"):
     except Exception as e:
         print(f"   ❌ Error en Pexels: {e}")
         return None
+
+def buscar_imagenes_pexels(query, cantidad=3, orientation="portrait"):
+    """Busca múltiples imágenes en Pexels de una sola vez"""
+    url = "https://api.pexels.com/v1/search"
+    headers = {"Authorization": PEXELS_API_KEY}
+    params = {
+        "query": query,
+        "per_page": cantidad,
+        "orientation": orientation
+    }
+    
+    try:
+        print(f"   🔍 Buscando {cantidad} imágenes en Pexels: '{query}'...")
+        response = requests.get(url, headers=headers, params=params, timeout=30)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get('photos'):
+                urls = [photo['src']['large2x'] for photo in data['photos']]
+                print(f"   ✅ {len(urls)} imágenes encontradas en Pexels")
+                return urls
+        print(f"   ⚠️ No se encontraron imágenes en Pexels")
+        return []
+    except Exception as e:
+        print(f"   ❌ Error en Pexels: {e}")
+        return []
 
 def generar_query_imagen_hierba(ingrediente):
     return f"{ingrediente['nombre']} natural healthy herbal"
@@ -326,7 +351,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             img_resized.save(resized_path)
         
         clip = ImageClip(resized_path).set_duration(duracion_segmento)
-        clip = clip.resize(lambda t: 1 + 0.15 * (t / duracion_segmento)) # Zoom lento
+        clip = clip.resize(lambda t: 1 + 0.15 * (t / duracion_segmento))
         clip = clip.set_position(('center', 'center'))
         clips.append(clip)
     
@@ -374,19 +399,17 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             try:
                 musica = AudioFileClip(musica_path)
                 
-                # 🔥 LÓGICA DE LOOP: Si la música es menor a 30s, se repite
                 if musica.duration < 30:
                     veces = int(30 / musica.duration) + 1
                     musica = concatenate_audioclips([musica] * veces).subclip(0, 30)
                 else:
                     musica = musica.subclip(0, 30)
                 
-                # 🔥 VOLUMEN DE MÚSICA AJUSTADO AL 15% EXACTO
                 musica = musica.volumex(0.15)
                 
                 audio_final = CompositeAudioClip([
                     musica.set_start(0),
-                    audio_combinado.set_start(2.0) # Voz empieza a los 2 segundos
+                    audio_combinado.set_start(2.0)
                 ])
                 video_final = video_final.set_audio(audio_final)
             except Exception as e:
@@ -453,6 +476,13 @@ def main():
     print("🌿 Bot Herbolaria + Reels (Versión 100% Final con Pexels)")
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
+    # 🔍 DEBUG: Verificar qué variables llegan desde GitHub Secrets
+    print(f"\n DEBUG - Variables de entorno:")
+    print(f"   DEEPSEEK_API_KEY: {'✅ Presente' if DEEPSEEK_API_KEY else '❌ FALTA'}")
+    print(f"   MAKE_WEBHOOK_URL: {'✅ Presente' if MAKE_WEBHOOK_URL else '❌ FALTA'}")
+    print(f"   PEXELS_API_KEY: {'✅ Presente' if PEXELS_API_KEY else '❌ FALTA'} (Longitud: {len(PEXELS_API_KEY) if PEXELS_API_KEY else 0})")
+    print(f"   CLOUDINARY: {'✅ Configurado' if CLOUDINARY_DISPONIBLE else '⚠️ No configurado'}\n")
+    
     faltantes = []
     if not DEEPSEEK_API_KEY: faltantes.append("DEEPSEEK_API_KEY")
     if not MAKE_WEBHOOK_URL: faltantes.append("MAKE_WEBHOOK_URL")
@@ -460,7 +490,8 @@ def main():
     
     if faltantes:
         print(f"❌ Faltan estas variables en GitHub Secrets: {', '.join(faltantes)}")
-        print("⚠️ Verifica que estén escritas EXACTAMENTE así (mayúsculas, sin espacios al inicio o final).")
+        print("⚠️ Verifica en: Settings → Secrets and variables → Actions")
+        print("⚠️ Los nombres deben ser EXACTOS (mayúsculas, sin espacios)")
         return
     
     tipo = detectar_tipo_publicacion()
@@ -473,7 +504,7 @@ def main():
     print(f"📝 POST: {item_post['nombre']}")
     
     item_reel = obtener_item_no_repetido(catalogo, estado, tipo, excluir_nombre=item_post['nombre'])
-    print(f"🎬 REEL: {item_reel['nombre']} (Diferente al post)")
+    print(f" REEL: {item_reel['nombre']} (Diferente al post)")
     
     # ==========================================
     # GENERAR POST
@@ -491,7 +522,6 @@ def main():
     print("🎨 Generando imagen POST...")
     post_image_url = buscar_imagen_pexels(query_post, orientation="portrait")
     
-    # 🔥 FALLBACK INFALIBLE
     if not post_image_url:
         if tipo == "hierba":
             post_image_url = "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1080&h=1350&fit=crop"
@@ -506,27 +536,10 @@ def main():
     guion = generar_guion_reel(item_reel, tipo)
     print(f"   S1: {guion['s1'][:50]}...")
     
-    print("🎨 Generando 3 imágenes REEL...")
-    imagenes_reel = []
+    print(" Generando 3 imágenes REEL...")
     query_reel = generar_query_imagen_hierba(item_reel) if tipo == "hierba" else generar_query_imagen_curiosidad(item_reel)
+    imagenes_reel = buscar_imagenes_pexels(query_reel, cantidad=3, orientation="portrait")
     
-    # 🔥 Búsqueda eficiente: pedimos 3 imágenes de una sola vez a Pexels
-    url_search = "https://api.pexels.com/v1/search"
-    headers_pexels = {"Authorization": PEXELS_API_KEY}
-    params_search = {"query": query_reel, "per_page": 3, "orientation": "portrait"}
-    
-    try:
-        print(f"   🔍 Buscando 3 imágenes en Pexels para el Reel...")
-        r_search = requests.get(url_search, headers=headers_pexels, params=params_search, timeout=30)
-        if r_search.status_code == 200:
-            data_search = r_search.json()
-            if data_search.get('photos'):
-                for photo in data_search['photos']:
-                    imagenes_reel.append(photo['src']['large2x'])
-                print(f"   ✅ {len(imagenes_reel)} imágenes encontradas para el Reel")
-    except Exception as e:
-        print(f"   ❌ Error buscando imágenes para Reel: {e}")
-        
     # Fallback si no se encontraron 3 imágenes
     while len(imagenes_reel) < 3:
         if post_image_url and not post_image_url.startswith("https://images.unsplash.com"):
@@ -548,7 +561,7 @@ def main():
         "post_image_url": post_image_url,
         "post_comment": post_comentario,
         "reel_video_url": reel_video_url,
-        "reel_caption": f"🌿 {item_reel['nombre']} - Asistente inteligente 👉 https://t.me/alex_xanax_bot",
+        "reel_caption": f"🌿 {item_reel['nombre']} - Asistente inteligente  https://t.me/alex_xanax_bot",
         "reel_comment": "🎬 ¿Qué te pareció? Usa nuestro asistente, está en los comentarios 👉 https://t.me/alex_xanax_bot"
     }
     
