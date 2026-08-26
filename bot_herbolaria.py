@@ -31,7 +31,7 @@ from moviepy.editor import (
 # ================================================================
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 MAKE_WEBHOOK_URL = os.getenv("MAKE_WEBHOOK_URL")
-AGNES_API_KEY = os.getenv("AGNES_API_KEY")
+PEXELS_API_KEY = os.getenv("PEXELS_API_KEY") # 🔥 NUEVA CLAVE
 
 CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME")
 CLOUD_API_KEY = os.getenv("CLOUDINARY_API_KEY")
@@ -242,65 +242,38 @@ SEGMENTO_3: [texto]"""
             }
 
 # ================================================================
-# GENERACIÓN DE IMÁGENES (CON 20s DE ESPACIO Y TIMEOUT DE 120s)
+# 🔥 GENERACIÓN DE IMÁGENES CON PEXELS (RÁPIDO Y CONFIABLE)
 # ================================================================
-def generar_prompt_imagen_hierba(ingrediente):
-    prompt_ia = f"Foto vertical 4:5 de {ingrediente['nombre']}. CARACTERÍSTICAS: {ingrediente['caracteristicas_visuales']}. REGLAS: hiperrealista, madera rústica, luz dorada, espacio inferior oscuro para texto."
-    try:
-        r = requests.post("https://api.deepseek.com/v1/chat/completions",
-            headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"},
-            json={"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt_ia}], "temperature": 0.7, "max_tokens": 200}, timeout=60)
-        r.raise_for_status()
-        prompt = r.json()["choices"][0]["message"]["content"].strip()
-        return prompt + " Vertical 4:5, hyperrealistic, 4k, bottom dark gradient for text."
-    except:
-        return f"Fresh {ingrediente['nombre']} close-up, wooden table, natural light, photorealistic, 4k, vertical 4:5, bottom dark gradient"
-
-def generar_prompt_imagen_curiosidad(curiosidad):
-    prompt_ia = f"Ilustración científica vertical 4:5 sobre {curiosidad['nombre']}. CARACTERÍSTICAS: {curiosidad['caracteristicas_visuales']}. REGLAS: moderno, azul/blanco, prohibido plantas, espacio inferior oscuro."
-    try:
-        r = requests.post("https://api.deepseek.com/v1/chat/completions",
-            headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"},
-            json={"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt_ia}], "temperature": 0.7, "max_tokens": 200}, timeout=60)
-        r.raise_for_status()
-        prompt = r.json()["choices"][0]["message"]["content"].strip()
-        return prompt + " Vertical 4:5, scientific, modern, 4k, no plants, no herbs, bottom dark gradient."
-    except:
-        return f"Scientific illustration, human anatomy, modern design, blue/white, 4k, vertical 4:5, no plants, bottom dark gradient"
-
-def generar_imagen_agnes(prompt, tipo="hierba", width=1080, height=1350):
-    prompt_limpio = prompt[:500]
-    url = "https://apihub.agnes-ai.com/v1/images/generations"
-    headers = {"Authorization": f"Bearer {AGNES_API_KEY}", "Content-Type": "application/json"}
-    negative = "deformed, blurry, low quality, text, watermark, ugly" if tipo == "hierba" else "plants, herbs, leaves, flowers, vegetables, natural remedies, deformed, blurry, low quality, text, watermark, ugly, vintage"
-    payload = {
-        "model": "agnes-image-2.1-flash",
-        "prompt": prompt_limpio,
-        "negative_prompt": negative,
-        "width": width,
-        "height": height,
-        "num_images": 1
+def buscar_imagen_pexels(query, orientation="portrait"):
+    """Busca imagen en Pexels API"""
+    url = "https://api.pexels.com/v1/search"
+    headers = {"Authorization": PEXELS_API_KEY}
+    params = {
+        "query": query,
+        "per_page": 1,
+        "orientation": orientation
     }
-    for intento in range(3):
-        try:
-            print(f"   🎨 Intento {intento+1}/3 generando imagen...")
-            response = requests.post(url, headers=headers, json=payload, timeout=120) # 🔥 Timeout aumentado a 120s
-            if response.status_code == 200:
-                data = response.json()
-                image_url = data['data'][0]['url']
-                print(f"   ✅ Imagen generada exitosamente")
+    
+    try:
+        print(f"   🔍 Buscando en Pexels: '{query}'...")
+        response = requests.get(url, headers=headers, params=params, timeout=30)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get('photos') and len(data['photos']) > 0:
+                image_url = data['photos'][0]['src']['large2x'] # Alta calidad
+                print(f"   ✅ Imagen encontrada en Pexels")
                 return image_url
-            else:
-                print(f"   ❌ Error Agnes: {response.status_code} - {response.text[:100]}")
-        except Exception as e:
-            print(f"   ❌ Error en intento {intento+1}: {e}")
-        
-        if intento < 2:
-            print(f"   ⏳ Esperando 20 segundos antes del siguiente intento...")
-            time.sleep(20) # 🔥 Espera de 20 segundos
-            
-    print("   ⚠️ Agnes falló tras 3 intentos.")
-    return None
+        print(f"   ⚠️ No se encontró imagen en Pexels")
+        return None
+    except Exception as e:
+        print(f"   ❌ Error en Pexels: {e}")
+        return None
+
+def generar_query_imagen_hierba(ingrediente):
+    return f"{ingrediente['nombre']} natural healthy herbal"
+
+def generar_query_imagen_curiosidad(curiosidad):
+    return f"{curiosidad['nombre']} science medical health body"
 
 # ================================================================
 # GENERACIÓN DE AUDIO (VOZ NATURAL +8%)
@@ -401,7 +374,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             try:
                 musica = AudioFileClip(musica_path)
                 
-                # 🔥 LÓGICA DE LOOP: Si la música es menor a 30s, se repite para cubrir todo el video
+                # 🔥 LÓGICA DE LOOP: Si la música es menor a 30s, se repite
                 if musica.duration < 30:
                     veces = int(30 / musica.duration) + 1
                     musica = concatenate_audioclips([musica] * veces).subclip(0, 30)
@@ -477,10 +450,10 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
 # MAIN
 # ================================================================
 def main():
-    print("🌿 Bot Herbolaria + Reels (Versión 100% Final)")
+    print("🌿 Bot Herbolaria + Reels (Versión 100% Final con Pexels)")
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
-    if not all([DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, AGNES_API_KEY]):
+    if not all([DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, PEXELS_API_KEY]):
         print("❌ Faltan variables de entorno. Revisa los Secrets de GitHub.")
         return
     
@@ -503,22 +476,22 @@ def main():
     if tipo == "hierba":
         post_texto = generar_texto_hierba(item_post)
         post_comentario = "🌿 ¿Qué opinas? Visita nuestro asistente 👉 https://t.me/alex_xanax_bot"
-        prompt_img = generar_prompt_imagen_hierba(item_post)
+        query_post = generar_query_imagen_hierba(item_post)
     else:
         post_texto = generar_texto_curiosidad(item_post)
         post_comentario = "🧠 ¿Te sorprendió? Asistente gratis 👉 https://t.me/alex_xanax_bot"
-        prompt_img = generar_prompt_imagen_curiosidad(item_post)
+        query_post = generar_query_imagen_curiosidad(item_post)
     
     print("🎨 Generando imagen POST...")
-    post_image_url = generar_imagen_agnes(prompt_img, tipo=tipo, width=1080, height=1350)
+    post_image_url = buscar_imagen_pexels(query_post, orientation="portrait")
     
-    # 🔥 FALLBACK INFALIBLE: Si Agnes falla, usamos Unsplash (100% confiable para Make.com)
+    # 🔥 FALLBACK INFALIBLE
     if not post_image_url:
         if tipo == "hierba":
             post_image_url = "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1080&h=1350&fit=crop"
         else:
             post_image_url = "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=1080&h=1350&fit=crop"
-        print(f"   ⚠️ Usando imagen de respaldo de Unsplash (confiable para Make.com)")
+        print(f"   ⚠️ Usando imagen de respaldo de Unsplash")
     
     # ==========================================
     # GENERAR REEL
@@ -529,20 +502,31 @@ def main():
     
     print("🎨 Generando 3 imágenes REEL...")
     imagenes_reel = []
-    for i in range(3):
-        if tipo == "hierba":
-            prompt = generar_prompt_imagen_hierba(item_reel) + f" variation {i+1}"
-        else:
-            prompt = generar_prompt_imagen_curiosidad(item_reel) + f" variation {i+1}"
+    query_reel = generar_query_imagen_hierba(item_reel) if tipo == "hierba" else generar_query_imagen_curiosidad(item_reel)
+    
+    # 🔥 Búsqueda eficiente: pedimos 3 imágenes de una sola vez a Pexels
+    url_search = "https://api.pexels.com/v1/search"
+    headers_pexels = {"Authorization": PEXELS_API_KEY}
+    params_search = {"query": query_reel, "per_page": 3, "orientation": "portrait"}
+    
+    try:
+        print(f"   🔍 Buscando 3 imágenes en Pexels para el Reel...")
+        r_search = requests.get(url_search, headers=headers_pexels, params=params_search, timeout=30)
+        if r_search.status_code == 200:
+            data_search = r_search.json()
+            if data_search.get('photos'):
+                for photo in data_search['photos']:
+                    imagenes_reel.append(photo['src']['large2x'])
+                print(f"   ✅ {len(imagenes_reel)} imágenes encontradas para el Reel")
+    except Exception as e:
+        print(f"   ❌ Error buscando imágenes para Reel: {e}")
         
-        url_img = generar_imagen_agnes(prompt, tipo=tipo, width=1080, height=1920)
-        if url_img:
-            imagenes_reel.append(url_img)
+    # Fallback si no se encontraron 3 imágenes
+    while len(imagenes_reel) < 3:
+        if post_image_url and not post_image_url.startswith("https://images.unsplash.com"):
+            imagenes_reel.append(post_image_url)
         else:
-            if post_image_url and not post_image_url.startswith("https://via.placeholder.com"):
-                imagenes_reel.append(post_image_url)
-            else:
-                imagenes_reel.append("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1080&h=1920&fit=crop")
+            imagenes_reel.append("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1080&h=1920&fit=crop")
     
     print("🎥 Renderizando video REEL...")
     reel_video_url = generar_video_reel(imagenes_reel, guion, tipo, duracion_segmento=10)
