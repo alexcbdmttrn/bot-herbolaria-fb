@@ -223,7 +223,6 @@ SEGMENTO_3: [texto]"""
         if "SEGMENTO_3:" in texto:
             segmentos['s3'] = texto.split("SEGMENTO_3:")[1].strip()
             
-        # Limpieza suave: solo quitamos emojis y URLs, dejamos comas y puntos para la naturalidad
         for k in segmentos:
             segmentos[k] = re.sub(r'http\S+', '', segmentos[k])
             segmentos[k] = re.sub(r'[\U0001F600-\U0001F64F\U0001F300-\U0001F5FF\U0001F680-\U0001F6FF]', '', segmentos[k]).strip()
@@ -243,7 +242,7 @@ SEGMENTO_3: [texto]"""
             }
 
 # ================================================================
-# GENERACIÓN DE IMÁGENES
+# GENERACIÓN DE IMÁGENES (CON 20s DE ESPACIO Y TIMEOUT DE 120s)
 # ================================================================
 def generar_prompt_imagen_hierba(ingrediente):
     prompt_ia = f"Foto vertical 4:5 de {ingrediente['nombre']}. CARACTERÍSTICAS: {ingrediente['caracteristicas_visuales']}. REGLAS: hiperrealista, madera rústica, luz dorada, espacio inferior oscuro para texto."
@@ -284,18 +283,27 @@ def generar_imagen_agnes(prompt, tipo="hierba", width=1080, height=1350):
     }
     for intento in range(3):
         try:
-            print(f"🎨 Intento {intento+1}/3 generando imagen...")
-            response = requests.post(url, headers=headers, json=payload, timeout=90)
+            print(f"   🎨 Intento {intento+1}/3 generando imagen...")
+            response = requests.post(url, headers=headers, json=payload, timeout=120) # 🔥 Timeout aumentado a 120s
             if response.status_code == 200:
                 data = response.json()
-                return data['data'][0]['url']
+                image_url = data['data'][0]['url']
+                print(f"   ✅ Imagen generada exitosamente")
+                return image_url
+            else:
+                print(f"   ❌ Error Agnes: {response.status_code} - {response.text[:100]}")
         except Exception as e:
-            print(f"   Error: {e}")
-        time.sleep(10)
+            print(f"   ❌ Error en intento {intento+1}: {e}")
+        
+        if intento < 2:
+            print(f"   ⏳ Esperando 20 segundos antes del siguiente intento...")
+            time.sleep(20) # 🔥 Espera de 20 segundos
+            
+    print("   ⚠️ Agnes falló tras 3 intentos.")
     return None
 
 # ================================================================
-# GENERACIÓN DE AUDIO (VOZ NATURAL)
+# GENERACIÓN DE AUDIO (VOZ NATURAL +8%)
 # ================================================================
 async def generar_audio(texto, output_path, velocidad=1.08):
     voces_prioritarias = ["es-MX-DaliaNeural", "es-MX-JorgeNeural"] + [v for v in VOCES_FEMENINAS if v not in ["es-MX-DaliaNeural", "es-MX-JorgeNeural"]]
@@ -304,7 +312,7 @@ async def generar_audio(texto, output_path, velocidad=1.08):
         try:
             communicate = edge_tts.Communicate(texto, voz_intento, rate="+8%")
             await communicate.save(output_path)
-            print(f"✅ Audio generado con {voz_intento}")
+            print(f"   ✅ Audio generado con {voz_intento}")
             return True
         except Exception as e:
             print(f"   Falló {voz_intento}: {e}")
@@ -345,7 +353,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             img_resized.save(resized_path)
         
         clip = ImageClip(resized_path).set_duration(duracion_segmento)
-        clip = clip.resize(lambda t: 1 + 0.15 * (t / duracion_segmento))
+        clip = clip.resize(lambda t: 1 + 0.15 * (t / duracion_segmento)) # Zoom lento
         clip = clip.set_position(('center', 'center'))
         clips.append(clip)
     
@@ -366,10 +374,10 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         if exito and os.path.exists(audio_path):
             audios.append(AudioFileClip(audio_path))
         else:
-            print(f"⚠️ No se generó audio segmento {i+1}")
+            print(f"   ⚠️ No se generó audio segmento {i+1}")
     
     if not audios:
-        print("⚠️ Sin audios. Creando pista de silencio...")
+        print("   ⚠️ Sin audios. Creando pista de silencio...")
         try:
             def make_frame(t):
                 return np.zeros((1,))
@@ -377,7 +385,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             silent_clip.write_audiofile("silencio.mp3", verbose=False, logger=None)
             audios.append(AudioFileClip("silencio.mp3"))
         except Exception as e:
-            print(f"⚠️ No se pudo crear silencio: {e}")
+            print(f"   ⚠️ No se pudo crear silencio: {e}")
     
     if audios:
         audio_combinado = concatenate_audioclips(audios)
@@ -389,32 +397,33 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         
         if musicas:
             musica_path = random.choice(musicas)
-            print(f"🎵 Música seleccionada: {musica_path}")
+            print(f"   🎵 Música seleccionada: {musica_path}")
             try:
                 musica = AudioFileClip(musica_path)
                 
+                # 🔥 LÓGICA DE LOOP: Si la música es menor a 30s, se repite para cubrir todo el video
                 if musica.duration < 30:
                     veces = int(30 / musica.duration) + 1
                     musica = concatenate_audioclips([musica] * veces).subclip(0, 30)
                 else:
                     musica = musica.subclip(0, 30)
                 
-                # 🔥 VOLUMEN DE MÚSICA AJUSTADO AL 15%
+                # 🔥 VOLUMEN DE MÚSICA AJUSTADO AL 15% EXACTO
                 musica = musica.volumex(0.15)
                 
                 audio_final = CompositeAudioClip([
                     musica.set_start(0),
-                    audio_combinado.set_start(2.0)
+                    audio_combinado.set_start(2.0) # Voz empieza a los 2 segundos
                 ])
                 video_final = video_final.set_audio(audio_final)
             except Exception as e:
-                print(f"⚠️ Error mezclando música: {e}")
+                print(f"   ⚠️ Error mezclando música: {e}")
                 video_final = video_final.set_audio(audio_combinado)
         else:
-            print("⚠️ Sin música. Solo voz.")
+            print("   ⚠️ Sin música. Solo voz.")
             video_final = video_final.set_audio(audio_combinado)
     else:
-        print("⚠️ Sin audio. Video mudo.")
+        print("   ⚠️ Sin audio. Video mudo.")
     
     output_path = "reel_temp.mp4"
     video_final.write_videofile(output_path, fps=24, codec='libx264', audio_codec='aac', verbose=False, logger=None)
@@ -468,7 +477,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
 # MAIN
 # ================================================================
 def main():
-    print("🌿 Bot Herbolaria + Reels (Versión Final Optimizada)")
+    print("🌿 Bot Herbolaria + Reels (Versión 100% Final)")
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     if not all([DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, AGNES_API_KEY]):
@@ -502,8 +511,14 @@ def main():
     
     print("🎨 Generando imagen POST...")
     post_image_url = generar_imagen_agnes(prompt_img, tipo=tipo, width=1080, height=1350)
+    
+    # 🔥 FALLBACK INFALIBLE: Si Agnes falla, usamos Unsplash (100% confiable para Make.com)
     if not post_image_url:
-        post_image_url = "https://via.placeholder.com/1080x1350/2a2a2a/6a6a6a?text=Salud+Natural"
+        if tipo == "hierba":
+            post_image_url = "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1080&h=1350&fit=crop"
+        else:
+            post_image_url = "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=1080&h=1350&fit=crop"
+        print(f"   ⚠️ Usando imagen de respaldo de Unsplash (confiable para Make.com)")
     
     # ==========================================
     # GENERAR REEL
@@ -527,7 +542,7 @@ def main():
             if post_image_url and not post_image_url.startswith("https://via.placeholder.com"):
                 imagenes_reel.append(post_image_url)
             else:
-                imagenes_reel.append("https://via.placeholder.com/1080x1920/2a2a2a/6a6a6a?text=Respaldo")
+                imagenes_reel.append("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1080&h=1920&fit=crop")
     
     print("🎥 Renderizando video REEL...")
     reel_video_url = generar_video_reel(imagenes_reel, guion, tipo, duracion_segmento=10)
@@ -543,7 +558,6 @@ def main():
         "post_image_url": post_image_url,
         "post_comment": post_comentario,
         "reel_video_url": reel_video_url,
-        # 🔥 CAMBIO 1: Descripción actualizada a "Asistente inteligente"
         "reel_caption": f"🌿 {item_reel['nombre']} - Asistente inteligente 👉 https://t.me/alex_xanax_bot",
         "reel_comment": "🎬 ¿Qué te pareció? Usa nuestro asistente, está en los comentarios 👉 https://t.me/alex_xanax_bot"
     }
