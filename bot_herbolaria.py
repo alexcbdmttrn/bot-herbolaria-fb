@@ -56,7 +56,7 @@ CATALOGO_FILE = "catalogo_ingredientes.json"
 CATALOGO_CURIOSIDADES_FILE = "catalogo_curiosidades_salud.json"
 
 # ================================================================
-# VOCES FEMENINAS (Priorizando las más naturales)
+# VOCES (Priorizando las más naturales)
 # ================================================================
 VOCES_FEMENINAS = [
     "es-MX-DaliaNeural",      # La más natural y cálida
@@ -176,7 +176,7 @@ Reglas:
         return f"💡 {curiosidad['nombre']}: dato sorprendente.\n✅ 25M células nuevas/segundo.\n✅ Estómago se renueva cada 3 días.\n✅ Hígado 500+ funciones.\n💡 Sabías que: la piel se renueva cada mes.\n👇 ¿Sorprendido? Dale 👍.\n✨ Más ciencia 👉 https://t.me/alex_xanax_bot\n#Ciencia #CuerpoHumano #DatosIncreibles #HealthScience #Biologia\n📸 Edición digital con IA."
 
 # ================================================================
-# GUION PARA REEL (3 SEGMENTOS - VOZ NATURAL)
+# GUION PARA REEL (VOZ NATURAL, SIN CTA FINAL EN AUDIO)
 # ================================================================
 def generar_guion_reel(item, tipo):
     if tipo == "hierba":
@@ -188,7 +188,7 @@ REGLAS DE VOZ NATURAL:
 - SIN emojis, SIN URLs en el texto hablado.
 - S1: Gancho impactante (15-20 palabras).
 - S2: 3 beneficios detallados (40-50 palabras).
-- S3: Tip práctico + la frase exacta: "Usa nuestro asistente, está en los comentarios." (20-25 palabras).
+- S3: Solo un Tip práctico breve (15-20 palabras). NO menciones el asistente ni los comentarios en el audio, eso ya va en la descripción del video.
 FORMATO:
 SEGMENTO_1: [texto]
 SEGMENTO_2: [texto]
@@ -203,7 +203,7 @@ REGLAS DE VOZ NATURAL:
 - SIN emojis, SIN URLs en el texto hablado.
 - S1: Dato impactante (15-20 palabras).
 - S2: 3 datos científicos (40-50 palabras).
-- S3: Curiosidad + la frase exacta: "Usa nuestro asistente, está en los comentarios." (20-25 palabras).
+- S3: Solo una curiosidad o tip breve (15-20 palabras). NO menciones el asistente ni los comentarios en el audio.
 FORMATO:
 SEGMENTO_1: [texto]
 SEGMENTO_2: [texto]
@@ -223,7 +223,7 @@ SEGMENTO_3: [texto]"""
         if "SEGMENTO_3:" in texto:
             segmentos['s3'] = texto.split("SEGMENTO_3:")[1].strip()
             
-        # Limpieza suave: solo quitamos emojis y URLs, pero dejamos comas y puntos para la naturalidad
+        # Limpieza suave: solo quitamos emojis y URLs, dejamos comas y puntos para la naturalidad
         for k in segmentos:
             segmentos[k] = re.sub(r'http\S+', '', segmentos[k])
             segmentos[k] = re.sub(r'[\U0001F600-\U0001F64F\U0001F300-\U0001F5FF\U0001F680-\U0001F6FF]', '', segmentos[k]).strip()
@@ -233,13 +233,13 @@ SEGMENTO_3: [texto]"""
             return {
                 's1': "¿Sabías que este ingrediente puede acelerar tu metabolismo, mientras descansas?",
                 's2': "Acelera tu metabolismo basal, hasta un 15 por ciento en solo 30 minutos. Reduce la inflamación muscular, y activa la circulación sanguínea de forma natural.",
-                's3': "Tip práctico: consúmelo fresco por la mañana. Usa nuestro asistente, está en los comentarios."
+                's3': "Tip práctico: consúmelo fresco por la mañana para obtener mejores resultados."
             }
         else:
             return {
                 's1': "¿Sabías que este es un dato fascinante que muy pocos conocen?",
                 's2': "Cada día, tu cuerpo genera 25 millones de células nuevas. El estómago se renueva cada 3 días, y el hígado tiene más de 500 funciones diferentes.",
-                's3': "Tu piel se reemplaza por completo cada mes. Usa nuestro asistente, está en los comentarios."
+                's3': "Tu piel se reemplaza por completo cada mes. Mantén una rutina saludable para potenciarlo."
             }
 
 # ================================================================
@@ -297,13 +297,11 @@ def generar_imagen_agnes(prompt, tipo="hierba", width=1080, height=1350):
 # ================================================================
 # GENERACIÓN DE AUDIO (VOZ NATURAL)
 # ================================================================
-async def generar_audio(texto, output_path, velocidad=1.08): # 1.08x suena más natural que 1.10x
-    # Priorizar Dalia o Jorge para máxima naturalidad
+async def generar_audio(texto, output_path, velocidad=1.08):
     voces_prioritarias = ["es-MX-DaliaNeural", "es-MX-JorgeNeural"] + [v for v in VOCES_FEMENINAS if v not in ["es-MX-DaliaNeural", "es-MX-JorgeNeural"]]
     
     for voz_intento in voces_prioritarias:
         try:
-            # +8% es más natural que +10%, evita el efecto "ardilla"
             communicate = edge_tts.Communicate(texto, voz_intento, rate="+8%")
             await communicate.save(output_path)
             print(f"✅ Audio generado con {voz_intento}")
@@ -314,12 +312,11 @@ async def generar_audio(texto, output_path, velocidad=1.08): # 1.08x suena más 
     return False
 
 # ================================================================
-# GENERACIÓN DE VIDEO REEL (MÚSICA CONTINUA AL 20%)
+# GENERACIÓN DE VIDEO REEL (MÚSICA CONTINUA AL 15%)
 # ================================================================
 def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
     print("🎬 Renderizando video Reel...")
     
-    # Descargar imágenes
     imagenes_contenido = []
     for idx, url in enumerate(imagenes_urls):
         try:
@@ -340,7 +337,6 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
                 img.save(f"temp_img_{idx}.jpg")
                 imagenes_contenido.append(f"temp_img_{idx}.jpg")
     
-    # Crear clips con zoom lento
     clips = []
     for i, path in enumerate(imagenes_contenido):
         with Image.open(path) as img:
@@ -349,13 +345,12 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             img_resized.save(resized_path)
         
         clip = ImageClip(resized_path).set_duration(duracion_segmento)
-        clip = clip.resize(lambda t: 1 + 0.15 * (t / duracion_segmento)) # Zoom lento
+        clip = clip.resize(lambda t: 1 + 0.15 * (t / duracion_segmento))
         clip = clip.set_position(('center', 'center'))
         clips.append(clip)
     
     video_final = concatenate_videoclips(clips, method="compose")
     
-    # Generar audio por segmento
     audios = []
     for i, key in enumerate(['s1', 's2', 's3']):
         texto = guion.get(key, "").strip()
@@ -373,7 +368,6 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         else:
             print(f"⚠️ No se generó audio segmento {i+1}")
     
-    # Fallback de silencio
     if not audios:
         print("⚠️ Sin audios. Creando pista de silencio...")
         try:
@@ -385,11 +379,9 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         except Exception as e:
             print(f"⚠️ No se pudo crear silencio: {e}")
     
-    # Mezclar audio: voz + música CONTINUA al 20%
     if audios:
         audio_combinado = concatenate_audioclips(audios)
         
-        # Buscar música
         musicas = glob.glob("*.mp3") + glob.glob("**/*.mp3", recursive=True)
         musicas = [m for m in musicas if not m.startswith("temp_") and not m.startswith("audio_") and not m.startswith("narracion_") and not m.startswith("silencio")]
         if not musicas:
@@ -401,17 +393,15 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             try:
                 musica = AudioFileClip(musica_path)
                 
-                # 🔥 LÓGICA DE LOOP: Si la música es menor a 30s, se repite para cubrir todo el video
                 if musica.duration < 30:
                     veces = int(30 / musica.duration) + 1
                     musica = concatenate_audioclips([musica] * veces).subclip(0, 30)
                 else:
                     musica = musica.subclip(0, 30)
                 
-                # 🔥 VOLUMEN AL 20%
-                musica = musica.volumex(0.2)
+                # 🔥 VOLUMEN DE MÚSICA AJUSTADO AL 15%
+                musica = musica.volumex(0.15)
                 
-                # Música desde 0, voz desde 2 segundos
                 audio_final = CompositeAudioClip([
                     musica.set_start(0),
                     audio_combinado.set_start(2.0)
@@ -426,12 +416,10 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
     else:
         print("⚠️ Sin audio. Video mudo.")
     
-    # Exportar video
     output_path = "reel_temp.mp4"
     video_final.write_videofile(output_path, fps=24, codec='libx264', audio_codec='aac', verbose=False, logger=None)
     print(f"✅ Video exportado: {output_path}")
     
-    # Subir a Cloudinary
     if CLOUDINARY_DISPONIBLE:
         try:
             print("☁️ Subiendo a Cloudinary...")
@@ -453,7 +441,6 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
         except Exception as e:
             print(f"❌ Error Cloudinary: {e}. Usando file.io...")
     
-    # Fallback: file.io
     print("⚠️ Subiendo a file.io (servicio temporal)...")
     try:
         with open(output_path, "rb") as f:
@@ -556,7 +543,8 @@ def main():
         "post_image_url": post_image_url,
         "post_comment": post_comentario,
         "reel_video_url": reel_video_url,
-        "reel_caption": f"🌿 {item_reel['nombre']} - Asistente 👉 https://t.me/alex_xanax_bot",
+        # 🔥 CAMBIO 1: Descripción actualizada a "Asistente inteligente"
+        "reel_caption": f"🌿 {item_reel['nombre']} - Asistente inteligente 👉 https://t.me/alex_xanax_bot",
         "reel_comment": "🎬 ¿Qué te pareció? Usa nuestro asistente, está en los comentarios 👉 https://t.me/alex_xanax_bot"
     }
     
