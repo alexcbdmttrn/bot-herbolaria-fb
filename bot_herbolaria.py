@@ -453,8 +453,14 @@ def main():
     print("🌿 Bot Herbolaria + Reels (Versión 100% Final con Pexels)")
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
-    if not all([DEEPSEEK_API_KEY, MAKE_WEBHOOK_URL, PEXELS_API_KEY]):
-        print("❌ Faltan variables de entorno. Revisa los Secrets de GitHub.")
+    faltantes = []
+    if not DEEPSEEK_API_KEY: faltantes.append("DEEPSEEK_API_KEY")
+    if not MAKE_WEBHOOK_URL: faltantes.append("MAKE_WEBHOOK_URL")
+    if not PEXELS_API_KEY: faltantes.append("PEXELS_API_KEY")
+    
+    if faltantes:
+        print(f"❌ Faltan estas variables en GitHub Secrets: {', '.join(faltantes)}")
+        print("⚠️ Verifica que estén escritas EXACTAMENTE así (mayúsculas, sin espacios al inicio o final).")
         return
     
     tipo = detectar_tipo_publicacion()
