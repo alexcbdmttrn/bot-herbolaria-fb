@@ -2,9 +2,9 @@ name: Bot Herbolaria - Publicación 2x diario
 
 on:
   schedule:
-    - cron: '0 14 * * *'   # 8:00 AM CDMX (14:00 UTC) -> HIERBA
-    - cron: '0 21 * * *'   # 3:00 PM CDMX (21:00 UTC) -> CURIOSIDAD
-  workflow_dispatch:
+    - cron: '0 13 * * *'   # 8:00 AM CDMX (13:00 UTC en horario de verano)
+    - cron: '0 20 * * *'   # 3:00 PM CDMX (20:00 UTC en horario de verano)
+  workflow_dispatch:       # Permite ejecución manual
 
 permissions:
   contents: write
@@ -29,11 +29,10 @@ jobs:
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
-          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}  # 🔥 CAMBIADO: AGNES → PEXELS
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
           CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
           CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
-          CRON_SCHEDULE: ${{ github.event.schedule }}
         run: python bot_herbolaria.py
 
       - name: Commit y push del estado
