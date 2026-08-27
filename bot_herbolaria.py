@@ -66,7 +66,7 @@ VOCES_FEMENINAS = [
     "es-AR-ElenaNeural",
 ]
 VOZ_SELECCIONADA = random.choice(VOCES_FEMENINAS)
-print(f"🎤 Voz seleccionada: {VOZ_SELECCIONADA}")
+print(f" Voz seleccionada: {VOZ_SELECCIONADA}")
 
 # ================================================================
 # CARGA DE CATÁLOGOS Y ESTADO
@@ -153,7 +153,7 @@ Reglas:
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
     except:
-        return f" {ingrediente['nombre']}: el secreto que nadie te cuenta.\n✅ Alivia molestias en 10 min.\n✅ Fortalece tu sistema inmune.\n✅ Mejora digestión.\n Tip: Tómalo caliente.\n👇 ¿Lo usas? Reacciona 🔥.\n✨ Descubre tu remedio ideal 👉 https://t.me/alex_xanax_bot\n#SaludNatural #Bienestar #Herbolaria #NaturalHealth #RemedioEfectivo\n📸 Edición digital con IA."
+        return f"🚨 {ingrediente['nombre']}: el secreto que nadie te cuenta.\n✅ Alivia molestias en 10 min.\n✅ Fortalece tu sistema inmune.\n✅ Mejora digestión.\n🍵 Tip: Tómalo caliente.\n👇 ¿Lo usas? Reacciona .\n✨ Descubre tu remedio ideal 👉 https://t.me/alex_xanax_bot\n#SaludNatural #Bienestar #Herbolaria #NaturalHealth #RemedioEfectivo\n📸 Edición digital con IA."
 
 def generar_texto_curiosidad(curiosidad):
     prompt = f"""Escribe un post fascinante sobre "{curiosidad['nombre']}".
@@ -165,7 +165,7 @@ Reglas:
 - Línea 6: Pregunta al lector
 - Línea 7: ✨ Más ciencia gratis 👉 https://t.me/alex_xanax_bot
 - Línea 8: 5 hashtags
-- Línea 9: 📸 Edición digital con IA."""
+- Línea 9:  Edición digital con IA."""
     try:
         r = requests.post("https://api.deepseek.com/v1/chat/completions",
             headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"},
@@ -173,7 +173,7 @@ Reglas:
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
     except:
-        return f"💡 {curiosidad['nombre']}: dato sorprendente.\n✅ 25M células nuevas/segundo.\n✅ Estómago se renueva cada 3 días.\n✅ Hígado 500+ funciones.\n💡 Sabías que: la piel se renueva cada mes.\n👇 ¿Sorprendido? Dale 👍.\n✨ Más ciencia 👉 https://t.me/alex_xanax_bot\n#Ciencia #CuerpoHumano #DatosIncreibles #HealthScience #Biologia\n📸 Edición digital con IA."
+        return f"💡 {curiosidad['nombre']}: dato sorprendente.\n✅ 25M células nuevas/segundo.\n✅ Estómago se renueva cada 3 días.\n✅ Hígado 500+ funciones.\n💡 Sabías que: la piel se renueva cada mes.\n ¿Sorprendido? Dale 👍.\n✨ Más ciencia 👉 https://t.me/alex_xanax_bot\n#Ciencia #CuerpoHumano #DatosIncreibles #HealthScience #Biologia\n Edición digital con IA."
 
 # ================================================================
 # GUION PARA REEL (VOZ NATURAL, SIN CTA FINAL EN AUDIO)
@@ -242,7 +242,7 @@ SEGMENTO_3: [texto]"""
             }
 
 # ================================================================
-# 🔥 GENERACIÓN DE IMÁGENES CON PEXELS
+#  GENERACIÓN DE IMÁGENES CON PEXELS
 # ================================================================
 def buscar_imagen_pexels(query, orientation="portrait"):
     """Busca imagen en Pexels API"""
@@ -419,7 +419,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             print("   ⚠️ Sin música. Solo voz.")
             video_final = video_final.set_audio(audio_combinado)
     else:
-        print("   ⚠️ Sin audio. Video mudo.")
+        print("   ️ Sin audio. Video mudo.")
     
     output_path = "reel_temp.mp4"
     video_final.write_videofile(output_path, fps=24, codec='libx264', audio_codec='aac', verbose=False, logger=None)
@@ -473,12 +473,12 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
 # MAIN
 # ================================================================
 def main():
-    print("🌿 Bot Herbolaria + Reels (Versión 100% Final con Pexels)")
+    print("🌿 Bot Herbolaria + Reels (Versión 100% Final con Respaldo)")
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     # 🔍 DEBUG: Verificar qué variables llegan desde GitHub Secrets
     print(f"\n DEBUG - Variables de entorno:")
-    print(f"   DEEPSEEK_API_KEY: {'✅ Presente' if DEEPSEEK_API_KEY else '❌ FALTA'}")
+    print(f"   DEEPSEEK_API_KEY: {'✅ Presente' if DEEPSEEK_API_KEY else ' FALTA'}")
     print(f"   MAKE_WEBHOOK_URL: {'✅ Presente' if MAKE_WEBHOOK_URL else '❌ FALTA'}")
     print(f"   PEXELS_API_KEY: {'✅ Presente' if PEXELS_API_KEY else '❌ FALTA'} (Longitud: {len(PEXELS_API_KEY) if PEXELS_API_KEY else 0})")
     print(f"   CLOUDINARY: {'✅ Configurado' if CLOUDINARY_DISPONIBLE else '⚠️ No configurado'}\n")
@@ -490,8 +490,6 @@ def main():
     
     if faltantes:
         print(f"❌ Faltan estas variables en GitHub Secrets: {', '.join(faltantes)}")
-        print("⚠️ Verifica en: Settings → Secrets and variables → Actions")
-        print("⚠️ Los nombres deben ser EXACTOS (mayúsculas, sin espacios)")
         return
     
     tipo = detectar_tipo_publicacion()
@@ -540,7 +538,6 @@ def main():
     query_reel = generar_query_imagen_hierba(item_reel) if tipo == "hierba" else generar_query_imagen_curiosidad(item_reel)
     imagenes_reel = buscar_imagenes_pexels(query_reel, cantidad=3, orientation="portrait")
     
-    # Fallback si no se encontraron 3 imágenes
     while len(imagenes_reel) < 3:
         if post_image_url and not post_image_url.startswith("https://images.unsplash.com"):
             imagenes_reel.append(post_image_url)
@@ -554,37 +551,51 @@ def main():
         print("⚠️ No se pudo generar/subir el video. Se enviará sin reel.")
     
     # ==========================================
-    # ENVIAR A MAKE.COM
+    # ENVIAR A MAKE.COM (CON SISTEMA DE RESPALDO Y REINTENTOS)
     # ==========================================
     payload = {
         "post_message": post_texto,
         "post_image_url": post_image_url,
         "post_comment": post_comentario,
         "reel_video_url": reel_video_url,
-        "reel_caption": f"🌿 {item_reel['nombre']} - Asistente inteligente  https://t.me/alex_xanax_bot",
+        "reel_caption": f"🌿 {item_reel['nombre']} - Asistente inteligente 👉 https://t.me/alex_xanax_bot",
         "reel_comment": "🎬 ¿Qué te pareció? Usa nuestro asistente, está en los comentarios 👉 https://t.me/alex_xanax_bot"
     }
     
     print("\n📤 Enviando a Make.com...")
-    try:
-        r = requests.post(MAKE_WEBHOOK_URL, json=payload, timeout=120)
-        if r.status_code in [200, 201, 202]:
-            print("✅ Enviado a Make.com correctamente")
-            clave = tipo + "s"
-            estado["publicadas"][clave].append({"nombre": item_post["nombre"], "fecha": datetime.now().isoformat()})
-            estado["publicadas"][clave].append({"nombre": item_reel["nombre"], "fecha": datetime.now().isoformat()})
-            guardar_estado(estado)
-            print(f"🎉 ¡Publicados: {item_post['nombre']} y {item_reel['nombre']}!")
-        else:
-            print(f"❌ Error Make: {r.status_code} - {r.text}")
-    except Exception as e:
-        print(f"❌ Error de conexión: {e}")
+    exito = False
+    
+    # 🔥 Bucle de 3 intentos con pausas de 15 segundos (Respaldo automático)
+    for intento in range(3):
+        try:
+            r = requests.post(MAKE_WEBHOOK_URL, json=payload, timeout=120)
+            if r.status_code in [200, 201, 202]:
+                print("✅ Enviado a Make.com correctamente")
+                exito = True
+                break
+            else:
+                print(f"⚠️ Intento {intento+1}/3 falló (Código: {r.status_code}). Reintentando en 15s...")
+                time.sleep(15)
+        except Exception as e:
+            print(f"⚠️ Intento {intento+1}/3 falló por conexión: {e}. Reintentando en 15s...")
+            time.sleep(15)
+            
+    if exito:
+        # SOLO guardamos el estado si se publicó con éxito
+        clave = tipo + "s"
+        estado["publicadas"][clave].append({"nombre": item_post["nombre"], "fecha": datetime.now().isoformat()})
+        estado["publicadas"][clave].append({"nombre": item_reel["nombre"], "fecha": datetime.now().isoformat()})
+        guardar_estado(estado)
+        print(f"🎉 ¡Publicados: {item_post['nombre']} y {item_reel['nombre']}!")
+    else:
+        print("❌ No se pudo enviar a Make.com después de 3 intentos.")
+        print("️ El estado NO se guardó. Los temas se reintentarán automáticamente en la próxima ejecución (manual o programada).")
 
 if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        print(f"❌ Error fatal: {e}")
+        print(f" Error fatal: {e}")
         import traceback
         traceback.print_exc()
         exit(1)
