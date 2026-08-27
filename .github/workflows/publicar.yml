@@ -1,10 +1,11 @@
-name: Bot Herbolaria - Publicación 2x diario
+name: Bot Herbolaria - Publicación 2x diario + Respaldo
 
 on:
   schedule:
-    - cron: '0 13 * * *'   # 8:00 AM CDMX (13:00 UTC en horario de verano)
-    - cron: '0 20 * * *'   # 3:00 PM CDMX (20:00 UTC en horario de verano)
-  workflow_dispatch:       # Permite ejecución manual
+    - cron: '0 13 * * *'   # 8:00 AM CDMX (Horario Principal Mañana)
+    - cron: '0 20 * * *'   # 3:00 PM CDMX (Horario Principal Tarde)
+    - cron: '0 23 * * *'   # 6:00 PM CDMX (🛡️ RESPALDO: Si los anteriores fallaron)
+  workflow_dispatch:       # Permite ejecución manual (Tu botón de pánico)
 
 permissions:
   contents: write
