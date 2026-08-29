@@ -56,6 +56,216 @@ CATALOGO_FILE = "catalogo_ingredientes.json"
 CATALOGO_CURIOSIDADES_FILE = "catalogo_curiosidades_salud.json"
 
 # ================================================================
+# DICCIONARIO DE TRADUCCIÓN (Español → Inglés para Pexels)
+# ================================================================
+TRADUCCIONES = {
+    # Hierbas y plantas
+    "manzanilla": "chamomile flower",
+    "jengibre": "ginger root",
+    "lavanda": "lavender",
+    "eucalipto": "eucalyptus leaves",
+    "valeriana": "valerian root",
+    "cúrcuma": "turmeric root",
+    "menta": "mint leaves",
+    "romero": "rosemary",
+    "albahaca": "basil",
+    "tomillo": "thyme",
+    "orégano": "oregano",
+    "perejil": "parsley",
+    "cilantro": "cilantro",
+    "salvia": "sage",
+    "hinojo": "fennel",
+    "anís": "anise seeds",
+    "comino": "cumin seeds",
+    "canela": "cinnamon sticks",
+    "clavo": "clove buds",
+    "nuez moscada": "nutmeg",
+    "vainilla": "vanilla pods",
+    "limón": "lemon fruit",
+    "naranja": "orange fruit",
+    "toronja": "grapefruit",
+    "uva": "grapes",
+    "fresa": "strawberry",
+    "frambuesa": "raspberry",
+    "arándano": "blueberry",
+    "mora": "blackberry",
+    "kiwi": "kiwi fruit",
+    "mango": "mango fruit",
+    "papaya": "papaya fruit",
+    "piña": "pineapple",
+    "coco": "coconut",
+    "aguacate": "avocado",
+    "granada": "pomegranate",
+    "higo": "fig fruit",
+    "dátil": "dates fruit",
+    "ciruela": "plum fruit",
+    "melocotón": "peach fruit",
+    "cereza": "cherries",
+    "sandía": "watermelon",
+    "melón": "cantaloupe",
+    "maracuyá": "passion fruit",
+    "guayaba": "guava",
+    "mamey": "mamey sapote",
+    "zapote": "sapote",
+    "chirimoya": "cherimoya",
+    "lúcuma": "lucuma",
+    "pitaya": "dragon fruit",
+    "tuna": "prickly pear",
+    "zanahoria": "carrot",
+    "cebolla": "onion",
+    "ajo": "garlic",
+    "pimiento": "bell pepper",
+    "tomate": "tomato",
+    "pepino": "cucumber",
+    "calabacín": "zucchini",
+    "berenjena": "eggplant",
+    "espinaca": "spinach leaves",
+    "lechuga": "lettuce",
+    "acelga": "swiss chard",
+    "col": "cabbage",
+    "brócoli": "broccoli",
+    "coliflor": "cauliflower",
+    "apio": "celery",
+    "espárrago": "asparagus",
+    "alcachofa": "artichoke",
+    "calabaza": "pumpkin",
+    "batata": "sweet potato",
+    "papa": "potato",
+    "yuca": "cassava",
+    "maíz": "corn",
+    "elote": "corn on the cob",
+    "chícharo": "peas",
+    "haba": "broad beans",
+    "lenteja": "lentils",
+    "garbanzo": "chickpeas",
+    "frijol": "beans",
+    "soja": "soybeans",
+    "arroz": "rice grains",
+    "trigo": "wheat grains",
+    "cebada": "barley grains",
+    "avena": "oats",
+    "centeno": "rye",
+    "mijo": "millet",
+    "quinoa": "quinoa grains",
+    "amaranto": "amaranth",
+    "teff": "teff grains",
+    "sorgo": "sorghum",
+    "kamut": "kamut grains",
+    "espelta": "spelt grains",
+    "champiñón": "mushroom",
+    "portobello": "portobello mushroom",
+    "setas": "wild mushrooms",
+    "hongo": "mushroom",
+    "algas": "seaweed",
+    "espirulina": "spirulina powder",
+    "clorella": "chlorella powder",
+    "almendra": "almonds",
+    "nuez": "walnuts",
+    "cacahuate": "peanuts",
+    "avellana": "hazelnuts",
+    "pistache": "pistachios",
+    "piñón": "pine nuts",
+    "nuez de la india": "cashews",
+    "chía": "chia seeds",
+    "linaza": "flax seeds",
+    "sésamo": "sesame seeds",
+    "girasol": "sunflower seeds",
+    "calabaza": "pumpkin seeds",
+    "amapola": "poppy seeds",
+    "canela": "cinnamon sticks",
+    "clavo": "cloves",
+    "mostaza": "mustard seeds",
+    "comino": "cumin seeds",
+    "anís": "anise seeds",
+    "cardamomo": "cardamom pods",
+    "nuez moscada": "nutmeg",
+    # Plantas medicinales
+    "zabila": "aloe vera plant",
+    "sábila": "aloe vera plant",
+    "hojas de sen": "senna leaves",
+    "cola de caballo": "horsetail plant",
+    "diente de león": "dandelion leaves",
+    "pasiflora": "passionflower plant",
+    "valeriana": "valerian plant",
+    "boldo": "boldo leaves",
+    "árnica": "arnica flowers",
+    "caléndula": "calendula flowers",
+    "cardo mariano": "milk thistle",
+    "tepezcohuite": "tepezcohuite bark",
+    "cuachalalate": "cuachalalate bark",
+    "palo santo": "palo santo wood",
+    "damiana": "damiana plant",
+    "toronjil": "lemon balm plant",
+    "tilia": "linden flowers",
+    "flor de azahar": "orange blossoms",
+    "jamaica": "hibiscus flowers",
+    "cempasúchil": "marigold flowers",
+    "gordolobo": "mullein plant",
+    "marrubio": "horehound plant",
+    "estafiate": "estafiate plant",
+    "pingüica": "pingüica plant",
+    "guarumbo": "guarumbo tree",
+    "tepozán": "tepozán plant",
+    "cocolmeca": "cocolmeca plant",
+    "cancerina": "cancerina plant",
+    "suelda": "suelda plant",
+    "rusco": "ruscus plant",
+    "cenizo": "cenizo plant",
+    "muicle": "muicle plant",
+    "capitaneja": "capitaneja plant",
+    "espinosilla": "espinosilla plant",
+    "hámula": "hamula plant",
+    "anacahuita": "anacahuita tree",
+    "palo mulato": "palo mulato tree",
+    "axocopaque": "axocopaque plant",
+    "salvadora": "salvadora plant",
+    "yerbanís": "yerbanís plant",
+    "hierbabuena": "spearmint plant",
+    "zacate limón": "lemongrass",
+    "cabellos de elote": "corn silk",
+    "hojas de naranjo": "orange leaves",
+    "hojas de aguacate": "avocado leaves",
+    "hojas de nogal": "walnut leaves",
+    "corteza de pino": "pine bark",
+    "raíz de maguey": "maguey root",
+    "rosa silvestre": "wild rose hips",
+    "rosa canina": "rose hips",
+    "black cohosh": "black cohosh plant",
+    "gotu-kola": "gotu kola plant",
+    "centella asiática": "centella asiatica plant",
+    "ginseng": "ginseng root",
+    "ashwagandha": "ashwagandha root",
+    "moringa": "moringa leaves",
+    "equinácea": "echinacea flowers",
+    "hierba de la golondrina": "swallow wort plant",
+    "flor de manita": "manita flower",
+    "hinojo": "fennel plant",
+    "malva": "mallow flowers",
+    "sauce": "willow bark",
+    "fresno": "ash tree leaves",
+    "laurel": "bay leaves",
+    "tejocote": "tejocote fruit",
+    "capulín": "capulin cherry",
+    "zapote blanco": "white sapote fruit",
+    "mangosteen": "mangosteen fruit",
+    "acai": "acai berries",
+    "noni": "noni fruit",
+    "goji": "goji berries",
+    "cranberry": "cranberries",
+    "bilberry": "bilberries",
+    "zarzamora": "blackberries",
+    "guanábana": "soursop fruit",
+    "membrillo": "quince fruit",
+    "chayote": "chayote squash",
+    "jícama": "jicama root",
+    "betabel": "beetroot",
+    "nabo": "turnip",
+    "rábano": "radish",
+    "calabacita": "zucchini squash",
+    "nopal": "nopal cactus pads",
+}
+
+# ================================================================
 # VOCES (Priorizando las más naturales)
 # ================================================================
 VOCES_FEMENINAS = [
@@ -66,7 +276,7 @@ VOCES_FEMENINAS = [
     "es-AR-ElenaNeural",
 ]
 VOZ_SELECCIONADA = random.choice(VOCES_FEMENINAS)
-print(f" Voz seleccionada: {VOZ_SELECCIONADA}")
+print(f"🎤 Voz seleccionada: {VOZ_SELECCIONADA}")
 
 # ================================================================
 # CARGA DE CATÁLOGOS Y ESTADO
@@ -153,7 +363,7 @@ Reglas:
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
     except:
-        return f"🚨 {ingrediente['nombre']}: el secreto que nadie te cuenta.\n✅ Alivia molestias en 10 min.\n✅ Fortalece tu sistema inmune.\n✅ Mejora digestión.\n🍵 Tip: Tómalo caliente.\n👇 ¿Lo usas? Reacciona .\n✨ Descubre tu remedio ideal 👉 https://t.me/alex_xanax_bot\n#SaludNatural #Bienestar #Herbolaria #NaturalHealth #RemedioEfectivo\n📸 Edición digital con IA."
+        return f"🚨 {ingrediente['nombre']}: el secreto que nadie te cuenta.\n✅ Alivia molestias en 10 min.\n✅ Fortalece tu sistema inmune.\n✅ Mejora digestión.\n🍵 Tip: Tómalo caliente.\n👇 ¿Lo usas? Reacciona 🔥.\n✨ Descubre tu remedio ideal 👉 https://t.me/alex_xanax_bot\n#SaludNatural #Bienestar #Herbolaria #NaturalHealth #RemedioEfectivo\n📸 Edición digital con IA."
 
 def generar_texto_curiosidad(curiosidad):
     prompt = f"""Escribe un post fascinante sobre "{curiosidad['nombre']}".
@@ -165,7 +375,7 @@ Reglas:
 - Línea 6: Pregunta al lector
 - Línea 7: ✨ Más ciencia gratis 👉 https://t.me/alex_xanax_bot
 - Línea 8: 5 hashtags
-- Línea 9:  Edición digital con IA."""
+- Línea 9: 📸 Edición digital con IA."""
     try:
         r = requests.post("https://api.deepseek.com/v1/chat/completions",
             headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"},
@@ -173,7 +383,7 @@ Reglas:
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
     except:
-        return f"💡 {curiosidad['nombre']}: dato sorprendente.\n✅ 25M células nuevas/segundo.\n✅ Estómago se renueva cada 3 días.\n✅ Hígado 500+ funciones.\n💡 Sabías que: la piel se renueva cada mes.\n ¿Sorprendido? Dale 👍.\n✨ Más ciencia 👉 https://t.me/alex_xanax_bot\n#Ciencia #CuerpoHumano #DatosIncreibles #HealthScience #Biologia\n Edición digital con IA."
+        return f"💡 {curiosidad['nombre']}: dato sorprendente.\n✅ 25M células nuevas/segundo.\n✅ Estómago se renueva cada 3 días.\n✅ Hígado 500+ funciones.\n💡 Sabías que: la piel se renueva cada mes.\n👇 ¿Sorprendido? Dale 👍.\n✨ Más ciencia 👉 https://t.me/alex_xanax_bot\n#Ciencia #CuerpoHumano #DatosIncreibles #HealthScience #Biologia\n📸 Edición digital con IA."
 
 # ================================================================
 # GUION PARA REEL (VOZ NATURAL, SIN CTA FINAL EN AUDIO)
@@ -242,6 +452,97 @@ SEGMENTO_3: [texto]"""
             }
 
 # ================================================================
+# GENERACIÓN DE QUERY OPTIMIZADA (con traducción + categoría)
+# ================================================================
+def traducir_a_ingles(texto):
+    """Traduce del español al inglés usando el diccionario o DeepSeek."""
+    if texto.lower() in TRADUCCIONES:
+        return TRADUCCIONES[texto.lower()]
+    
+    print(f"   🔍 Traduciendo con DeepSeek: '{texto}'")
+    prompt = f"Traduce al inglés la siguiente palabra o frase, devolviendo SOLO la traducción sin puntos ni comillas. Es para buscar imágenes en Pexels, así que usa el término más común en fotografía de alimentos o naturaleza. Texto: '{texto}'"
+    try:
+        r = requests.post("https://api.deepseek.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"},
+            json={"model": "deepseek-chat", "messages": [{"role": "user", "content": prompt}], "temperature": 0.3, "max_tokens": 30}, timeout=10)
+        if r.status_code == 200:
+            traduccion = r.json()["choices"][0]["message"]["content"].strip()
+            print(f"   ✅ Traducción: '{traduccion}'")
+            return traduccion
+    except Exception as e:
+        print(f"   ⚠️ Error en traducción: {e}")
+    
+    # Fallback: eliminar tildes
+    return texto.lower().replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u")
+
+def generar_query_imagen_hierba(ingrediente):
+    """Genera query para Pexels usando categoría del catálogo."""
+    nombre = ingrediente.get('nombre', '')
+    categoria = ingrediente.get('categoria', 'hierba').lower()
+    
+    termino_ingles = traducir_a_ingles(nombre)
+    
+    # Palabras clave según categoría (usando tu catálogo)
+    if categoria in ['fruta', 'frutas']:
+        keywords = "fresh fruit close-up food photography"
+    elif categoria in ['verdura', 'verduras', 'hortaliza', 'raíz']:
+        keywords = "fresh vegetable close-up food photography"
+    elif categoria in ['cereal', 'cereales', 'grano']:
+        keywords = "grain close-up food photography"
+    elif categoria in ['legumbre']:
+        keywords = "legumes beans close-up food photography"
+    elif categoria in ['fruto seco', 'frutos secos']:
+        keywords = "nuts close-up food photography"
+    elif categoria in ['semilla', 'semillas']:
+        keywords = "seeds close-up food photography"
+    elif categoria in ['hierba', 'hierbas', 'planta', 'plantas', 'flor', 'arbusto']:
+        keywords = "herbal plant fresh botanical photography"
+    elif categoria in ['hongo', 'hongos', 'seta']:
+        keywords = "mushroom close-up food photography"
+    elif categoria in ['alga', 'algas']:
+        keywords = "seaweed close-up food photography"
+    elif categoria in ['especia', 'especias']:
+        keywords = "spice close-up food photography"
+    elif categoria in ['aceite', 'aceites']:
+        keywords = "oil bottle food photography"
+    elif categoria in ['mineral']:
+        keywords = "mineral rock texture"
+    else:
+        keywords = "natural ingredient close-up food photography"
+    
+    query = f"{termino_ingles} {keywords}"
+    print(f"   🔍 Query generada: '{query}'")
+    return query
+
+def generar_query_imagen_curiosidad(curiosidad):
+    """Genera query para Pexels para curiosidades científicas (sin plantas)."""
+    nombre = curiosidad.get('nombre', '')
+    categoria = curiosidad.get('categoria', 'ciencia').lower()
+    
+    termino_ingles = traducir_a_ingles(nombre)
+    
+    if 'cerebro' in categoria or 'mente' in categoria:
+        keywords = "brain anatomy science illustration"
+    elif 'corazón' in categoria or 'circulación' in categoria:
+        keywords = "human heart anatomy medical"
+    elif 'intestino' in categoria or 'digestión' in categoria:
+        keywords = "human digestive system medical"
+    elif 'hueso' in categoria or 'esqueleto' in categoria:
+        keywords = "human skeleton anatomy"
+    elif 'músculo' in categoria or 'ejercicio' in categoria:
+        keywords = "human muscle anatomy"
+    elif 'hormona' in categoria or 'endocrino' in categoria:
+        keywords = "endocrine system medical"
+    elif 'célula' in categoria or 'microscopio' in categoria:
+        keywords = "cell biology microscopic"
+    else:
+        keywords = "medical health infographic"
+    
+    query = f"{termino_ingles} {keywords} 3D render"
+    print(f"   🔍 Query generada: '{query}'")
+    return query
+
+# ================================================================
 #  GENERACIÓN DE IMÁGENES CON PEXELS
 # ================================================================
 def buscar_imagen_pexels(query, orientation="portrait"):
@@ -293,12 +594,6 @@ def buscar_imagenes_pexels(query, cantidad=3, orientation="portrait"):
     except Exception as e:
         print(f"   ❌ Error en Pexels: {e}")
         return []
-
-def generar_query_imagen_hierba(ingrediente):
-    return f"{ingrediente['nombre']} natural healthy herbal"
-
-def generar_query_imagen_curiosidad(curiosidad):
-    return f"{curiosidad['nombre']} science medical health body"
 
 # ================================================================
 # GENERACIÓN DE AUDIO (VOZ NATURAL +8%)
@@ -419,7 +714,7 @@ def generar_video_reel(imagenes_urls, guion, tipo, duracion_segmento=10):
             print("   ⚠️ Sin música. Solo voz.")
             video_final = video_final.set_audio(audio_combinado)
     else:
-        print("   ️ Sin audio. Video mudo.")
+        print("   ⚠️ Sin audio. Video mudo.")
     
     output_path = "reel_temp.mp4"
     video_final.write_videofile(output_path, fps=24, codec='libx264', audio_codec='aac', verbose=False, logger=None)
@@ -477,8 +772,8 @@ def main():
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     # 🔍 DEBUG: Verificar qué variables llegan desde GitHub Secrets
-    print(f"\n DEBUG - Variables de entorno:")
-    print(f"   DEEPSEEK_API_KEY: {'✅ Presente' if DEEPSEEK_API_KEY else ' FALTA'}")
+    print(f"\n🔍 DEBUG - Variables de entorno:")
+    print(f"   DEEPSEEK_API_KEY: {'✅ Presente' if DEEPSEEK_API_KEY else '❌ FALTA'}")
     print(f"   MAKE_WEBHOOK_URL: {'✅ Presente' if MAKE_WEBHOOK_URL else '❌ FALTA'}")
     print(f"   PEXELS_API_KEY: {'✅ Presente' if PEXELS_API_KEY else '❌ FALTA'} (Longitud: {len(PEXELS_API_KEY) if PEXELS_API_KEY else 0})")
     print(f"   CLOUDINARY: {'✅ Configurado' if CLOUDINARY_DISPONIBLE else '⚠️ No configurado'}\n")
@@ -502,7 +797,7 @@ def main():
     print(f"📝 POST: {item_post['nombre']}")
     
     item_reel = obtener_item_no_repetido(catalogo, estado, tipo, excluir_nombre=item_post['nombre'])
-    print(f" REEL: {item_reel['nombre']} (Diferente al post)")
+    print(f"🎬 REEL: {item_reel['nombre']} (Diferente al post)")
     
     # ==========================================
     # GENERAR POST
@@ -533,8 +828,10 @@ def main():
     print("\n🎬 Generando REEL...")
     guion = generar_guion_reel(item_reel, tipo)
     print(f"   S1: {guion['s1'][:50]}...")
+    print(f"   S2: {guion['s2'][:50]}...")
+    print(f"   S3: {guion['s3'][:50]}...")
     
-    print(" Generando 3 imágenes REEL...")
+    print("🎨 Generando 3 imágenes REEL...")
     query_reel = generar_query_imagen_hierba(item_reel) if tipo == "hierba" else generar_query_imagen_curiosidad(item_reel)
     imagenes_reel = buscar_imagenes_pexels(query_reel, cantidad=3, orientation="portrait")
     
@@ -553,13 +850,16 @@ def main():
     # ==========================================
     # ENVIAR A MAKE.COM (CON SISTEMA DE RESPALDO Y REINTENTOS)
     # ==========================================
+    # 🔥 AGREGAR 📸 Edición digital con IA a la descripción del REEL
+    reel_caption = f"🌿 {item_reel['nombre']} - Asistente inteligente 👉 https://t.me/alex_xanax_bot\n📸 Edición digital con IA."
+    
     payload = {
         "post_message": post_texto,
         "post_image_url": post_image_url,
         "post_comment": post_comentario,
         "reel_video_url": reel_video_url,
-        "reel_caption": f"🌿 {item_reel['nombre']} - Asistente inteligente 👉 https://t.me/alex_xanax_bot",
-        "reel_comment": "🎬 ¿Qué te pareció? Usa nuestro asistente, está en los comentarios 👉 https://t.me/alex_xanax_bot"
+        "reel_caption": reel_caption,
+        "reel_comment": "🎬 ¿Qué te pareció? Usa nuestro asistente, está en los comentarios 👉 https://t.me/alex_xanax_bot\n📸 Edición digital con IA."
     }
     
     print("\n📤 Enviando a Make.com...")
@@ -589,13 +889,13 @@ def main():
         print(f"🎉 ¡Publicados: {item_post['nombre']} y {item_reel['nombre']}!")
     else:
         print("❌ No se pudo enviar a Make.com después de 3 intentos.")
-        print("️ El estado NO se guardó. Los temas se reintentarán automáticamente en la próxima ejecución (manual o programada).")
+        print("⚠️ El estado NO se guardó. Los temas se reintentarán automáticamente en la próxima ejecución (manual o programada).")
 
 if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        print(f" Error fatal: {e}")
+        print(f"❌ Error fatal: {e}")
         import traceback
         traceback.print_exc()
         exit(1)
